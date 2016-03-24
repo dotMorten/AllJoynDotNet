@@ -9,9 +9,8 @@ namespace PInvokeCodeGenerator
 {
     public static class SharedProjectGenerator
     {
-        public static void Generate(string projectFolder, string projectName, IEnumerable<string> files)
+        public static void Generate(string projectFolder, string projectName, string projectGuid, IEnumerable<string> files)
         {
-            var projectGuid = Guid.NewGuid().ToString();
             File.WriteAllText(projectFolder + projectName + ".shproj", shprojTemplate.Replace("{ProjectGuid}", projectGuid).Replace("{FileName}", projectName));
             StringBuilder sb = new StringBuilder();
             foreach(var file in files)

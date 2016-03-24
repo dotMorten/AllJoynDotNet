@@ -114,7 +114,8 @@ namespace PInvokeCodeGenerator
 
             File.WriteAllText(outputFolder + "AllJoynWrapper.cs", AllJoynWrapperTemplate);
             generatedFiles.Add("AllJoynWrapper.cs");
-            SharedProjectGenerator.Generate(outputFolder, "AllJoynDotNet.GeneratedInterop", generatedFiles);
+            var projectGuid = "6feeac78-a2ec-4eb4-bd87-2863dbfec3de";
+            SharedProjectGenerator.Generate(outputFolder, "AllJoynDotNet.GeneratedInterop", projectGuid, generatedFiles);
         }
         private static void WriteLines(string lines, string prefix, StreamWriter sw)
         {
