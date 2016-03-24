@@ -108,10 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\AllJoynManaged.UWP.rd.xml" />
+    <EmbeddedResource Include="Properties\AllJoynDotNet.UWP.rd.xml" />
   </ItemGroup>
-  <Import Project="..\Shared\AllJoynManaged.Shared.projitems" Label="Shared" />
-  <Import Project="..\Generated\AllJoynManaged.GeneratedInterop.projitems" Label="Shared" />
+  <Import Project="..\Shared\AllJoynDotNet.Shared.projitems" Label="Shared" />
+  <Import Project="..\Generated\AllJoynDotNet.GeneratedInterop.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

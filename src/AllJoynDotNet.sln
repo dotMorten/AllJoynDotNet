@@ -33,14 +33,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.NET45", "TestApps\T
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		AllJoynDotNet\Generated\AllJoynManaged.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynManaged.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
-		AllJoynDotNet\Generated\AllJoynManaged.GeneratedInterop.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynManaged.Shared.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{f362bd9c-88a5-46fb-8b06-d07b484222c0}*SharedItemsImports = 13
-		AllJoynDotNet\Generated\AllJoynManaged.GeneratedInterop.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynManaged.Shared.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynManaged.Shared.projitems*{d44b775e-6a8d-41d7-96d7-c6eeaffe8efe}*SharedItemsImports = 13
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{d44b775e-6a8d-41d7-96d7-c6eeaffe8efe}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
