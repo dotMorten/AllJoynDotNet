@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d44b775e-6a8d-41d7-96d7-c6eeaffe8efe</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AllJoynDotNet</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AboutListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AllJoynException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BusAttachment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorCodeLookup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InterfaceDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BusObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeImports.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Status.xml" />
+  </ItemGroup>
+</Project>
