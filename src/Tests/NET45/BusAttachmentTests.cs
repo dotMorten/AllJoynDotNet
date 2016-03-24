@@ -22,6 +22,8 @@ namespace UnitTests.NET45
             Assert.IsTrue(bus.IsConnected);
             Assert.IsFalse(bus.IsStopping);
 
+            Assert.IsFalse(string.IsNullOrEmpty(bus.UniqueName));
+
             bus.Stop();
             Assert.IsTrue(bus.IsStopping);
             Assert.IsTrue(bus.IsStarted);

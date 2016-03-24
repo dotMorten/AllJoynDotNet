@@ -48,6 +48,10 @@ namespace AllJoynDotNet
 
         protected override void Dispose(bool disposing)
         {
+            if (IsStarted && !IsStopping)
+                Stop();
+            if (IsStopping)
+                Join();
             if (Handle != IntPtr.Zero)
                 alljoyn_busattachment_destroy(Handle);
             base.Dispose(disposing);
