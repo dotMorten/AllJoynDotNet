@@ -1,0 +1,3 @@
+[submodule "alljoyn"]
+	path = alljoyn
+	url = https://git.allseenalliance.org/gerrit/core/alljoyn
