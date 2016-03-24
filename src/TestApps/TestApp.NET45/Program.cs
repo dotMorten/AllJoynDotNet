@@ -33,6 +33,11 @@ namespace TestApp.NET45
             var name = iface.Name;
             Console.WriteLine("Bus started successfully. Unique name: " + bus.UniqueName);
             Console.ReadKey();
+
+            bus.Stop();
+            bus.Join();
+            bus.Dispose();
+
         }
     }
 }

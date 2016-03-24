@@ -20,7 +20,6 @@ namespace AllJoynDotNet
             return bus;
         }
 
-        private IntPtr _aboutListenerCallback;
         private readonly string _busName;
         private readonly bool _allowRemoteMessages;
 
@@ -49,7 +48,6 @@ namespace AllJoynDotNet
 
         protected override void Dispose(bool disposing)
         {
-            Disconnect();
             if (Handle != IntPtr.Zero)
                 alljoyn_busattachment_destroy(Handle);
             base.Dispose(disposing);
@@ -72,6 +70,21 @@ namespace AllJoynDotNet
             if (result != 0)
                 throw new AllJoynException(result, "Failed to start bus attachment.");
         }
+
+        public void Stop()
+        {
+            var result = alljoyn_busattachment_stop(Handle);
+            if (result != 0)
+                throw new AllJoynException(result, "Failed to stop bus attachment.");
+        }
+
+        public void Join()
+        {
+            var result = alljoyn_busattachment_join(Handle);
+            if (result != 0)
+                throw new AllJoynException(result, "Failed to join bus attachment.");
+        }
+
         public void Connect(string connectSpec = null)
         {
             var result = alljoyn_busattachment_connect(Handle, connectSpec);
@@ -164,18 +177,9 @@ namespace AllJoynDotNet
 
         public void Disconnect()
         {
-            if (Handle != IntPtr.Zero)
-            {
-                var result = alljoyn_busattachment_disconnect(Handle, null);
-                if (result != 0)
-                    throw new Exception($"Failed to disconnect bus attachment. Error code={result}");
-                //Handle = IntPtr.Zero;
-            }
-            if (_aboutListenerCallback != IntPtr.Zero)
-            {
-                //alljoyn_aboutlistener_destroy(_aboutListenerCallback);
-                _aboutListenerCallback = IntPtr.Zero;
-            }
+            var result = alljoyn_busattachment_disconnect(Handle, "");
+            if (result != 0)
+                throw new AllJoynException(result, "Failed to disconnect bus attachment");
         }
 
         private static string GenerateBusName()
