@@ -15,7 +15,7 @@ What's not working:
 
 #### FAQ
 **Windows 10 UWP already has AllJoyn. Do I need this?**
-   - The WinRT APIs are far too limited, and the provided code-generation tools can't create proper certifiable services. You still need C++ to create a proper client. When running under UWP, not AllJoyn native library is needed, since the one provided with Windows 10 is used.
+   - The WinRT APIs are far too limited, and the provided code-generation tools can't create proper certifiable services. You still need C++ to create a proper client. When running under UWP, no AllJoyn native library is needed, since the one provided with Windows 10 is used (Xamarin Android deploys the native library, and Desktop you have to manually copy them).
 
 **Why?**
    - Because I don't like to write too much code in C++. I'm faster in C#. Also building AllJoyn clients often mean running on mobile, so we need a cross platform way like Xamarin  
