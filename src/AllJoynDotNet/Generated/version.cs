@@ -18,5 +18,13 @@ namespace AllJoynDotNet
     {
         internal version(IntPtr handle) : base(handle) { }
 
+        [DllImport(Constants.DLL_IMPORT_TARGET)] 
+        private extern static IntPtr alljoyn_getversion();         
+        
+        [DllImport(Constants.DLL_IMPORT_TARGET)] 
+        private extern static IntPtr alljoyn_getbuildinfo(); 
+        
+        [DllImport(Constants.DLL_IMPORT_TARGET)] 
+        private extern static uint alljoyn_getnumericversion();
     }
 }

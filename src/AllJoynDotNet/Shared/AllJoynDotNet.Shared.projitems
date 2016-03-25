@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BusObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NativeImports.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)version.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Status.xml" />
