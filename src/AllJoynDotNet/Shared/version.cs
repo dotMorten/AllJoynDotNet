@@ -9,7 +9,7 @@ namespace AllJoynDotNet
         /// <summary>
         /// Gives the version of AllJoyn Library 
         /// </summary>
-        public static string Version
+        public static string VersionString
         {
             get
             {
@@ -31,13 +31,18 @@ namespace AllJoynDotNet
         }
 
         /// <summary>
-        /// Gives the version of AllJoyn Library as a single number
+        /// Gives the version of AllJoyn Library as a <see cref="System.Version"/> type
         /// </summary>
-        public static UInt32 NumericVersion
+        public static Version Version
         {
             get
             {
-                return alljoyn_getnumericversion();
+                UInt32 v = alljoyn_getnumericversion();                
+                var major = (int)((v >> 24) & 0xff);
+                var minor = (int)((v >> 16) & 0xff);
+                var build = (int)((v >> 8) & 0xff);
+                var rev = (int)(v & 0xff);
+                return new Version(major, minor, build, rev);
             }
         }
     }

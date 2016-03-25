@@ -29,7 +29,7 @@ namespace TestApp.Android
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.MyButton);
             TextView status = FindViewById<TextView>(Resource.Id.StatusTextView);
-            status.Text = $"AllJoyn Library Version: {version.Version} ({version.NumericVersion})\nAllJoyn BuildInfo:{version.BuildInfo}\n";
+            status.Text = $"AllJoyn Library Version: {version.VersionString} ({version.Version})\nAllJoyn BuildInfo:{version.BuildInfo}\n";
             button.Click += delegate {
                 try {
                     button.Enabled = false;
