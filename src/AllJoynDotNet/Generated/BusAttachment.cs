@@ -1291,7 +1291,7 @@ namespace AllJoynDotNet
 		/// <param name="aboutListener">alljoyn_aboutlistener to be registered</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_registeraboutlistener(IntPtr bus, IntPtr aboutListener);
+		internal static extern void alljoyn_busattachment_registeraboutlistener(IntPtr bus, IntPtr aboutListener);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_registeraboutlistener(alljoyn_busattachment bus,alljoyn_aboutlistener aboutListener);
 
 		/// <summary>
@@ -1434,7 +1434,7 @@ namespace AllJoynDotNet
 		/// - Different error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern Int32 alljoyn_busattachment_unregisterapplicationstatelistener(IntPtr bus, IntPtr listener);
-		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregisterapplicationstatelistener(alljoyn_busattachment bus,alljoyn_applicationstatelistener listener);
+        // extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregisterapplicationstatelistener(alljoyn_busattachment bus,alljoyn_applicationstatelistener listener);
 
 
     }

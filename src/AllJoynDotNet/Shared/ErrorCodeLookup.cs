@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Text;
 
@@ -24,11 +25,34 @@ namespace AllJoynDotNet
             return new ErrorStatus() { Value = code, Name = "ER_UNKNOWN", Comment = "Unknown Error" };
         }
 
+        private static Stream GetResourceStream(string name)
+        {
+#if XAMARIN
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string[] resources = assembly.GetManifestResourceNames();
+            foreach (string resource in resources)
+            {
+                if (resource.EndsWith(name))
+                {
+                    return assembly.GetManifestResourceStream(resource);
+                }
+            }
+            return null;
+#else
+            return typeof(ErrorCodeLookup).GetTypeInfo().Assembly.GetManifestResourceStream("AllJoynDotNet." + name);
+#endif
+
+        }
+
         private static void LoadErrorCodes()
         {
             errorcodes = new Dictionary<int, ErrorStatus>();
-            using (var stream = typeof(ErrorCodeLookup).GetTypeInfo().Assembly.GetManifestResourceStream("AllJoynDotNet.Status.xml"))
+            using (var stream = GetResourceStream("Status.xml"))
             {
+#if DEBUG       //This shouldn't happen but lets leave it here for debugging
+                if (stream == null)
+                    throw new InvalidOperationException("Error codes not found");
+#endif
                 var reader = System.Xml.XmlReader.Create(stream);
                 reader.MoveToContent();
                 while (reader.ReadToFollowing("status"))
@@ -72,7 +96,7 @@ namespace AllJoynDotNet
         public string Comment { get; set; }
         public override string ToString()
         {
-            return $"0x{Value:x2}: {Name} {Comment}";
+            return $"0x{Value:x4}: {Name} {Comment}";
         }
     }
 }
