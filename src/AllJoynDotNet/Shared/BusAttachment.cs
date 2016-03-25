@@ -28,6 +28,8 @@ namespace AllJoynDotNet
             Init.Initialize();
         }
 
+        #region Construct and destroy
+
         private static IntPtr CreateHandle(string busName, bool allowRemoteMessages)
         {
             var handle = alljoyn_busattachment_create(busName, allowRemoteMessages.ToQccBool());
@@ -35,6 +37,7 @@ namespace AllJoynDotNet
                 throw new InvalidOperationException("Could not create bus attachment");
             return handle;
         }
+
         public BusAttachment() : this(GenerateBusName(), true)
         {
         }
@@ -57,6 +60,8 @@ namespace AllJoynDotNet
             base.Dispose(disposing);
         }
 
+        #endregion
+
         public string UniqueName
         {
             get
@@ -67,6 +72,8 @@ namespace AllJoynDotNet
                 return Marshal.PtrToStringAnsi(p);
             }
         }
+
+        #region Bus Attachment Lifecycle
 
         public void Start()
         {
@@ -86,22 +93,59 @@ namespace AllJoynDotNet
         {
             var result = alljoyn_busattachment_join(Handle);
             if (result != 0)
-                throw new AllJoynException(result, "Failed to join bus attachment.");
+                throw new AllJoynException(result); //, "Failed to join bus attachment.");
         }
 
         public void Connect(string connectSpec = null)
         {
             var result = alljoyn_busattachment_connect(Handle, connectSpec);
             if (result != 0)
-                throw new AllJoynException(result, "Failed to connect bus attachment.");
+                throw new AllJoynException(result); //, "Failed to connect bus attachment.");
             Debug.WriteLine($"BusAttachment connect succeeded. Bus name = {_busName}");
         }
+        
+        public void Disconnect()
+        {
+            var result = alljoyn_busattachment_disconnect(Handle, "");
+            if (result != 0)
+                throw new AllJoynException(result, "Failed to disconnect bus attachment");
+        }
+
+        public bool IsStarted
+        {
+            get
+            {
+                return (alljoyn_busattachment_isstarted(Handle) == 1);
+            }
+        }
+
+        public bool IsStopping
+        {
+            get
+            {
+                return (alljoyn_busattachment_isstopping(Handle) == 1);
+            }
+        }
+
+        public bool IsConnected
+        {
+            get
+            {
+                return (alljoyn_busattachment_isconnected(Handle) == 1);
+            }
+        }
+
+        #endregion
+
+        #region Interfaces
+
         public void CreateInterfacesFromXml(string xml)
         {
             var result = alljoyn_busattachment_createinterfacesfromxml(Handle, xml);
             if (result != 0)
                 throw new AllJoynException(result, "Failed to create interface");
         }
+
         public InterfaceDescription GetInterface(string name)
         {
             var handle = alljoyn_busattachment_getinterface(Handle, name);
@@ -127,50 +171,6 @@ namespace AllJoynDotNet
             }
             return ret;
         }
-        public bool IsStarted
-        {
-            get
-            {
-                return (alljoyn_busattachment_isstarted(Handle) == 1);
-            }
-        }
-        public bool IsStopping
-        {
-            get
-            {
-                return (alljoyn_busattachment_isstopping(Handle) == 1);
-            }
-        }
-
-
-        public bool IsConnected
-        {
-            get
-            {
-                return (alljoyn_busattachment_isconnected(Handle) == 1);
-            }
-        }
-
-
-        public void RegisterAboutListener(AboutListener listener)
-        {
-            //alljoyn_aboutlistener_create()
-            alljoyn_busattachment_registeraboutlistener(Handle, listener.Handle);
-
-
-
-            //alljoyn_busobject altObj =
-            //create_about_obj_test_bus_object(serviceBus, "/org/test/about", ifaceName);
-            //
-            //result = AllJoynNative.alljoyn_busattachment_registerbusobject(_busAttachmentHandle, obj);
-
-            //var callback = new alljoyn_aboutlistener_callback(ListenerCallback);
-            //var callback = new CallbackHandler();
-            //_aboutListenerCallback = AllJoynNative.alljoyn_aboutlistener_create(ListenerCallback, IntPtr.Zero);
-            //AllJoynNative.alljoyn_busattachment_registeraboutlistener(_busAttachmentHandle, _aboutListenerCallback);
-            //AllJoynNative.alljoyn_busattachment_whoimplements_interfaces(_busAttachmentHandle, null, 0);
-
-        }
 
         public void WhoImplementsInterfaces(string[] interfaces)
         {
@@ -179,18 +179,21 @@ namespace AllJoynDotNet
                 throw new AllJoynException(result);
         }
 
-        public void Disconnect()
+        #endregion
+
+        public void RegisterAboutListener(AboutListener listener)
         {
-            var result = alljoyn_busattachment_disconnect(Handle, "");
-            if (result != 0)
-                throw new AllJoynException(result, "Failed to disconnect bus attachment");
+            alljoyn_busattachment_registeraboutlistener(Handle, listener.Handle);
         }
+        
 
         private static string GenerateBusName()
         {
 #if NETFX_CORE
             string name  = Windows.ApplicationModel.Package.Current.Id.FamilyName;
 #else
+            //TODO: Xamarin
+
             var assy = Assembly.GetEntryAssembly();
             if (assy == null)
                 assy = Assembly.GetCallingAssembly();
@@ -199,19 +202,5 @@ namespace AllJoynDotNet
 #endif
             return System.Text.RegularExpressions.Regex.Replace(name, "[^a-zA-Z0-9-.]+", "");
         }
-
-        private static void ListenerCallback(
-            IntPtr context,
-            [MarshalAs(UnmanagedType.LPStr)] string busName,
-            UInt16 version,
-            UInt16 port, //alljoyn_sessionport 
-            IntPtr objectDescriptionArg, //alljoyn_msgarg
-            IntPtr aboutDataArg //alljoyn_msgarg
-        )
-        {
-            Debug.WriteLine("Listener Callback arrived");
-        }
-
-
     }
 }
