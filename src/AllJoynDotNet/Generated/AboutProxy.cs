@@ -45,7 +45,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if successful.
 		/// - ER_BUS_REPLY_IS_ERROR_MESSAGE on unknown failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutproxy_getobjectdescription(IntPtr proxy, IntPtr objectDesc);
+		internal static extern QStatus alljoyn_aboutproxy_getobjectdescription(IntPtr proxy, IntPtr objectDesc);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutproxy_getobjectdescription(alljoyn_aboutproxy proxy,alljoyn_msgarg objectDesc);
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace AllJoynDotNet
 		/// - ER_LANGUAGE_NOT_SUPPORTED if the language specified is not supported
 		/// - ER_BUS_REPLY_IS_ERROR_MESSAGE on unknown failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutproxy_getaboutdata(IntPtr proxy, [MarshalAs(UnmanagedType.LPStr)]string language, IntPtr data);
+		internal static extern QStatus alljoyn_aboutproxy_getaboutdata(IntPtr proxy, [MarshalAs(UnmanagedType.LPStr)]string language, IntPtr data);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutproxy_getaboutdata(alljoyn_aboutproxy proxy,const char* language,alljoyn_msgarg data);
 
 		/// <summary>
@@ -68,7 +68,7 @@ namespace AllJoynDotNet
 		/// <param name="version">of the service.</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutproxy_getversion(IntPtr proxy, UInt16 version);
+		internal static extern QStatus alljoyn_aboutproxy_getversion(IntPtr proxy, UInt16 version);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutproxy_getversion(alljoyn_aboutproxy proxy,uint16_t* version);
 
 

@@ -7,16 +7,17 @@ namespace AllJoynDotNet
     public sealed class AllJoynException : Exception
     {
         private readonly string _message;
-        internal AllJoynException(int code, string message)
+        internal AllJoynException(QStatus code, string message)
         {
-            var error = ErrorCodeLookup.GetError(code);
+            var error = ErrorCodeLookup.GetError((int)code);
             Source = Constants.DLL_IMPORT_TARGET;
-            _message = message ?? $"0x{code:x4} {error.Name}: {error.Comment}";
+            int codeNumber = (int)code;
+            _message = message ?? $"0x{codeNumber:x4} {error.Name}: {error.Comment}";
             AllJoynError = error.Name;
             AllJoynErrorCode = error.Value;
             AllJoynComment = error.Comment;
         }
-        internal AllJoynException(int code) : this(code, null)
+        internal AllJoynException(QStatus code) : this(code, null)
         {
         }
         public int AllJoynErrorCode { get; }

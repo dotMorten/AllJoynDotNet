@@ -19,14 +19,14 @@ namespace AllJoynDotNet
 
         public void AddInterface(InterfaceDescription iface)
         {
-            int result = alljoyn_busobject_addinterface(Handle, iface.Handle);
+            var result = alljoyn_busobject_addinterface(Handle, iface.Handle);
             if (result != 0)
                 throw new AllJoynException(result);
             
         }
         public void AddInterfaceAnnounced(InterfaceDescription iface)
         {
-            int result = alljoyn_busobject_addinterface_announced(Handle, iface.Handle);
+            var result = alljoyn_busobject_addinterface_announced(Handle, iface.Handle);
             if (result != 0)
                 throw new AllJoynException(result);
         }

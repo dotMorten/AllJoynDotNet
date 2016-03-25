@@ -28,7 +28,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - error code indicating failure otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_init();
+		internal static extern QStatus alljoyn_init();
 		// extern AJ_API QStatus AJ_CALL alljoyn_init(void);
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - error code indicating failure otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_shutdown();
+		internal static extern QStatus alljoyn_shutdown();
 		// extern AJ_API QStatus AJ_CALL alljoyn_shutdown(void);
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - error code indicating failure otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_routerinit();
+		internal static extern QStatus alljoyn_routerinit();
 		// extern AJ_API QStatus AJ_CALL alljoyn_routerinit(void);
 
 		/// <summary>
@@ -71,15 +71,15 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - error code indicating failure otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_routershutdown();
+		internal static extern QStatus alljoyn_routershutdown();
 		// extern AJ_API QStatus AJ_CALL alljoyn_routershutdown(void);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 AllJoynRouterInit();
+		internal static extern QStatus AllJoynRouterInit();
 		// extern AJ_API QStatus AJ_CALL AllJoynRouterInit(void);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 AllJoynRouterShutdown();
+		internal static extern QStatus AllJoynRouterShutdown();
 		// extern AJ_API QStatus AJ_CALL AllJoynRouterShutdown(void);
 
 

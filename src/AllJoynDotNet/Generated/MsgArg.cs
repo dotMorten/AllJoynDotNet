@@ -192,7 +192,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set(alljoyn_msgarg arg, const char* signature, ...);
 
 		/// <summary>
@@ -241,7 +241,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_get(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get(alljoyn_msgarg arg, const char* signature, ...);
 
 		/// <summary>
@@ -288,7 +288,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_TRUNCATED if the signature was longer than expected.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_array_set(IntPtr args, UInt64[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_array_set(IntPtr args, UInt64[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_set(alljoyn_msgarg args, size_t* numArgs, const char* signature, ...);
 
 		/// <summary>
@@ -302,7 +302,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_array_get(IntPtr args, UInt64 numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_array_get(IntPtr args, UInt64 numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_get(const alljoyn_msgarg args, size_t numArgs, const char* signature, ...);
 
 		/// <summary>
@@ -391,7 +391,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_ELEMENT_NOT_FOUND if the key was not found in the dictionary.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_getdictelement(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string elemSig/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_getdictelement(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string elemSig/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_getdictelement(alljoyn_msgarg arg, const char* elemSig, ...);
 
 		/// <summary>
@@ -439,7 +439,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_TRUNCATED if the signature was longer than expected.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_array_set_offset(IntPtr args, UInt64 argOffset, UInt64[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_array_set_offset(IntPtr args, UInt64 argOffset, UInt64[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_set_offset(alljoyn_msgarg args, size_t argOffset, size_t* numArgs, const char* signature, ...);
 
 		/// <summary>
@@ -454,7 +454,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_and_stabilize(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_msgarg_set_and_stabilize(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_and_stabilize(alljoyn_msgarg arg, const char* signature, ...);
 
 		/// <summary>
@@ -465,7 +465,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg walljoyn_msgargcessfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint8(IntPtr arg, byte y);
+		internal static extern QStatus alljoyn_msgarg_set_uint8(IntPtr arg, byte y);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint8(alljoyn_msgarg arg, uint8_t y);
 
 		/// <summary>
@@ -476,7 +476,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_bool(IntPtr arg, Int32 b);
+		internal static extern QStatus alljoyn_msgarg_set_bool(IntPtr arg, Int32 b);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_bool(alljoyn_msgarg arg, QCC_BOOL b);
 
 		/// <summary>
@@ -487,7 +487,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int16(IntPtr arg, Int16 n);
+		internal static extern QStatus alljoyn_msgarg_set_int16(IntPtr arg, Int16 n);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int16(alljoyn_msgarg arg, int16_t n);
 
 		/// <summary>
@@ -498,7 +498,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint16(IntPtr arg, UInt16 q);
+		internal static extern QStatus alljoyn_msgarg_set_uint16(IntPtr arg, UInt16 q);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint16(alljoyn_msgarg arg, uint16_t q);
 
 		/// <summary>
@@ -509,7 +509,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int32(IntPtr arg, Int32 i);
+		internal static extern QStatus alljoyn_msgarg_set_int32(IntPtr arg, Int32 i);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int32(alljoyn_msgarg arg, int32_t i);
 
 		/// <summary>
@@ -520,7 +520,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint32(IntPtr arg, UInt32 u);
+		internal static extern QStatus alljoyn_msgarg_set_uint32(IntPtr arg, UInt32 u);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint32(alljoyn_msgarg arg, uint32_t u);
 
 		/// <summary>
@@ -531,7 +531,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int64(IntPtr arg, Int64 x);
+		internal static extern QStatus alljoyn_msgarg_set_int64(IntPtr arg, Int64 x);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int64(alljoyn_msgarg arg, int64_t x);
 
 		/// <summary>
@@ -542,7 +542,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint64(IntPtr arg, UInt64 t);
+		internal static extern QStatus alljoyn_msgarg_set_uint64(IntPtr arg, UInt64 t);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint64(alljoyn_msgarg arg, uint64_t t);
 
 		/// <summary>
@@ -553,7 +553,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_double(IntPtr arg, double d);
+		internal static extern QStatus alljoyn_msgarg_set_double(IntPtr arg, double d);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_double(alljoyn_msgarg arg, double d);
 
 		/// <summary>
@@ -564,7 +564,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_string(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string s);
+		internal static extern QStatus alljoyn_msgarg_set_string(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string s);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_string(alljoyn_msgarg arg, const char* s);
 
 		/// <summary>
@@ -575,7 +575,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_objectpath(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string o);
+		internal static extern QStatus alljoyn_msgarg_set_objectpath(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string o);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_objectpath(alljoyn_msgarg arg, const char* o);
 
 		/// <summary>
@@ -586,7 +586,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_signature(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string g);
+		internal static extern QStatus alljoyn_msgarg_set_signature(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string g);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_signature(alljoyn_msgarg arg, const char* g);
 
 		/// <summary>
@@ -598,7 +598,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint8(IntPtr arg, byte y);
+		internal static extern QStatus alljoyn_msgarg_get_uint8(IntPtr arg, byte y);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint8(const alljoyn_msgarg arg, uint8_t* y);
 
 		/// <summary>
@@ -610,7 +610,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_bool(IntPtr arg, Int32 b);
+		internal static extern QStatus alljoyn_msgarg_get_bool(IntPtr arg, Int32 b);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_bool(const alljoyn_msgarg arg, QCC_BOOL* b);
 
 		/// <summary>
@@ -622,7 +622,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int16(IntPtr arg, Int16 n);
+		internal static extern QStatus alljoyn_msgarg_get_int16(IntPtr arg, Int16 n);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int16(const alljoyn_msgarg arg, int16_t* n);
 
 		/// <summary>
@@ -634,7 +634,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint16(IntPtr arg, UInt16 q);
+		internal static extern QStatus alljoyn_msgarg_get_uint16(IntPtr arg, UInt16 q);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint16(const alljoyn_msgarg arg, uint16_t* q);
 
 		/// <summary>
@@ -646,7 +646,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int32(IntPtr arg, Int32 i);
+		internal static extern QStatus alljoyn_msgarg_get_int32(IntPtr arg, Int32 i);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int32(const alljoyn_msgarg arg, int32_t* i);
 
 		/// <summary>
@@ -658,7 +658,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint32(IntPtr arg, UInt32 u);
+		internal static extern QStatus alljoyn_msgarg_get_uint32(IntPtr arg, UInt32 u);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint32(const alljoyn_msgarg arg, uint32_t* u);
 
 		/// <summary>
@@ -670,7 +670,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int64(IntPtr arg, Int64 x);
+		internal static extern QStatus alljoyn_msgarg_get_int64(IntPtr arg, Int64 x);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int64(const alljoyn_msgarg arg, int64_t* x);
 
 		/// <summary>
@@ -682,7 +682,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint64(IntPtr arg, UInt64 t);
+		internal static extern QStatus alljoyn_msgarg_get_uint64(IntPtr arg, UInt64 t);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint64(const alljoyn_msgarg arg, uint64_t* t);
 
 		/// <summary>
@@ -694,7 +694,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_double(IntPtr arg, double d);
+		internal static extern QStatus alljoyn_msgarg_get_double(IntPtr arg, double d);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_double(const alljoyn_msgarg arg, double* d);
 
 		/// <summary>
@@ -706,7 +706,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_string(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] s);
+		internal static extern QStatus alljoyn_msgarg_get_string(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] s);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_string(const alljoyn_msgarg arg, char** s);
 
 		/// <summary>
@@ -718,7 +718,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_objectpath(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] o);
+		internal static extern QStatus alljoyn_msgarg_get_objectpath(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] o);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_objectpath(const alljoyn_msgarg arg, char** o);
 
 		/// <summary>
@@ -730,7 +730,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_signature(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] g);
+		internal static extern QStatus alljoyn_msgarg_get_signature(IntPtr arg, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] g);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_signature(const alljoyn_msgarg arg, char** g);
 
 		/// <summary>
@@ -742,7 +742,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_variant(IntPtr arg, IntPtr v);
+		internal static extern QStatus alljoyn_msgarg_get_variant(IntPtr arg, IntPtr v);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_variant(const alljoyn_msgarg arg, alljoyn_msgarg v);
 
 		/// <summary>
@@ -754,7 +754,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint8_array(IntPtr arg, UInt64 length, byte[] ay);
+		internal static extern QStatus alljoyn_msgarg_set_uint8_array(IntPtr arg, UInt64 length, byte[] ay);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint8_array(alljoyn_msgarg arg, size_t length, uint8_t* ay);
 
 		/// <summary>
@@ -766,7 +766,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_bool_array(IntPtr arg, UInt64 length, Int32[] ab);
+		internal static extern QStatus alljoyn_msgarg_set_bool_array(IntPtr arg, UInt64 length, Int32[] ab);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_bool_array(alljoyn_msgarg arg, size_t length, QCC_BOOL* ab);
 
 		/// <summary>
@@ -778,7 +778,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int16_array(IntPtr arg, UInt64 length, Int16[] an);
+		internal static extern QStatus alljoyn_msgarg_set_int16_array(IntPtr arg, UInt64 length, Int16[] an);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int16_array(alljoyn_msgarg arg, size_t length, int16_t* an);
 
 		/// <summary>
@@ -790,7 +790,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint16_array(IntPtr arg, UInt64 length, UInt16[] aq);
+		internal static extern QStatus alljoyn_msgarg_set_uint16_array(IntPtr arg, UInt64 length, UInt16[] aq);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint16_array(alljoyn_msgarg arg, size_t length, uint16_t* aq);
 
 		/// <summary>
@@ -802,7 +802,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int32_array(IntPtr arg, UInt64 length, Int32[] ai);
+		internal static extern QStatus alljoyn_msgarg_set_int32_array(IntPtr arg, UInt64 length, Int32[] ai);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int32_array(alljoyn_msgarg arg, size_t length, int32_t* ai);
 
 		/// <summary>
@@ -814,7 +814,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint32_array(IntPtr arg, UInt64 length, UInt32[] au);
+		internal static extern QStatus alljoyn_msgarg_set_uint32_array(IntPtr arg, UInt64 length, UInt32[] au);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint32_array(alljoyn_msgarg arg, size_t length, uint32_t* au);
 
 		/// <summary>
@@ -826,7 +826,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_int64_array(IntPtr arg, UInt64 length, Int64[] ax);
+		internal static extern QStatus alljoyn_msgarg_set_int64_array(IntPtr arg, UInt64 length, Int64[] ax);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_int64_array(alljoyn_msgarg arg, size_t length, int64_t* ax);
 
 		/// <summary>
@@ -838,7 +838,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_uint64_array(IntPtr arg, UInt64 length, UInt64[] at);
+		internal static extern QStatus alljoyn_msgarg_set_uint64_array(IntPtr arg, UInt64 length, UInt64[] at);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_uint64_array(alljoyn_msgarg arg, size_t length, uint64_t* at);
 
 		/// <summary>
@@ -850,7 +850,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_double_array(IntPtr arg, UInt64 length, double[] ad);
+		internal static extern QStatus alljoyn_msgarg_set_double_array(IntPtr arg, UInt64 length, double[] ad);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_double_array(alljoyn_msgarg arg, size_t length, double* ad);
 
 		/// <summary>
@@ -862,7 +862,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_string_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] @as);
+		internal static extern QStatus alljoyn_msgarg_set_string_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] @as);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_string_array(alljoyn_msgarg arg, size_t length, const char** as);
 
 		/// <summary>
@@ -874,7 +874,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_objectpath_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] ao);
+		internal static extern QStatus alljoyn_msgarg_set_objectpath_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] ao);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_objectpath_array(alljoyn_msgarg arg, size_t length, const char** ao);
 
 		/// <summary>
@@ -886,7 +886,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_set_signature_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] ag);
+		internal static extern QStatus alljoyn_msgarg_set_signature_array(IntPtr arg, UInt64 length, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] ag);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set_signature_array(alljoyn_msgarg arg, size_t length, const char** ag);
 
 		/// <summary>
@@ -899,7 +899,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint8_array(IntPtr arg, UInt64 length, byte ay);
+		internal static extern QStatus alljoyn_msgarg_get_uint8_array(IntPtr arg, UInt64 length, byte ay);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint8_array(const alljoyn_msgarg arg, size_t* length, uint8_t* ay);
 
 		/// <summary>
@@ -912,7 +912,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_bool_array(IntPtr arg, UInt64 length, Int32 ab);
+		internal static extern QStatus alljoyn_msgarg_get_bool_array(IntPtr arg, UInt64 length, Int32 ab);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_bool_array(const alljoyn_msgarg arg, size_t* length, QCC_BOOL* ab);
 
 		/// <summary>
@@ -925,7 +925,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int16_array(IntPtr arg, UInt64 length, Int16 an);
+		internal static extern QStatus alljoyn_msgarg_get_int16_array(IntPtr arg, UInt64 length, Int16 an);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int16_array(const alljoyn_msgarg arg, size_t* length, int16_t* an);
 
 		/// <summary>
@@ -938,7 +938,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint16_array(IntPtr arg, UInt64 length, UInt16 aq);
+		internal static extern QStatus alljoyn_msgarg_get_uint16_array(IntPtr arg, UInt64 length, UInt16 aq);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint16_array(const alljoyn_msgarg arg, size_t* length, uint16_t* aq);
 
 		/// <summary>
@@ -951,7 +951,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int32_array(IntPtr arg, UInt64 length, Int32 ai);
+		internal static extern QStatus alljoyn_msgarg_get_int32_array(IntPtr arg, UInt64 length, Int32 ai);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int32_array(const alljoyn_msgarg arg, size_t* length, int32_t* ai);
 
 		/// <summary>
@@ -964,7 +964,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint32_array(IntPtr arg, UInt64 length, UInt32 au);
+		internal static extern QStatus alljoyn_msgarg_get_uint32_array(IntPtr arg, UInt64 length, UInt32 au);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint32_array(const alljoyn_msgarg arg, size_t* length, uint32_t* au);
 
 		/// <summary>
@@ -977,7 +977,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_int64_array(IntPtr arg, UInt64 length, Int64 ax);
+		internal static extern QStatus alljoyn_msgarg_get_int64_array(IntPtr arg, UInt64 length, Int64 ax);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_int64_array(const alljoyn_msgarg arg, size_t* length, int64_t* ax);
 
 		/// <summary>
@@ -990,7 +990,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_uint64_array(IntPtr arg, UInt64 length, UInt64 at);
+		internal static extern QStatus alljoyn_msgarg_get_uint64_array(IntPtr arg, UInt64 length, UInt64 at);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_uint64_array(const alljoyn_msgarg arg, size_t* length, uint64_t* at);
 
 		/// <summary>
@@ -1003,7 +1003,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_double_array(IntPtr arg, UInt64 length, double ad);
+		internal static extern QStatus alljoyn_msgarg_get_double_array(IntPtr arg, UInt64 length, double ad);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_double_array(const alljoyn_msgarg arg, size_t* length, double* ad);
 
 		/// <summary>
@@ -1022,7 +1022,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_get_variant_array(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature, UInt64 length, IntPtr av);
+		internal static extern QStatus alljoyn_msgarg_get_variant_array(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature, UInt64 length, IntPtr av);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get_variant_array(const alljoyn_msgarg arg, const char* signature, size_t* length, alljoyn_msgarg* av);
 
 		/// <summary>
@@ -1068,7 +1068,7 @@ namespace AllJoynDotNet
 		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_getvalue(alljoyn_msgarg arg);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_setdictentry(IntPtr arg, IntPtr key, IntPtr value);
+		internal static extern QStatus alljoyn_msgarg_setdictentry(IntPtr arg, IntPtr key, IntPtr value);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_setdictentry(alljoyn_msgarg arg, alljoyn_msgarg key, alljoyn_msgarg value);
 
 		/// <summary>
@@ -1076,7 +1076,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_setstruct(IntPtr arg, IntPtr struct_members, UInt64 num_members);
+		internal static extern QStatus alljoyn_msgarg_setstruct(IntPtr arg, IntPtr struct_members, UInt64 num_members);
 		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_setstruct(alljoyn_msgarg arg, alljoyn_msgarg struct_members, size_t num_members);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]

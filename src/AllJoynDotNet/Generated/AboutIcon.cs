@@ -67,7 +67,7 @@ namespace AllJoynDotNet
 		/// - ER_BUS_BAD_VALUE if the data is to large to be marshaled
 		/// - other status indicating failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_abouticon_setcontent(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, byte[] data, UInt64 csize, bool ownsData);
+		internal static extern QStatus alljoyn_abouticon_setcontent(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, byte[] data, UInt64 csize, bool ownsData);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticon_setcontent(alljoyn_abouticon icon,const char* type,uint8_t* data,size_t csize,bool ownsData);
 
 		/// <summary>
@@ -95,7 +95,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - other status indicating failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_abouticon_seturl(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, [MarshalAs(UnmanagedType.LPStr)]string url);
+		internal static extern QStatus alljoyn_abouticon_seturl(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, [MarshalAs(UnmanagedType.LPStr)]string url);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticon_seturl(alljoyn_abouticon icon,const char* type,const char* url);
 
 		/// <summary>
@@ -118,7 +118,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK on success
 		/// - status indicating failure otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_abouticon_setcontent_frommsgarg(IntPtr icon, IntPtr arg);
+		internal static extern QStatus alljoyn_abouticon_setcontent_frommsgarg(IntPtr icon, IntPtr arg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticon_setcontent_frommsgarg(alljoyn_abouticon icon,const alljoyn_msgarg arg);
 
 

@@ -19,12 +19,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)AboutObjectDescription.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AboutProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AjAPI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationStateListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AuthListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AutoPinger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusAttachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBusStdDefines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InterfaceDescription.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KeyStoreListener.cs" />
@@ -34,12 +34,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Observer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PasswordManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PermissionConfigurationListener.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PermissionConfigurator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ProxyBusObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SecurityApplicationProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Session.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SessionListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SessionPortListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportMask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AllJoynWrapper.cs" />

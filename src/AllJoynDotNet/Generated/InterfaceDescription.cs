@@ -76,23 +76,6 @@ namespace AllJoynDotNet
 		// 
 
 		/// <summary>
-		/// Type for the interface description translation callback.
-		/// </summary>
-		/// <remarks>
-		/// <para>Called by the interface description when the description of a language is requested.
-		/// </para>
-		/// </remarks>
-		/// <param name="sourceLanguage">The language tag of the text in sourceText. IfsourceLanguage is NULL or empty, then sourceText is simply an id used
-		/// for lookup.</param>
-		/// <param name="targetLanguage">The language tag to translate into</param>
-		/// <param name="sourceText">The source text to translate or id to look up</param>
-		/// 
-		// TODO: typedef const char* (AJ_CALL * alljoyn_interfacedescription_translation_callback_ptr)(const char* sourceLanguage, const char* targetLanguage, const char* sourceText);
-		//
-		// typedef const char* (AJ_CALL * alljoyn_interfacedescription_translation_callback_ptr)(const char* sourceLanguage, const char* targetLanguage, const char* sourceText);
-		// 
-
-		/// <summary>
 		/// Structure representing properties of the Interface
 		/// </summary>
 		/// 
@@ -125,28 +108,27 @@ namespace AllJoynDotNet
     {
         internal InterfaceDescription(IntPtr handle) : base(handle) { }
 		/// <summary>
-		/// Get the number of annotations that a member has.
+		/// find out the amount of annotations the alljoyn_interfacedescription_member has
 		/// </summary>
 		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number of annotations will no longer change.
+		/// <para>The number of the annotation is only valid as long as no annotations have
+		/// been removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </para>
 		/// </remarks>
-		/// <param name="member">The alljoyn interface description member that we want theannotations count from</param>
+		/// <param name="member">The alljoyn interfacedescription member that we want theannotations count from</param>
 		/// <returns>the number of annotations</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern UInt64 alljoyn_interfacedescription_member_getannotationscount(alljoyn_interfacedescription_member member);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_member_getannotationscount(alljoyn_interfacedescription_member member);
 
 		/// <summary>
-		/// Obtain the name and value for the annotation at the specified index.
+		/// Obtain the name and value for the annotation index.
+		/// The order of the annotation is only valid as long as no new annotations are
+		/// removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </summary>
-		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number and order of annotations will no longer change.
-		/// </para>
-		/// </remarks>
-		/// <param name="member">the alljoyn interface description member that we want to read annotations from</param>
+		/// <param name="member">the alljoyn interfacedescription member that we want to read annotations from</param>
 		/// <param name="index">the index of the annotation of interest</param>
 		/// <param name="name">the name of the annotation</param><!-- out -->
 		/// <param name="name_size">the size of the name string if name==NULL this will return the size of the name string plus nul character</param><!-- in, out -->
@@ -161,86 +143,37 @@ namespace AllJoynDotNet
 		/// Get this member's annotation value return the size of the value string if
 		/// name is NULL.
 		/// </summary>
-		/// <param name="member">The alljoyn interface description member that we want the annotation from</param>
+		/// <param name="member">The AllJoyn alljoyn_interfacedescription member that we want the annotation from</param>
 		/// <param name="name">Name of the annotation to look for</param>
 		/// <param name="value">Value to compare with</param><!-- out -->
 		/// <param name="value_size">size of the value string if value == NULL it will return the size of the value string plus nul character</param><!-- in, out -->
-		/// <returns>true if annotations[name] == value</returns>
+		/// <returns>true iff annotations[name] == value</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern Int32 alljoyn_interfacedescription_member_getannotation(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_member_getannotation(alljoyn_interfacedescription_member member, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
-		/// Get the number of annotations that a member argument has.
+		/// find out the amount of annotations the alljoyn_interfacedescription_member has
 		/// </summary>
 		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number of annotations will no longer change.
+		/// <para>The number of the annotation is only valid as long as no annotations have
+		/// been removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </para>
 		/// </remarks>
-		/// <param name="member">The alljoyn interface description member that we want the annotations count from.</param>
-		/// <param name="argName">Name of the argument.</param>
-		/// <returns>the number of annotations.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_member_getargannotationscount(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string argName);
-		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_member_getargannotationscount(alljoyn_interfacedescription_member member, const char* argName);
-
-		/// <summary>
-		/// Obtain the name and value for the argument annotation at the specified index.
-		/// </summary>
-		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number and order of annotations will no longer change.
-		/// </para>
-		/// </remarks>
-		/// <param name="member">The alljoyn interface description member that we want to read annotations from.</param>
-		/// <param name="argName">Name of the argument.</param>
-		/// <param name="index">The index of the annotation of interest.</param>
-		/// <param name="name">The name of the annotation.</param><!-- out -->
-		/// <param name="name_size">The size of the name string. If name==NULL, this will return the size of the name string plus nul character.</param><!-- in, out -->
-		/// <param name="value">The value of the annotation.</param><!-- out -->
-		/// <param name="value_size">The size of the value string. If value == NULL, this will return the size of the value string plus nul character.</param><!-- in, out -->
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_member_getargannotationatindex(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string argName, UInt64 index, sbyte name, [In, Out]UInt64 name_size, sbyte value, [In, Out]UInt64 value_size);
-		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_member_getargannotationatindex(alljoyn_interfacedescription_member member,const char* argName,size_t index,char* name,size_t* name_size,char* value,size_t* value_size);
-
-		/// <summary>
-		/// Get this member's argument annotation value and return the size of the value string if
-		/// name is NULL.
-		/// </summary>
-		/// <param name="member">The alljoyn interface description member that we want the annotation from.</param>
-		/// <param name="argName">Name of the argument.</param>
-		/// <param name="name">Name of the annotation to look for.</param>
-		/// <param name="value">Value of the annotation.</param><!-- out -->
-		/// <param name="value_size">The size of the value string. If value == NULL, it will return the size of the value string plus nul character.</param><!-- in, out -->
-		/// <returns>true if annotations[name] == value.</returns>
-		// INVALID SIGNATURE
-		// extern QCC_BOOL AJ_CALL alljoyn_interfacedescription_member_getargannotation(alljoyn_interfacedescription_member member, const char* argName, const char* name, char* value, size_t* value_size);
-
-		/// <summary>
-		/// Get the number of annotations that a property has.
-		/// </summary>
-		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number of annotations will no longer change.
-		/// </para>
-		/// </remarks>
-		/// <param name="property">The alljoyn interface description property that we want theannotations count from</param>
+		/// <param name="property">The alljoyn interfacedescription property that we want theannotations count from</param>
 		/// <returns>the number of annotations</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern UInt64 alljoyn_interfacedescription_property_getannotationscount(alljoyn_interfacedescription_property property);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_property_getannotationscount(alljoyn_interfacedescription_property property);
 
 		/// <summary>
-		/// Obtain the name and value for the annotation at the specified index.
+		/// Obtain the name and value for the annotation index.
+		/// The order of the annotation is only valid as long as no new annotations are
+		/// removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </summary>
-		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number and order of annotations will no longer change.
-		/// </para>
-		/// </remarks>
-		/// <param name="property">the alljoyn interface description property that we want to read annotations from</param>
+		/// <param name="property">the alljoyn interfacedescription property that we want to read annotations from</param>
 		/// <param name="index">the index of the annotation of interest</param>
 		/// <param name="name">the name of the annotation</param><!-- out -->
 		/// <param name="name_size">the size of the name string if name==NULL this will return the size of the name string plus nul character</param><!-- in, out -->
@@ -259,7 +192,7 @@ namespace AllJoynDotNet
 		/// <param name="name">Name of the annotation to look for</param>
 		/// <param name="value">Value to compare with</param><!-- out -->
 		/// <param name="value_size">size of the value string if value == NULL it will return the size of the value string plus nul character</param><!-- in, out -->
-		/// <returns>true if annotations[name] == value</returns>
+		/// <returns>true iff annotations[name] == value</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern Int32 alljoyn_interfacedescription_property_getannotation(alljoyn_interfacedescription_property property, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_property_getannotation(alljoyn_interfacedescription_property property, const char* name, char* value, size_t* value_size);
@@ -284,7 +217,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_PROPERTY_ALREADY_EXISTS if the property can not be added
 		/// because it already exists.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
+		internal static extern QStatus alljoyn_interfacedescription_addannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addannotation(alljoyn_interfacedescription iface, const char* name, const char* value);
 
 		/// <summary>
@@ -300,11 +233,12 @@ namespace AllJoynDotNet
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_getannotation(alljoyn_interfacedescription iface, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
-		/// Find the number of annotations the alljoyn_interfacedescription has
+		/// find out the amount of annotations the alljoyn_interfacedescription has
 		/// </summary>
 		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number of annotations will no longer change.
+		/// <para>The number of the annotation is only valid as long as no annotations have
+		/// been removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </para>
 		/// </remarks>
 		/// <param name="iface">The alljoyn_interfacedescription that we want the annotations count from</param>
@@ -314,14 +248,12 @@ namespace AllJoynDotNet
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_getannotationscount(alljoyn_interfacedescription iface);
 
 		/// <summary>
-		/// Obtain the name and value for the annotation at the specified index.
+		/// Obtain the name and value for the annotation index.
+		/// The order of the annotation is only valid as long as no new annotations are
+		/// removed or added to the interface.  For this reason this function should
+		/// only be used after calling alljoyn_interfacedescription_activate.
 		/// </summary>
-		/// <remarks>
-		/// <para>This function must only be used after calling alljoyn_interfacedescription_activate
-		/// because it guarantees that the number and order of annotations will no longer change.
-		/// </para>
-		/// </remarks>
-		/// <param name="iface">the alljoyn interface description that we want to read annotations from</param>
+		/// <param name="iface">the alljoyn interfacedescription that we want to read annotations from</param>
 		/// <param name="index">the index of the annotation of interest</param>
 		/// <param name="name">the name of the annotation</param><!-- out -->
 		/// <param name="name_size">the size of the name string if name==NULL this will return the size of the name string plus nul character</param><!-- in, out -->
@@ -356,7 +288,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - #ER_BUS_MEMBER_ALREADY_EXISTS if member already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addmember(IntPtr iface, alljoyn_messagetype type, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string inputSig, [MarshalAs(UnmanagedType.LPStr)]string outSig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation);
+		internal static extern QStatus alljoyn_interfacedescription_addmember(IntPtr iface, alljoyn_messagetype type, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string inputSig, [MarshalAs(UnmanagedType.LPStr)]string outSig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addmember(alljoyn_interfacedescription iface, alljoyn_messagetype type,const char* name, const char* inputSig, const char* outSig,const char* argNames, uint8_t annotation);
 
 		/// <summary>
@@ -369,7 +301,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - #ER_BUS_MEMBER_ALREADY_EXISTS if member already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addmemberannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
+		internal static extern QStatus alljoyn_interfacedescription_addmemberannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addmemberannotation(alljoyn_interfacedescription iface,const char* member,const char* name,const char* value);
 
 		/// <summary>
@@ -409,7 +341,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - #ER_BUS_MEMBER_ALREADY_EXISTS if member already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addmethod(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string inputSig, [MarshalAs(UnmanagedType.LPStr)]string outSig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation, [MarshalAs(UnmanagedType.LPStr)]string accessPerms);
+		internal static extern QStatus alljoyn_interfacedescription_addmethod(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string inputSig, [MarshalAs(UnmanagedType.LPStr)]string outSig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation, [MarshalAs(UnmanagedType.LPStr)]string accessPerms);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addmethod(alljoyn_interfacedescription iface, const char* name, const char* inputSig, const char* outSig, const char* argNames, uint8_t annotation, const char* accessPerms);
 
 		/// <summary>
@@ -436,7 +368,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - #ER_BUS_MEMBER_ALREADY_EXISTS if member already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addsignal(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string sig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation, [MarshalAs(UnmanagedType.LPStr)]string accessPerms);
+		internal static extern QStatus alljoyn_interfacedescription_addsignal(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string sig, [MarshalAs(UnmanagedType.LPStr)]string argNames, byte annotation, [MarshalAs(UnmanagedType.LPStr)]string accessPerms);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addsignal(alljoyn_interfacedescription iface, const char* name, const char* sig, const char* argNames, uint8_t annotation, const char* accessPerms);
 
 		/// <summary>
@@ -484,20 +416,20 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_PROPERTY_ALREADY_EXISTS if the property can not be added
 		/// because it already exists.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addproperty(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string signature, byte access);
+		internal static extern QStatus alljoyn_interfacedescription_addproperty(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string signature, byte access);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addproperty(alljoyn_interfacedescription iface, const char* name,const char* signature, uint8_t access);
 
 		/// <summary>
 		/// Add an annotation to an existing property
 		/// </summary>
-		/// <param name="iface">Interface on which to add the property annotation.</param>
+		/// <param name="iface">Interface on which to add the property.</param>
 		/// <param name="property">Name of property.</param>
 		/// <param name="name">Name of annotation</param>
 		/// <param name="value">value of annotation</param>
 		/// <returns>- #ER_OK if successful.
 		/// - #ER_BUS_PROPERTY_ALREADY_EXISTS if the annotation can not be added to the property because it already exists.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addpropertyannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string property, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
+		internal static extern QStatus alljoyn_interfacedescription_addpropertyannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string property, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
 		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addpropertyannotation(alljoyn_interfacedescription iface,const char* property,const char* name,const char* value);
 
 		/// <summary>
@@ -574,136 +506,6 @@ namespace AllJoynDotNet
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern alljoyn_interfacedescription_securitypolicy alljoyn_interfacedescription_getsecuritypolicy(IntPtr iface);
 		// extern AJ_API alljoyn_interfacedescription_securitypolicy AJ_CALL alljoyn_interfacedescription_getsecuritypolicy(const alljoyn_interfacedescription iface);
-
-		/// <summary>
-		/// Set the description language to this interface.
-		/// </summary>
-		/// <param name="iface">Interface on which to set the description language.</param>
-		/// <param name="language">The language tag.</param>
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_setdescriptionlanguage(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string language);
-		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_setdescriptionlanguage(alljoyn_interfacedescription iface, const char* language);
-
-		/// <summary>
-		/// Get the description language of this interface.
-		/// </summary>
-		/// <param name="iface">Interface to query.</param>
-		/// <param name="languages">A pointer to a language array to receive thelanguages. Can be NULL in which case no
-		/// languages are returned and the return value gives
-		/// the number of languages available.</param><!-- out -->
-		/// <param name="size">The size of the language array.</param>
-		/// <returns>The number of languages returned or the total number oflanguage tags if languages is NULL.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_getdescriptionlanguages(IntPtr iface, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] languages, UInt64 size);
-		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_getdescriptionlanguages(const alljoyn_interfacedescription iface, const char** languages, size_t size);
-
-		/// <summary>
-		/// Set the description to this interface.
-		/// </summary>
-		/// <param name="iface">Interface on which to set the description.</param>
-		/// <param name="description">The interface description. Call alljoyn_interfacedescription_setdescriptionlanguage() to specify description language.</param>
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_setdescription(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string description);
-		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_setdescription(alljoyn_interfacedescription iface, const char* description);
-
-		/// <summary>
-		/// Set the description for member of this interface.
-		/// </summary>
-		/// <param name="iface">Interface on which to set member description.</param>
-		/// <param name="member">The name of the member.</param>
-		/// <param name="description">The member description. Call alljoyn_interfacedescription_setdescriptionlanguage() to specify description language.</param>
-		/// <returns>- #ER_OK if successful.
-		/// - #ER_BUS_INTERFACE_ACTIVATED If the interface has already been activated.
-		/// - #ER_BUS_INTERFACE_NO_SUCH_MEMBER If the member was not found.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_setmemberdescription(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string description);
-		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_setmemberdescription(alljoyn_interfacedescription iface, const char* member, const char* description);
-
-		/// <summary>
-		/// Set the description for the argument of the member of this interface.
-		/// </summary>
-		/// <param name="iface">Interface on which to set argument description.</param>
-		/// <param name="member">The name of the member.</param>
-		/// <param name="argName">The name of the argument.</param>
-		/// <param name="description">The argument description. Call alljoyn_interfacedescription_setdescriptionlanguage() to specify description language.</param>
-		/// <returns>- #ER_OK if successful.
-		/// - #ER_BUS_INTERFACE_ACTIVATED If the interface has already been activated.
-		/// - #ER_BUS_INTERFACE_NO_SUCH_MEMBER If the member was not found.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_setargdescription(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string argName, [MarshalAs(UnmanagedType.LPStr)]string description);
-		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_setargdescription(alljoyn_interfacedescription iface, const char* member, const char* argName, const char* description);
-
-		/// <summary>
-		/// Set the description for the property of this interface.
-		/// </summary>
-		/// <param name="iface">Interface on which to set property description.</param>
-		/// <param name="name">The name of the property.</param>
-		/// <param name="description">The introspection description. Call alljoyn_interfacedescription_setdescriptionlanguage() to specify description language.</param>
-		/// <returns>- #ER_OK if successful.
-		/// - #ER_BUS_INTERFACE_ACTIVATED If the interface has already been activated.
-		/// - #ER_BUS_NO_SUCH_PROPERTY If the property was not found.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_setpropertydescription(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string description);
-		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_setpropertydescription(alljoyn_interfacedescription iface, const char* name, const char* description);
-
-		/// <summary>
-		/// Set the translation callback that provides this interface's description in multiple languages.
-		/// </summary>
-		/// <param name="iface">Interface on which to set description translation callback.</param>
-		/// <param name="translationCallback">The translation callback instance.</param>
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_setdescriptiontranslationcallback(IntPtr iface, IntPtr translationCallback);
-		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_setdescriptiontranslationcallback(alljoyn_interfacedescription iface, alljoyn_interfacedescription_translation_callback_ptr translationCallback);
-
-		/// <summary>
-		/// Get the translation callback that provides this interface's description in multiple languages.
-		/// </summary>
-		/// <param name="iface">Interface to query.</param>
-		/// <returns>The translation callback instance.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_getdescriptiontranslationcallback(IntPtr iface);
-		// extern AJ_API alljoyn_interfacedescription_translation_callback_ptr AJ_CALL alljoyn_interfacedescription_getdescriptiontranslationcallback(const alljoyn_interfacedescription iface);
-
-		/// <summary>
-		/// Determine whether this interface has at least one description on an element.
-		/// </summary>
-		/// <param name="iface">Interface to query.</param>
-		/// <returns>True if this interface has at least one description.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_hasdescription(IntPtr iface);
-		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_hasdescription(const alljoyn_interfacedescription iface);
-
-		/// <summary>
-		/// Add an annotation to an existing argument.
-		/// </summary>
-		/// <param name="iface">Interface on which to add argument annotation.</param>
-		/// <param name="member">Name of member.</param>
-		/// <param name="argName">Name of the argument.</param>
-		/// <param name="name">Name of annotation.</param>
-		/// <param name="value">Value for the annotation.</param>
-		/// <returns>- #ER_OK if successful.
-		/// - #ER_BUS_ANNOTATION_ALREADY_EXISTS if annotation already exists.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_addargannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string argName, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string value);
-		// extern AJ_API QStatus AJ_CALL alljoyn_interfacedescription_addargannotation(alljoyn_interfacedescription iface, const char* member, const char* argName, const char* name, const char* value);
-
-		/// <summary>
-		/// Get annotation from an existing member argument.
-		/// </summary>
-		/// <param name="iface">Interface to query.</param>
-		/// <param name="member">Name of member.</param>
-		/// <param name="argName">Name of the argument.</param>
-		/// <param name="name">Name of annotation.</param>
-		/// <param name="value">The value of the annotation.</param><!-- out -->
-		/// <param name="value_size">The size of the value string. If value == NULL, this will return the size of the value string plus nul character.</param><!-- in, out -->
-		/// <returns>- QCC_TRUE if found.
-		/// - QCC_FALSE if annotation not found.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_getmemberargannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string member, [MarshalAs(UnmanagedType.LPStr)]string argName, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
-		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_getmemberargannotation(const alljoyn_interfacedescription iface, const char* member, const char* argName, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
 		/// Equality operation.

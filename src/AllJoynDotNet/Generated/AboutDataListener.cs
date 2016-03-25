@@ -48,7 +48,7 @@ namespace AllJoynDotNet
 		/// - #ER_LANGUAGE_NOT_SUPPORTED if language is not supported
 		/// - #ER_ABOUT_ABOUTDATA_MISSING_REQUIRED_FIELD if a required field is missing
 		/// - other error indicating failure</returns>
-		internal delegate Int32 alljoyn_aboutdatalistener_getaboutdata_ptr(IntPtr context, IntPtr msgArg, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal delegate QStatus alljoyn_aboutdatalistener_getaboutdata_ptr(IntPtr context, IntPtr msgArg, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// typedef QStatus (AJ_CALL * alljoyn_aboutdatalistener_getaboutdata_ptr)(const void* context,
 		// alljoyn_msgarg msgArg,
 		// const char* language);
@@ -81,7 +81,7 @@ namespace AllJoynDotNet
 		/// <param name="context">the context pointer that was passed into thealljoyn_aboutdatalistener_create function</param>
 		/// <param name="msgArg">an alljoyn_msgarg dictionary with the a{sv} that containsthe Announce data</param><!-- out -->
 		/// <returns>ER_OK if successful</returns>
-		internal delegate Int32 alljoyn_aboutdatalistener_getannouncedaboutdata_ptr(IntPtr context, IntPtr msgArg);
+		internal delegate QStatus alljoyn_aboutdatalistener_getannouncedaboutdata_ptr(IntPtr context, IntPtr msgArg);
 		// typedef QStatus (AJ_CALL * alljoyn_aboutdatalistener_getannouncedaboutdata_ptr)(const void* context,
 		// alljoyn_msgarg msgArg);
 		// 

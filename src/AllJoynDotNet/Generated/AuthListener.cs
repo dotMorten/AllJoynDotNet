@@ -61,7 +61,7 @@ namespace AllJoynDotNet
 		/// <param name="authContext">Callback context for associating the request with the returned credentials.</param>
 		/// <returns>Return- ER_OK if the request is handled.
 		/// - ER_NOT_IMPLEMENTED if implementation not found (default)</returns>
-		internal delegate Int32 alljoyn_authlistener_requestcredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, UInt16 authCount, [MarshalAs(UnmanagedType.LPStr)]string userName, UInt16 credMask, IntPtr authContext);
+		internal delegate QStatus alljoyn_authlistener_requestcredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, UInt16 authCount, [MarshalAs(UnmanagedType.LPStr)]string userName, UInt16 credMask, IntPtr authContext);
 		// typedef QStatus (AJ_CALL * alljoyn_authlistener_requestcredentialsasync_ptr)(const void* context, alljoyn_authlistener listener,
 		// const char* authMechanism, const char* peerName, uint16_t authCount,
 		// const char* userName, uint16_t credMask, void* authContext);
@@ -97,7 +97,7 @@ namespace AllJoynDotNet
 		/// <param name="authContext">Callback context for associating the request with the verification response.</param>
 		/// <returns>Return- ER_OK if the request is handled.
 		/// - ER_NOT_IMPLEMENTED (default)</returns>
-		internal delegate Int32 alljoyn_authlistener_verifycredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, IntPtr credentials, IntPtr authContext);
+		internal delegate QStatus alljoyn_authlistener_verifycredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, IntPtr credentials, IntPtr authContext);
 		// typedef QStatus (AJ_CALL * alljoyn_authlistener_verifycredentialsasync_ptr)(const void* context, alljoyn_authlistener listener,
 		// const char* authMechanism, const char* peerName, const alljoyn_credentials credentials, void* authContext);
 		// 
@@ -116,7 +116,7 @@ namespace AllJoynDotNet
 		/// <param name="status">A status code indicating the type of security violation.</param>
 		/// <param name="msg">The message that cause the security violation.</param>
 		/// 
-		internal delegate void alljoyn_authlistener_securityviolation_ptr(IntPtr context, Int32 status, IntPtr msg);
+		internal delegate void alljoyn_authlistener_securityviolation_ptr(IntPtr context, QStatus status, IntPtr msg);
 		// typedef void (AJ_CALL * alljoyn_authlistener_securityviolation_ptr)(const void* context, QStatus status, const alljoyn_message msg);
 		// 
 
@@ -257,7 +257,7 @@ namespace AllJoynDotNet
 		/// <param name="credentials">The credentials being returned if accept is true.</param>
 		/// <returns>Returns ER_OK if the credential verification response was expected. Returns an error status ifthe credentials verification response was not expected.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_authlistener_requestcredentialsresponse(IntPtr listener, IntPtr authContext, Int32 accept, IntPtr credentials);
+		internal static extern QStatus alljoyn_authlistener_requestcredentialsresponse(IntPtr listener, IntPtr authContext, Int32 accept, IntPtr credentials);
 		// extern AJ_API QStatus AJ_CALL alljoyn_authlistener_requestcredentialsresponse(alljoyn_authlistener listener, void* authContext, QCC_BOOL accept, alljoyn_credentials credentials);
 
 		/// <summary>
@@ -268,7 +268,7 @@ namespace AllJoynDotNet
 		/// <param name="accept">Returns true to accept the credentials or false to reject it.</param>
 		/// <returns>Returns ER_OK if the credential verification response was expected. Returns an error status ifthe credentials verification response was not expected.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_authlistener_verifycredentialsresponse(IntPtr listener, IntPtr authContext, Int32 accept);
+		internal static extern QStatus alljoyn_authlistener_verifycredentialsresponse(IntPtr listener, IntPtr authContext, Int32 accept);
 		// extern AJ_API QStatus AJ_CALL alljoyn_authlistener_verifycredentialsresponse(alljoyn_authlistener listener, void* authContext, QCC_BOOL accept);
 
 		/// <summary>

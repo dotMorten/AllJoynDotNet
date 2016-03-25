@@ -360,8 +360,8 @@ namespace PInvokeCodeGenerator
                 case "int16_t*":
                     cstype = "Int16[]"; break;
                 case "int32_t":
-                case "QCC_BOOL":
-                case "QStatus":
+                //case "QCC_BOOL":
+                //case "QStatus":
                     cstype = "Int32"; break;
                 case "int32_t*":
                 case "QCC_BOOL*":

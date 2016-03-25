@@ -71,7 +71,7 @@ namespace AllJoynDotNet
 		/// <param name="arg">alljoyn_msgarg contain About data dictionary</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutobjectdescription_createfrommsgarg(IntPtr description, IntPtr arg);
+		internal static extern QStatus alljoyn_aboutobjectdescription_createfrommsgarg(IntPtr description, IntPtr arg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutobjectdescription_createfrommsgarg(alljoyn_aboutobjectdescription description,const alljoyn_msgarg arg);
 
 		/// <summary>
@@ -169,7 +169,7 @@ namespace AllJoynDotNet
 		// extern AJ_API bool AJ_CALL alljoyn_aboutobjectdescription_hasinterfaceatpath(alljoyn_aboutobjectdescription description,const char* path,const char* interfaceName);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutobjectdescription_getmsgarg(IntPtr description, IntPtr msgArg);
+		internal static extern QStatus alljoyn_aboutobjectdescription_getmsgarg(IntPtr description, IntPtr msgArg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutobjectdescription_getmsgarg(alljoyn_aboutobjectdescription description,alljoyn_msgarg msgArg);
 
 

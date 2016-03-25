@@ -22,7 +22,7 @@ namespace AllJoynDotNet
 		/// </remarks>
 		/// <param name="context">The context pointer passed into the alljoyn_permissionconfigurationlistener_create function.</param>
 		/// 
-		internal delegate Int32 alljoyn_permissionconfigurationlistener_factoryreset_ptr(IntPtr context);
+		internal delegate QStatus alljoyn_permissionconfigurationlistener_factoryreset_ptr(IntPtr context);
 		// typedef QStatus (AJ_CALL * alljoyn_permissionconfigurationlistener_factoryreset_ptr)(const void* context);
 		// 
 
@@ -40,32 +40,6 @@ namespace AllJoynDotNet
 		// 
 
 		/// <summary>
-		/// Type for the StartManagement callback.
-		/// </summary>
-		/// <remarks>
-		/// <para>Framework requests application to prepare for Security 2.0 settings changes from the Security Manager.
-		/// </para>
-		/// </remarks>
-		/// <param name="context">The context pointer passed into the alljoyn_permissionconfigurationlistener_startmanagement_ptr function.</param>
-		/// 
-		internal delegate void alljoyn_permissionconfigurationlistener_startmanagement_ptr(IntPtr context);
-		// typedef void (AJ_CALL * alljoyn_permissionconfigurationlistener_startmanagement_ptr)(const void* context);
-		// 
-
-		/// <summary>
-		/// Type for the EndManagement callback.
-		/// </summary>
-		/// <remarks>
-		/// <para>Framework notifies the application that the Security 2.0 configuration has been finished.
-		/// </para>
-		/// </remarks>
-		/// <param name="context">The context pointer passed into the alljoyn_permissionconfigurationlistener_endmanagement_ptr function.</param>
-		/// 
-		internal delegate void alljoyn_permissionconfigurationlistener_endmanagement_ptr(IntPtr context);
-		// typedef void (AJ_CALL * alljoyn_permissionconfigurationlistener_endmanagement_ptr)(const void* context);
-		// 
-
-		/// <summary>
 		/// Structure used during alljoyn_permissionconfigurationlistener_create to provide callbacks into C.
 		/// </summary>
 		/// 
@@ -74,8 +48,6 @@ namespace AllJoynDotNet
 		{
 			public alljoyn_permissionconfigurationlistener_factoryreset_ptr factory_reset;
 			public alljoyn_permissionconfigurationlistener_policychanged_ptr policy_changed;
-			public alljoyn_permissionconfigurationlistener_startmanagement_ptr start_management;
-			public alljoyn_permissionconfigurationlistener_endmanagement_ptr end_management;
 			//
 			///**
 			//* Framework requests application factory reset.
@@ -86,16 +58,6 @@ namespace AllJoynDotNet
 			//* Framework notifies application of a security policy change.
 			//*/
 			//alljoyn_permissionconfigurationlistener_policychanged_ptr policy_changed;
-			//
-			///**
-			//* Notification provided before Security Manager is starting to change settings for this application.
-			//*/
-			//alljoyn_permissionconfigurationlistener_startmanagement_ptr start_management;
-			//
-			///**
-			//* Notification provided after Security Manager finished changing settings for this application.
-			//*/
-			//alljoyn_permissionconfigurationlistener_endmanagement_ptr end_management;
 			//
 		}
 		// typedef struct {
@@ -108,16 +70,6 @@ namespace AllJoynDotNet
 		// * Framework notifies application of a security policy change.
 		// */
 		// alljoyn_permissionconfigurationlistener_policychanged_ptr policy_changed;
-		// 
-		// /**
-		// * Notification provided before Security Manager is starting to change settings for this application.
-		// */
-		// alljoyn_permissionconfigurationlistener_startmanagement_ptr start_management;
-		// 
-		// /**
-		// * Notification provided after Security Manager finished changing settings for this application.
-		// */
-		// alljoyn_permissionconfigurationlistener_endmanagement_ptr end_management;
 		// } alljoyn_permissionconfigurationlistener_callbacks;
 		// 
 

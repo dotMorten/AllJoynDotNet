@@ -91,7 +91,7 @@ namespace AllJoynDotNet
 		/// <param name="aboutDataXml">a string that contains an XML representation ofthe About data fields.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_createfromxml(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string aboutDataXml);
+		internal static extern QStatus alljoyn_aboutdata_createfromxml(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string aboutDataXml);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_createfromxml(alljoyn_aboutdata data,const char* aboutDataXml);
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the language for the alljoyn_msgarg About dataIf NULL the default language is used</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_createfrommsgarg(IntPtr data, IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_createfrommsgarg(IntPtr data, IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_createfrommsgarg(alljoyn_aboutdata data,const alljoyn_msgarg arg,const char* language);
 
 		/// <summary>
@@ -137,7 +137,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK on success
 		/// - #ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE if appId is not 128-bits (16 bytes) in size</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setappid(IntPtr data, byte[] appId, UInt64 num);
+		internal static extern QStatus alljoyn_aboutdata_setappid(IntPtr data, byte[] appId, UInt64 num);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setappid(alljoyn_aboutdata data,const uint8_t* appId,const size_t num);
 
 		/// <summary>
@@ -159,7 +159,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - #ER_ABOUT_INVALID_ABOUTDATA_FIELD_VALUE if the AppId is not a 128-bits (16 bytes) in size</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setappid_fromstring(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string appId);
+		internal static extern QStatus alljoyn_aboutdata_setappid_fromstring(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string appId);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setappid_fromstring(alljoyn_aboutdata data,const char* appId);
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace AllJoynDotNet
 		/// <param name="num">the size of the appId array</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getappid(IntPtr data, byte[] appId, UInt64 num);
+		internal static extern QStatus alljoyn_aboutdata_getappid(IntPtr data, byte[] appId, UInt64 num);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getappid(alljoyn_aboutdata data,uint8_t** appId,size_t* num);
 
 		/// <summary>
@@ -192,7 +192,7 @@ namespace AllJoynDotNet
 		/// <param name="defaultLanguage">the IETF language tag</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setdefaultlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string defaultLanguage);
+		internal static extern QStatus alljoyn_aboutdata_setdefaultlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string defaultLanguage);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setdefaultlanguage(alljoyn_aboutdata data,const char* defaultLanguage);
 
 		/// <summary>
@@ -202,7 +202,7 @@ namespace AllJoynDotNet
 		/// <param name="defaultLanguage">a pointer to the default language tag</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getdefaultlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] defaultLanguage);
+		internal static extern QStatus alljoyn_aboutdata_getdefaultlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] defaultLanguage);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdefaultlanguage(alljoyn_aboutdata data,char** defaultLanguage);
 
 		/// <summary>
@@ -222,7 +222,7 @@ namespace AllJoynDotNet
 		/// and the default language is also
 		/// not found.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setdevicename(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string deviceName, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setdevicename(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string deviceName, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setdevicename(alljoyn_aboutdata data,const char* deviceName,const char* language);
 
 		/// <summary>
@@ -239,7 +239,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the DeviceName for the default language will be returned</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getdevicename(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] deviceName, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getdevicename(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] deviceName, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdevicename(alljoyn_aboutdata data,char** deviceName,const char* language);
 
 		/// <summary>
@@ -255,7 +255,7 @@ namespace AllJoynDotNet
 		/// <param name="deviceId">is a string with a value generated using platform specific means</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setdeviceid(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string deviceId);
+		internal static extern QStatus alljoyn_aboutdata_setdeviceid(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string deviceId);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setdeviceid(alljoyn_aboutdata data,const char* deviceId);
 
 		/// <summary>
@@ -271,7 +271,7 @@ namespace AllJoynDotNet
 		/// <param name="deviceId">UTF-8 string with a value generated using platform specific means</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getdeviceid(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] deviceId);
+		internal static extern QStatus alljoyn_aboutdata_getdeviceid(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] deviceId);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdeviceid(alljoyn_aboutdata data,char** deviceId);
 
 		/// <summary>
@@ -291,7 +291,7 @@ namespace AllJoynDotNet
 		/// and the default language is also
 		/// not found.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setappname(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string appName, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setappname(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string appName, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setappname(alljoyn_aboutdata data,const char* appName,const char* language);
 
 		/// <summary>
@@ -308,7 +308,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the AppName for the default language will be returned.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getappname(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] appName, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getappname(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] appName, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getappname(alljoyn_aboutdata data,char** appName,const char* language);
 
 		/// <summary>
@@ -328,7 +328,7 @@ namespace AllJoynDotNet
 		/// and the default language is also
 		/// not found.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setmanufacturer(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string manufacturer, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setmanufacturer(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string manufacturer, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setmanufacturer(alljoyn_aboutdata data,const char* manufacturer,const char* language);
 
 		/// <summary>
@@ -345,7 +345,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the Manufacturer for the default language will be returned.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getmanufacturer(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] manufacturer, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getmanufacturer(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] manufacturer, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getmanufacturer(alljoyn_aboutdata data,char** manufacturer,const char* language);
 
 		/// <summary>
@@ -361,7 +361,7 @@ namespace AllJoynDotNet
 		/// <param name="modelNumber">the application model number</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setmodelnumber(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string modelNumber);
+		internal static extern QStatus alljoyn_aboutdata_setmodelnumber(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string modelNumber);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setmodelnumber(alljoyn_aboutdata data,const char* modelNumber);
 
 		/// <summary>
@@ -377,7 +377,7 @@ namespace AllJoynDotNet
 		/// <param name="modelNumber">the application model number</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getmodelnumber(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] modelNumber);
+		internal static extern QStatus alljoyn_aboutdata_getmodelnumber(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] modelNumber);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getmodelnumber(alljoyn_aboutdata data,char** modelNumber);
 
 		/// <summary>
@@ -395,7 +395,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setsupportedlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setsupportedlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setsupportedlanguage(alljoyn_aboutdata data,const char* language);
 
 		/// <summary>
@@ -427,7 +427,7 @@ namespace AllJoynDotNet
 		/// - #ER_ABOUT_DEFAULT_LANGUAGE_NOT_SPECIFIED if language tag was not specified and
 		/// the default language is also not found.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setdescription(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string description, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setdescription(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string description, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setdescription(alljoyn_aboutdata data,const char* description,const char* language);
 
 		/// <summary>
@@ -444,7 +444,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the Description for the default language will be returned.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getdescription(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] description, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getdescription(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] description, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdescription(alljoyn_aboutdata data,char** description,const char* language);
 
 		/// <summary>
@@ -463,7 +463,7 @@ namespace AllJoynDotNet
 		/// <param name="dateOfManufacture">the date of manufacture using YYYY-MM-DD format</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setdateofmanufacture(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string dateOfManufacture);
+		internal static extern QStatus alljoyn_aboutdata_setdateofmanufacture(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string dateOfManufacture);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setdateofmanufacture(alljoyn_aboutdata data,const char* dateOfManufacture);
 
 		/// <summary>
@@ -482,7 +482,7 @@ namespace AllJoynDotNet
 		/// <param name="dateOfManufacture">the date of manufacture using YYYY-MM-DD format</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getdateofmanufacture(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] dateOfManufacture);
+		internal static extern QStatus alljoyn_aboutdata_getdateofmanufacture(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] dateOfManufacture);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdateofmanufacture(alljoyn_aboutdata data,char** dateOfManufacture);
 
 		/// <summary>
@@ -498,7 +498,7 @@ namespace AllJoynDotNet
 		/// <param name="softwareVersion">the software version for the OEM software</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string softwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_setsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string softwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setsoftwareversion(alljoyn_aboutdata data,const char* softwareVersion);
 
 		/// <summary>
@@ -514,7 +514,7 @@ namespace AllJoynDotNet
 		/// <param name="softwareVersion">the software version for the OEM software</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] softwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_getsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] softwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getsoftwareversion(alljoyn_aboutdata data,char** softwareVersion);
 
 		/// <summary>
@@ -533,7 +533,7 @@ namespace AllJoynDotNet
 		/// <param name="ajSoftwareVersion">the current version of AllJoyn SDK utilizedby the application</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getajsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] ajSoftwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_getajsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] ajSoftwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getajsoftwareversion(alljoyn_aboutdata data,char** ajSoftwareVersion);
 
 		/// <summary>
@@ -549,7 +549,7 @@ namespace AllJoynDotNet
 		/// <param name="hardwareVersion">the device hardware version</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_sethardwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string hardwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_sethardwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string hardwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_sethardwareversion(alljoyn_aboutdata data,const char* hardwareVersion);
 
 		/// <summary>
@@ -565,7 +565,7 @@ namespace AllJoynDotNet
 		/// <param name="hardwareVersion">the device hardware version</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_gethardwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] hardwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_gethardwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] hardwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_gethardwareversion(alljoyn_aboutdata data,char** hardwareVersion);
 
 		/// <summary>
@@ -581,7 +581,7 @@ namespace AllJoynDotNet
 		/// <param name="supportUrl">the support URL to be populated by OEM</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setsupporturl(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string supportUrl);
+		internal static extern QStatus alljoyn_aboutdata_setsupporturl(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string supportUrl);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setsupporturl(alljoyn_aboutdata data,const char* supportUrl);
 
 		/// <summary>
@@ -597,7 +597,7 @@ namespace AllJoynDotNet
 		/// <param name="supportUrl">the support URL</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getsupporturl(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] supportUrl);
+		internal static extern QStatus alljoyn_aboutdata_getsupporturl(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] supportUrl);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getsupporturl(alljoyn_aboutdata data,char** supportUrl);
 
 		/// <summary>
@@ -624,7 +624,7 @@ namespace AllJoynDotNet
 		/// and the default language is also
 		/// not found.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_setfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_setfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_setfield(alljoyn_aboutdata data,const char* name,alljoyn_msgarg value,const char* language);
 
 		/// <summary>
@@ -636,7 +636,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the field for the default language will be returned.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getfield(alljoyn_aboutdata data,const char* name,alljoyn_msgarg* value,const char* language);
 
 		/// <summary>
@@ -654,7 +654,7 @@ namespace AllJoynDotNet
 		// extern AJ_API size_t AJ_CALL alljoyn_aboutdata_getfields(alljoyn_aboutdata data,const char** fields,size_t num_fields);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getaboutdata(IntPtr data, IntPtr msgArg, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getaboutdata(IntPtr data, IntPtr msgArg, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getaboutdata(alljoyn_aboutdata data,alljoyn_msgarg msgArg,const char* language);
 
 		/// <summary>
@@ -681,7 +681,7 @@ namespace AllJoynDotNet
 		/// <param name="msgArg">a alljoyn_msgarg dictionary with the a{sv} that contains the Announcedata.</param><!-- out -->
 		/// <returns>ER_OK if successful</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutdata_getannouncedaboutdata(IntPtr data, IntPtr msgArg);
+		internal static extern QStatus alljoyn_aboutdata_getannouncedaboutdata(IntPtr data, IntPtr msgArg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getannouncedaboutdata(alljoyn_aboutdata data,alljoyn_msgarg msgArg);
 
 		/// <summary>

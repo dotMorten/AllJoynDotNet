@@ -70,7 +70,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK on success
 		/// - ER_ABOUT_SESSIONPORT_NOT_BOUND if the SessionPort given is not bound</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutobj_announce(IntPtr obj, UInt16 sessionPort, IntPtr aboutData);
+		internal static extern QStatus alljoyn_aboutobj_announce(IntPtr obj, UInt16 sessionPort, IntPtr aboutData);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutobj_announce(alljoyn_aboutobj obj,alljoyn_sessionport sessionPort,alljoyn_aboutdata aboutData);
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK on success
 		/// - annother status indicating failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_aboutobj_unannounce(IntPtr obj);
+		internal static extern QStatus alljoyn_aboutobj_unannounce(IntPtr obj);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutobj_unannounce(alljoyn_aboutobj obj);
 
 

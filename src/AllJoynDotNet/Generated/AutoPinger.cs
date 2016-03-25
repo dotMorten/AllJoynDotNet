@@ -171,7 +171,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK: interval updated.
 		/// - #ER_BUS_PING_GROUP_NOT_FOUND: group did not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_autopinger_setpinginterval(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, UInt32 pinginterval);
+		internal static extern QStatus alljoyn_autopinger_setpinginterval(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, UInt32 pinginterval);
 		// extern AJ_API QStatus AJ_CALL alljoyn_autopinger_setpinginterval(alljoyn_autopinger autopinger,const char* group,uint32_t pinginterval);
 
 		/// <summary>
@@ -184,7 +184,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK: destination added.
 		/// - #ER_BUS_PING_GROUP_NOT_FOUND: group did not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_autopinger_adddestination(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination);
+		internal static extern QStatus alljoyn_autopinger_adddestination(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination);
 		// extern AJ_API QStatus AJ_CALL alljoyn_autopinger_adddestination(alljoyn_autopinger autopinger,const char* group,const char* destination);
 
 		/// <summary>
@@ -199,7 +199,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK: destination removed or was not present.
 		/// - #ER_BUS_PING_GROUP_NOT_FOUND: group did not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_autopinger_removedestination(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination, Int32 removeall = 0);
+		internal static extern QStatus alljoyn_autopinger_removedestination(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination, Int32 removeall = 0);
 		// extern AJ_API QStatus AJ_CALL alljoyn_autopinger_removedestination(alljoyn_autopinger autopinger,const char* group,const char* destination,QCC_BOOL removeall = false);
 
 

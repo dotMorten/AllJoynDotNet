@@ -47,11 +47,11 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - an error status indicating failure to get the icon content</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_abouticonproxy_geticon(IntPtr proxy, IntPtr icon);
+		internal static extern QStatus alljoyn_abouticonproxy_geticon(IntPtr proxy, IntPtr icon);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticonproxy_geticon(alljoyn_abouticonproxy proxy,alljoyn_abouticon icon);
 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_abouticonproxy_getversion(IntPtr proxy, UInt16[] version);
+		internal static extern QStatus alljoyn_abouticonproxy_getversion(IntPtr proxy, UInt16[] version);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticonproxy_getversion(alljoyn_abouticonproxy proxy,uint16_t* version);
 
 

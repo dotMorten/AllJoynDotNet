@@ -28,7 +28,7 @@ namespace AllJoynDotNet
 		/// <param name="propName">Identifies the property to get</param>
 		/// <param name="val">Returns the property value. The type of this value is the actual valuetype.</param><!-- out -->
 		/// <returns>#ER_BUS_NO_SUCH_PROPERTY (Should be changed to #ER_OK by user implementation of alljoyn_busobject_prop_get_ptrif the request results in successfully reading a property from the object.)</returns>
-		internal delegate Int32 alljoyn_busobject_prop_get_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
+		internal delegate QStatus alljoyn_busobject_prop_get_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
 		// typedef QStatus (AJ_CALL * alljoyn_busobject_prop_get_ptr)(const void* context, const char* ifcName, const char* propName, alljoyn_msgarg val);
 		// 
 
@@ -47,7 +47,7 @@ namespace AllJoynDotNet
 		/// <param name="propName">Identifies the property to set</param>
 		/// <param name="val">The property value to set. The type of this value is the actual valuetype.</param>
 		/// <returns>#ER_BUS_NO_SUCH_PROPERTY (Should be changed to #ER_OK by user implementation of alljoyn_busobject_prop_set_ptris the set request results in successfully changing the property.)</returns>
-		internal delegate Int32 alljoyn_busobject_prop_set_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
+		internal delegate QStatus alljoyn_busobject_prop_set_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
 		// typedef QStatus (AJ_CALL * alljoyn_busobject_prop_set_ptr)(const void* context, const char* ifcName, const char* propName, alljoyn_msgarg val);
 		// 
 
@@ -235,7 +235,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_IFACE_ALREADY_EXISTS if the interface already exists.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_addinterface(IntPtr bus, IntPtr iface);
+		internal static extern QStatus alljoyn_busobject_addinterface(IntPtr bus, IntPtr iface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addinterface(alljoyn_busobject bus,const alljoyn_interfacedescription iface);
 
 		/// <summary>
@@ -249,7 +249,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the method handler was added.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_addmethodhandler(IntPtr bus, alljoyn_interfacedescription_member member, alljoyn_messagereceiver_methodhandler_ptr handler, IntPtr context);
+		internal static extern QStatus alljoyn_busobject_addmethodhandler(IntPtr bus, alljoyn_interfacedescription_member member, alljoyn_messagereceiver_methodhandler_ptr handler, IntPtr context);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addmethodhandler(alljoyn_busobject bus,const alljoyn_interfacedescription_member member,alljoyn_messagereceiver_methodhandler_ptr handler,void* context);
 
 		/// <summary>
@@ -261,7 +261,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if all the methods were added
 		/// - #ER_BUS_NO_SUCH_INTERFACE is method can not be added because interface does not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_addmethodhandlers(IntPtr bus, alljoyn_busobject_methodentry entries, UInt64 numEntries);
+		internal static extern QStatus alljoyn_busobject_addmethodhandlers(IntPtr bus, alljoyn_busobject_methodentry entries, UInt64 numEntries);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addmethodhandlers(alljoyn_busobject bus,const alljoyn_busobject_methodentry* entries,size_t numEntries);
 
 		/// <summary>
@@ -274,7 +274,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_methodreply_args(IntPtr bus, IntPtr msg, IntPtr args, UInt64 numArgs);
+		internal static extern QStatus alljoyn_busobject_methodreply_args(IntPtr bus, IntPtr msg, IntPtr args, UInt64 numArgs);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_methodreply_args(alljoyn_busobject bus, alljoyn_message msg,const alljoyn_msgarg args, size_t numArgs);
 
 		/// <summary>
@@ -287,7 +287,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_methodreply_err(IntPtr bus, IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string error, [MarshalAs(UnmanagedType.LPStr)]string errorMessage);
+		internal static extern QStatus alljoyn_busobject_methodreply_err(IntPtr bus, IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string error, [MarshalAs(UnmanagedType.LPStr)]string errorMessage);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_methodreply_err(alljoyn_busobject bus, alljoyn_message msg,const char* error, const char* errorMessage);
 
 		/// <summary>
@@ -299,7 +299,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_methodreply_status(IntPtr bus, IntPtr msg, Int32 status);
+		internal static extern QStatus alljoyn_busobject_methodreply_status(IntPtr bus, IntPtr msg, QStatus status);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_methodreply_status(alljoyn_busobject bus, alljoyn_message msg, QStatus status);
 
 		/// <summary>
@@ -340,7 +340,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_signal(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string destination, IntPtr sessionId, alljoyn_interfacedescription_member signal, IntPtr args, UInt64 numArgs, UInt16 timeToLive, byte flags, IntPtr msg);
+		internal static extern QStatus alljoyn_busobject_signal(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string destination, IntPtr sessionId, alljoyn_interfacedescription_member signal, IntPtr args, UInt64 numArgs, UInt16 timeToLive, byte flags, IntPtr msg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_signal(alljoyn_busobject bus,const char* destination,alljoyn_sessionid sessionId,const alljoyn_interfacedescription_member signal,const alljoyn_msgarg args,size_t numArgs,uint16_t timeToLive,uint8_t flags,alljoyn_message msg);
 
 		/// <summary>
@@ -351,7 +351,7 @@ namespace AllJoynDotNet
 		/// <param name="serialNumber">Serial number of previously sent sessionless signal.</param>
 		/// <returns>ER_OK if successful.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_cancelsessionlessmessage_serial(IntPtr bus, UInt32 serialNumber);
+		internal static extern QStatus alljoyn_busobject_cancelsessionlessmessage_serial(IntPtr bus, UInt32 serialNumber);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_cancelsessionlessmessage_serial(alljoyn_busobject bus, uint32_t serialNumber);
 
 		/// <summary>
@@ -362,7 +362,7 @@ namespace AllJoynDotNet
 		/// <param name="msg">Message to be removed.</param>
 		/// <returns>ER_OK if successful.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_cancelsessionlessmessage(IntPtr bus, IntPtr msg);
+		internal static extern QStatus alljoyn_busobject_cancelsessionlessmessage(IntPtr bus, IntPtr msg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_cancelsessionlessmessage(alljoyn_busobject bus, const alljoyn_message msg);
 
 		/// <summary>
@@ -397,7 +397,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - #ER_BUS_OBJECT_NO_SUCH_INTERFACE if the interface is not part of the bus object.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_setannounceflag(IntPtr bus, IntPtr iface, alljoyn_about_announceflag isAnnounced);
+		internal static extern QStatus alljoyn_busobject_setannounceflag(IntPtr bus, IntPtr iface, alljoyn_about_announceflag isAnnounced);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_setannounceflag(alljoyn_busobject bus,const alljoyn_interfacedescription iface,alljoyn_about_announceflag isAnnounced);
 
 		/// <summary>
@@ -418,7 +418,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_IFACE_ALREADY_EXISTS if the interface already exists.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busobject_addinterface_announced(IntPtr bus, IntPtr iface);
+		internal static extern QStatus alljoyn_busobject_addinterface_announced(IntPtr bus, IntPtr iface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addinterface_announced(alljoyn_busobject bus,const alljoyn_interfacedescription iface);
 
 

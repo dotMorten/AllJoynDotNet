@@ -26,7 +26,7 @@ namespace AllJoynDotNet
 		/// <param name="keyStore">Reference to the alljoyn_keystore to be loaded.</param>
 		/// <returns>- #ER_OK if the load request was satisfied
 		/// - An error status otherwise</returns>
-		internal delegate Int32 alljoyn_keystorelistener_loadrequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
+		internal delegate QStatus alljoyn_keystorelistener_loadrequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
 		// typedef QStatus (AJ_CALL * alljoyn_keystorelistener_loadrequest_ptr)(const void* context, alljoyn_keystorelistener listener, alljoyn_keystore keyStore);
 		// 
 
@@ -43,7 +43,7 @@ namespace AllJoynDotNet
 		/// <param name="keyStore">Reference to the @c alljoyn_keystore to be stored.</param>
 		/// <returns>- #ER_OK if the store request was satisfied
 		/// - An error status otherwise</returns>
-		internal delegate Int32 alljoyn_keystorelistener_storerequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
+		internal delegate QStatus alljoyn_keystorelistener_storerequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
 		// typedef QStatus (AJ_CALL * alljoyn_keystorelistener_storerequest_ptr)(const void* context, alljoyn_keystorelistener listener, alljoyn_keystore keyStore);
 		// 
 
@@ -115,7 +115,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_keystorelistener_putkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string source, [MarshalAs(UnmanagedType.LPStr)]string password);
+		internal static extern QStatus alljoyn_keystorelistener_putkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string source, [MarshalAs(UnmanagedType.LPStr)]string password);
 		// extern AJ_API QStatus AJ_CALL alljoyn_keystorelistener_putkeys(alljoyn_keystorelistener listener, alljoyn_keystore keyStore,const char* source, const char* password);
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace AllJoynDotNet
 		/// to hold the sink
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_keystorelistener_getkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string sink, [In, Out]UInt64 sink_sz);
+		internal static extern QStatus alljoyn_keystorelistener_getkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string sink, [In, Out]UInt64 sink_sz);
 		// extern AJ_API QStatus AJ_CALL alljoyn_keystorelistener_getkeys(alljoyn_keystorelistener listener, alljoyn_keystore keyStore,char* sink, size_t* sink_sz);
 
 

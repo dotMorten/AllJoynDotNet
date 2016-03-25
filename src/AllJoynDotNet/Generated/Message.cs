@@ -173,7 +173,7 @@ namespace AllJoynDotNet
 		/// <param name="...">Pointers to return references to the unpacked values.</param><!-- out -->
 		/// <returns>ER_OK if successful.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_message_parseargs(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+		internal static extern QStatus alljoyn_message_parseargs(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
 		// extern AJ_API QStatus AJ_CALL alljoyn_message_parseargs(alljoyn_message msg, const char* signature, ...);
 
 		/// <summary>

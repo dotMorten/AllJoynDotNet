@@ -11,22 +11,22 @@ namespace PInvokeCodeGenerator
     {
         static void Main(string[] args)
         {
-            string repo = @"c:\allseenallliance\core\alljoyn\";
+            string repo = @"..\..\..\..\..\alljoyn\";
             string exportList = repo + @"alljoyn_c\src\Windows\alljoyn_c.def";
             string includeFolder = repo + @"alljoyn_c\inc\alljoyn_c\";
             string outputFolder = @"..\..\..\..\AllJoynDotNet\Generated\";
-            List<string> exportMembers = new List<string>();
-            using (var sr = File.OpenText(exportList))
-            {
-                if (sr.ReadLine() != "EXPORTS" || sr.ReadLine() != "")
-                    throw new InvalidDataException();
-                while (!sr.EndOfStream)
-                {
-                    var line = sr.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(line))
-                        exportMembers.Add(line);
-                }
-            }
+            //List<string> exportMembers = new List<string>();
+            //using (var sr = File.OpenText(exportList))
+            //{
+            //    if (sr.ReadLine() != "EXPORTS" || sr.ReadLine() != "")
+            //        throw new InvalidDataException();
+            //    while (!sr.EndOfStream)
+            //    {
+            //        var line = sr.ReadLine();
+            //        if (!string.IsNullOrWhiteSpace(line))
+            //            exportMembers.Add(line);
+            //    }
+            //}
             List<string> generatedFiles = new List<string>();
             foreach (var file in new DirectoryInfo(includeFolder).GetFiles("*.h"))
             {

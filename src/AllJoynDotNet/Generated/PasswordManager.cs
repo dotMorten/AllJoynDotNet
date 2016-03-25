@@ -24,7 +24,7 @@ namespace AllJoynDotNet
 		/// <param name="password">The password.</param>
 		/// <returns>- #ER_OK  if the credentials was successfully set.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_passwordmanager_setcredentials([MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string password);
+		internal static extern QStatus alljoyn_passwordmanager_setcredentials([MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string password);
 		// extern AJ_API QStatus AJ_CALL alljoyn_passwordmanager_setcredentials(const char* authMechanism, const char* password);
 
 

@@ -17,7 +17,7 @@ namespace AllJoynDotNet
 		/// Type for the joinsession callback used with the asynchronous joinsession request.
 		/// </summary>
 		/// 
-		internal delegate void alljoyn_busattachment_joinsessioncb_ptr(Int32 status, IntPtr sessionId, IntPtr opts, IntPtr context);
+		internal delegate void alljoyn_busattachment_joinsessioncb_ptr(QStatus status, IntPtr sessionId, IntPtr opts, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_busattachment_joinsessioncb_ptr)(QStatus status, alljoyn_sessionid sessionId, const alljoyn_sessionopts opts, void* context);
 		// 
 
@@ -32,7 +32,7 @@ namespace AllJoynDotNet
 		/// <param name="timeout">Timeout value (possibly adjusted from original request).</param>
 		/// <param name="context">User defined context which will be passed as-is to callback.</param>
 		/// 
-		internal delegate void alljoyn_busattachment_setlinktimeoutcb_ptr(Int32 status, UInt32 timeout, IntPtr context);
+		internal delegate void alljoyn_busattachment_setlinktimeoutcb_ptr(QStatus status, UInt32 timeout, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_busattachment_setlinktimeoutcb_ptr)(QStatus status, uint32_t timeout, void* context);
 		// 
 
@@ -78,7 +78,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">alljoyn_busattachment to free.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_destroy(IntPtr bus);
+		internal static extern void alljoyn_busattachment_destroy(IntPtr bus);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_destroy(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_BUS_ALREADY_STARTED if already started
 		/// - Other error status codes indicating a failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_start(IntPtr bus);
+		internal static extern QStatus alljoyn_busattachment_start(IntPtr bus);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_start(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -197,7 +197,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful.
 		/// - An error status if unable to stop the message bus</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_stop(IntPtr bus);
+		internal static extern QStatus alljoyn_busattachment_stop(IntPtr bus);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_stop(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -226,7 +226,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_BUS_ALREADY_STARTED if already started
 		/// - Other error status codes indicating a failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_join(IntPtr bus);
+		internal static extern QStatus alljoyn_busattachment_join(IntPtr bus);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_join(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -251,44 +251,10 @@ namespace AllJoynDotNet
 		/// Allow the currently executing method/signal handler to enable concurrent callbacks
 		/// during the scope of the handler's execution.
 		/// </summary>
-		/// <remarks>
-		/// <para>This member function can ONLY be called from within the body of a signal
-		/// handler, method handler or other AllJoyn callback. It allows AllJoyn to
-		/// dispatch a single (additional) callback while the current one is still
-		/// executing. This method is typically used when a method, signal handler or
-		/// other AllJoyn callback needs to execute for a long period of time or when
-		/// the callback needs to make any kind of blocking call.
-		/// </para>
-		/// <para>This function MUST be called prior to making any non-asynchronous AllJoyn
-		/// remote procedure calls from within an AllJoyn callback. This includes
-		/// calls such as alljoyn_busattachment_joinsession(),
-		/// alljoyn_busattachment_advertisename(),
-		/// alljoyn_busattachment_canceladvertisename(),
-		/// alljoyn_busattachment_findadvertisedname(),
-		/// alljoyn_busattachment_canceladvertisename(),
-		/// alljoyn_busattachment_setlinktimeout(), etc.
-		/// </para>
-		/// <para>alljoyn_busattachment_enableconcurrentcallbacks doesn't take effect when a
-		/// alljoyn_busattachment is created with just one thread. If the
-		/// alljoyn_busattachment is created with just one thread,
-		/// i.e.`alljoyn_busattachment_create_concurrency(appName, true, 1)`, and the
-		/// application developer attempts to make a blocking method call in a callback
-		/// after invoking alljoyn_busattachment_enableconcurrentcallbacks(), the
-		/// application will deadlock.
-		/// </para>
-		/// <para>For the same reason that alljoyn_busattachment_enableconcurrentcallbacks
-		/// cannot be used with just one thread, the maximum number of concurrent
-		/// callbacks is limited to the value specified when creating the BusAttachment.
-		/// If no concurrency value was chosen the default is 4. It is the application
-		/// developers responsibility to make sure the maximum number of concurrent
-		/// callbacks is not exceeded. If the maximum number is exceeded the application
-		/// will deadlock.
-		/// </para>
-		/// </remarks>
 		/// <param name="bus">The alljoyn_busattachment to enable concurrent callbacks on</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_enableconcurrentcallbacks(IntPtr bus);
+		internal static extern void alljoyn_busattachment_enableconcurrentcallbacks(IntPtr bus);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_enableconcurrentcallbacks(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -307,7 +273,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if creation was successful.
 		/// - #ER_BUS_IFACE_ALREADY_EXISTS if requested interface already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_createinterface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr iface);
+		internal static extern QStatus alljoyn_busattachment_createinterface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr iface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_createinterface(alljoyn_busattachment bus, const char* name,alljoyn_interfacedescription* iface);
 
 		/// <summary>
@@ -321,7 +287,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if creation was successful.
 		/// - #ER_BUS_IFACE_ALREADY_EXISTS if requested interface already exists</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_createinterface_secure(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr iface, alljoyn_interfacedescription_securitypolicy secPolicy);
+		internal static extern QStatus alljoyn_busattachment_createinterface_secure(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr iface, alljoyn_interfacedescription_securitypolicy secPolicy);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_createinterface_secure(alljoyn_busattachment bus, const char* name,alljoyn_interfacedescription* iface,alljoyn_interfacedescription_securitypolicy secPolicy);
 
 		/// <summary>
@@ -332,7 +298,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_connect(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string connectSpec);
+		internal static extern QStatus alljoyn_busattachment_connect(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string connectSpec);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_connect(alljoyn_busattachment bus, const char* connectSpec);
 
 		/// <summary>
@@ -342,7 +308,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">Object instance that will receive bus event notifications.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_registerbuslistener(IntPtr bus, IntPtr listener);
+		internal static extern void alljoyn_busattachment_registerbuslistener(IntPtr bus, IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_registerbuslistener(alljoyn_busattachment bus, alljoyn_buslistener listener);
 
 		/// <summary>
@@ -353,7 +319,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">Object instance to un-register as a listener.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_unregisterbuslistener(IntPtr bus, IntPtr listener);
+		internal static extern void alljoyn_busattachment_unregisterbuslistener(IntPtr bus, IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_unregisterbuslistener(alljoyn_busattachment bus, alljoyn_buslistener listener);
 
 		/// <summary>
@@ -367,7 +333,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_findadvertisedname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
+		internal static extern QStatus alljoyn_busattachment_findadvertisedname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_findadvertisedname(alljoyn_busattachment bus, const char* namePrefix);
 
 		/// <summary>
@@ -382,7 +348,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_findadvertisednamebytransport(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix, UInt16 transports);
+		internal static extern QStatus alljoyn_busattachment_findadvertisednamebytransport(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix, UInt16 transports);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_findadvertisednamebytransport(alljoyn_busattachment bus, const char* namePrefix, alljoyn_transportmask transports);
 
 		/// <summary>
@@ -398,7 +364,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_cancelfindadvertisedname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
+		internal static extern QStatus alljoyn_busattachment_cancelfindadvertisedname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelfindadvertisedname(alljoyn_busattachment bus, const char* namePrefix);
 
 		/// <summary>
@@ -414,7 +380,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_cancelfindadvertisednamebytransport(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix, UInt16 transports);
+		internal static extern QStatus alljoyn_busattachment_cancelfindadvertisednamebytransport(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string namePrefix, UInt16 transports);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelfindadvertisednamebytransport(alljoyn_busattachment bus, const char* namePrefix, alljoyn_transportmask transports);
 
 		/// <summary>
@@ -432,7 +398,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_advertisename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transports);
+		internal static extern QStatus alljoyn_busattachment_advertisename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transports);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_advertisename(alljoyn_busattachment bus, const char* name, alljoyn_transportmask transports);
 
 		/// <summary>
@@ -450,7 +416,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_canceladvertisename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transports);
+		internal static extern QStatus alljoyn_busattachment_canceladvertisename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transports);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_canceladvertisename(alljoyn_busattachment bus, const char* name, alljoyn_transportmask transports);
 
 		/// <summary>
@@ -479,7 +445,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_joinsession(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, IntPtr sessionId, [In, Out]IntPtr opts);
+		internal static extern QStatus alljoyn_busattachment_joinsession(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, IntPtr sessionId, [In, Out]IntPtr opts);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_joinsession(alljoyn_busattachment bus, const char* sessionHost,alljoyn_sessionport sessionPort, alljoyn_sessionlistener listener,alljoyn_sessionid* sessionId, alljoyn_sessionopts opts);
 
 		/// <summary>
@@ -502,7 +468,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_joinsessionasync(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, IntPtr opts, alljoyn_busattachment_joinsessioncb_ptr callback, IntPtr context);
+		internal static extern QStatus alljoyn_busattachment_joinsessionasync(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, IntPtr opts, alljoyn_busattachment_joinsessioncb_ptr callback, IntPtr context);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_joinsessionasync(alljoyn_busattachment bus,const char* sessionHost,alljoyn_sessionport sessionPort,alljoyn_sessionlistener listener,const alljoyn_sessionopts opts,alljoyn_busattachment_joinsessioncb_ptr callback,void* context);
 
 		/// <summary>
@@ -514,7 +480,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_BAD_OBJ_PATH for a bad object path
 		/// - #ER_BUS_OBJ_ALREADY_EXISTS if an object is already registered at this path</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registerbusobject(IntPtr bus, IntPtr obj);
+		internal static extern QStatus alljoyn_busattachment_registerbusobject(IntPtr bus, IntPtr obj);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registerbusobject(alljoyn_busattachment bus, alljoyn_busobject obj);
 
 		/// <summary>
@@ -527,7 +493,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_BAD_OBJ_PATH for a bad object path
 		/// - #ER_BUS_OBJ_ALREADY_EXISTS if an object is already registered at this path</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registerbusobject_secure(IntPtr bus, IntPtr obj);
+		internal static extern QStatus alljoyn_busattachment_registerbusobject_secure(IntPtr bus, IntPtr obj);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registerbusobject_secure(alljoyn_busattachment bus, alljoyn_busobject obj);
 
 		/// <summary>
@@ -537,7 +503,7 @@ namespace AllJoynDotNet
 		/// <param name="@object">Object to be unregistered.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_unregisterbusobject(IntPtr bus, IntPtr @object);
+		internal static extern void alljoyn_busattachment_unregisterbusobject(IntPtr bus, IntPtr @object);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_unregisterbusobject(alljoyn_busattachment bus, alljoyn_busobject object);
 
 		/// <summary>
@@ -552,7 +518,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_requestname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string requestedName, UInt32 flags);
+		internal static extern QStatus alljoyn_busattachment_requestname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string requestedName, UInt32 flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_requestname(alljoyn_busattachment bus, const char* requestedName, uint32_t flags);
 
 		/// <summary>
@@ -566,7 +532,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_releasename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name);
+		internal static extern QStatus alljoyn_busattachment_releasename(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_releasename(alljoyn_busattachment bus, const char* name);
 
 		/// <summary>
@@ -599,7 +565,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_bindsessionport(IntPtr bus, [In, Out]UInt16 sessionPort, IntPtr opts, IntPtr listener);
+		internal static extern QStatus alljoyn_busattachment_bindsessionport(IntPtr bus, [In, Out]UInt16 sessionPort, IntPtr opts, IntPtr listener);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_bindsessionport(alljoyn_busattachment bus, alljoyn_sessionport* sessionPort,const alljoyn_sessionopts opts, alljoyn_sessionportlistener listener);
 
 		/// <summary>
@@ -611,7 +577,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_unbindsessionport(IntPtr bus, UInt16 sessionPort);
+		internal static extern QStatus alljoyn_busattachment_unbindsessionport(IntPtr bus, UInt16 sessionPort);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unbindsessionport(alljoyn_busattachment bus, alljoyn_sessionport sessionPort);
 
 		/// <summary>
@@ -630,18 +596,18 @@ namespace AllJoynDotNet
 		/// <param name="bus">The bus on which to enable security.</param>
 		/// <param name="authMechanisms">The authentication mechanism(s) to use for peer-to-peer authentication.If this parameter is NULL peer-to-peer authentication is disabled.
 		/// This is a space separated list of any of the following values: ALLJOYN_SRP_LOGON,
-		/// ALLJOYN_SRP_KEYX, ALLJOYN_ECDHE_NULL, ALLJOYN_ECDHE_PSK, ALLJOYN_ECDHE_ECDSA, GSSAPI,
-		/// ALLJOYN_ECDHE_SPEKE. Note that the SRP and PSK mechanisms are deprecated and will be
-		/// removed in a future release.</param>
+		/// ALLJOYN_SRP_KEYX, ALLJOYN_ECDHE_NULL, ALLJOYN_ECDHE_PSK, ALLJOYN_ECDHE_ECDSA, GSSAPI.</param>
 		/// <param name="listener">Passes password and other authentication related requests to the application.</param>
 		/// <param name="keyStoreFileName">Optional parameter to specify the filename of the default key store. Thedefault value is the applicationName parameter of alljoyn_busattachment_create().
 		/// Note that this parameter is only meaningful when using the default
 		/// key store implementation.</param>
-		/// <param name="isShared">This parameter is not used as of 16.04. It is ignored internally (always shared).</param>
+		/// <param name="isShared">Optional parameter that indicates if the key store is shared between multipleapplications. It is generally harmless to set this to true even when the
+		/// key store is not shared but it adds some unnecessary calls to the key store
+		/// listener to load and store the key store in this case.</param>
 		/// <returns>- #ER_OK if peer security was enabled.
 		/// - #ER_BUS_BUS_NOT_STARTED alljoyn_busattachment_start has not been called</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_enablepeersecurity(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanisms, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string keyStoreFileName, Int32 isShared);
+		internal static extern QStatus alljoyn_busattachment_enablepeersecurity(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanisms, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string keyStoreFileName, Int32 isShared);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_enablepeersecurity(alljoyn_busattachment bus, const char* authMechanisms,alljoyn_authlistener listener, const char* keyStoreFileName,QCC_BOOL isShared);
 
 		/// <summary>
@@ -660,9 +626,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">The bus on which to enable security.</param>
 		/// <param name="authMechanisms">The authentication mechanism(s) to use for peer-to-peer authentication.If this parameter is NULL peer-to-peer authentication is disabled.
 		/// This is a space separated list of any of the following values: ALLJOYN_SRP_LOGON,
-		/// ALLJOYN_SRP_KEYX, ALLJOYN_ECDHE_NULL, ALLJOYN_ECDHE_PSK, ALLJOYN_ECDHE_ECDSA, GSSAPI,
-		/// ALLJOYN_ECDHE_SPEKE. Note that the SRP and PSK mechanisms are deprecated and will be
-		/// removed in a future release.</param>
+		/// ALLJOYN_SRP_KEYX, ALLJOYN_ECDHE_NULL, ALLJOYN_ECDHE_PSK, ALLJOYN_ECDHE_ECDSA, GSSAPI.</param>
 		/// <param name="authListener">Passes password and other authentication related requests to the application.</param>
 		/// <param name="keyStoreFileName">Optional parameter to specify the filename of the default key store. Thedefault value is the applicationName parameter of alljoyn_busattachment_create().
 		/// Note that this parameter is only meaningful when using the default
@@ -674,7 +638,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if peer security was enabled.
 		/// - #ER_BUS_BUS_NOT_STARTED alljoyn_busattachment_start has not been called</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_enablepeersecuritywithpermissionconfigurationlistener(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanisms, IntPtr authListener, [MarshalAs(UnmanagedType.LPStr)]string keyStoreFileName, Int32 isShared, IntPtr permissionConfigurationListener);
+		internal static extern QStatus alljoyn_busattachment_enablepeersecuritywithpermissionconfigurationlistener(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanisms, IntPtr authListener, [MarshalAs(UnmanagedType.LPStr)]string keyStoreFileName, Int32 isShared, IntPtr permissionConfigurationListener);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_enablepeersecuritywithpermissionconfigurationlistener(alljoyn_busattachment bus,const char* authMechanisms,alljoyn_authlistener authListener,const char* keyStoreFileName,QCC_BOOL isShared,alljoyn_permissionconfigurationlistener permissionConfigurationListener);
 
 		/// <summary>
@@ -702,7 +666,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if parsing is completely successful.
 		/// - An error status otherwise.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_createinterfacesfromxml(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string xml);
+		internal static extern QStatus alljoyn_busattachment_createinterfacesfromxml(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string xml);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_createinterfacesfromxml(alljoyn_busattachment bus, const char* xml);
 
 		/// <summary>
@@ -729,7 +693,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if deletion was successful
 		/// - #ER_BUS_NO_SUCH_INTERFACE if interface was not found</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_deleteinterface(IntPtr bus, IntPtr iface);
+		internal static extern QStatus alljoyn_busattachment_deleteinterface(IntPtr bus, IntPtr iface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_deleteinterface(alljoyn_busattachment bus, alljoyn_interfacedescription iface);
 
 		/// <summary>
@@ -773,7 +737,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if the %alljoyn_busattachment is not connected to the bus
 		/// - Other error status codes indicating a failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_disconnect(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string unused);
+		internal static extern QStatus alljoyn_busattachment_disconnect(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string unused);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_disconnect(alljoyn_busattachment bus, const char* unused);
 
 		/// <summary>
@@ -835,7 +799,7 @@ namespace AllJoynDotNet
 		/// <param name="srcPath">The object path of the emitter of the signal or NULL for all paths.</param>
 		/// <returns>#ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registersignalhandler(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string srcPath);
+		internal static extern QStatus alljoyn_busattachment_registersignalhandler(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string srcPath);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registersignalhandler(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* srcPath);
 
 		/// <summary>
@@ -852,7 +816,7 @@ namespace AllJoynDotNet
 		/// <param name="matchRule">The filter rule.</param>
 		/// <returns>#ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registersignalhandlerwithrule(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string matchRule);
+		internal static extern QStatus alljoyn_busattachment_registersignalhandlerwithrule(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string matchRule);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registersignalhandlerwithrule(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* matchRule);
 
 		/// <summary>
@@ -868,7 +832,7 @@ namespace AllJoynDotNet
 		/// <param name="srcPath">The object path of the emitter of the signal or NULL for all paths.</param>
 		/// <returns>#ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_unregistersignalhandler(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string srcPath);
+		internal static extern QStatus alljoyn_busattachment_unregistersignalhandler(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string srcPath);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregistersignalhandler(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* srcPath);
 
 		/// <summary>
@@ -884,16 +848,16 @@ namespace AllJoynDotNet
 		/// <param name="matchRule">The filter rule.</param>
 		/// <returns>#ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_unregistersignalhandlerwithrule(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string matchRule);
-		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregistersignalhandlerwithrule(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* matchRule);
+		internal static extern QStatus alljoyn_busattachment_unregistersignalhandlerwithrule(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string matchRule);
 
+		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregistersignalhandlerwithrule(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* matchRule);
 		/// <summary>
 		/// Unregister all signal and reply handlers for the specified alljoyn_busattachment.
 		/// </summary>
 		/// <param name="bus">The alljoyn_busattachment to unregister the signal handler with</param>
 		/// <returns>ER_OK if successful.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_unregisterallhandlers(IntPtr bus);
+		internal static extern QStatus alljoyn_busattachment_unregisterallhandlers(IntPtr bus);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregisterallhandlers(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -906,7 +870,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_LISTENER_ALREADY_SET if a listener has been set by this function or because
 		/// alljoyn_busattachment_enablepeersecurity has been called.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registerkeystorelistener(IntPtr bus, IntPtr listener);
+		internal static extern QStatus alljoyn_busattachment_registerkeystorelistener(IntPtr bus, IntPtr listener);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registerkeystorelistener(alljoyn_busattachment bus, alljoyn_keystorelistener listener);
 
 		/// <summary>
@@ -918,7 +882,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">The bus on which to reload the key store.</param>
 		/// <returns>- ER_OK if the key store was succesfully reloaded- An error status indicating that the key store reload failed.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_reloadkeystore(IntPtr bus);
+		internal static extern QStatus alljoyn_busattachment_reloadkeystore(IntPtr bus);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_reloadkeystore(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -929,7 +893,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">The bus on which to clear the key store.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_clearkeystore(IntPtr bus);
+		internal static extern void alljoyn_busattachment_clearkeystore(IntPtr bus);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_clearkeystore(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -941,7 +905,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if the keys were cleared- ER_UNKNOWN_GUID if there is no peer with the specified GUID
 		/// - Other errors</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_clearkeys(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid);
+		internal static extern QStatus alljoyn_busattachment_clearkeys(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_clearkeys(alljoyn_busattachment bus, const char* guid);
 
 		/// <summary>
@@ -955,7 +919,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if the expiration time was succesfully set.- ER_UNKNOWN_GUID if there is no authenticated peer with the specified GUID
 		/// - Other errors</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_setkeyexpiration(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt32 timeout);
+		internal static extern QStatus alljoyn_busattachment_setkeyexpiration(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt32 timeout);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_setkeyexpiration(alljoyn_busattachment bus, const char* guid, uint32_t timeout);
 
 		/// <summary>
@@ -969,7 +933,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if the expiration time was succesfully set.- ER_UNKNOWN_GUID if there is no authenticated peer with the specified GUID
 		/// - Other errors</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_getkeyexpiration(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt32[] timeout);
+		internal static extern QStatus alljoyn_busattachment_getkeyexpiration(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt32[] timeout);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_getkeyexpiration(alljoyn_busattachment bus, const char* guid, uint32_t* timeout);
 
 		/// <summary>
@@ -989,7 +953,7 @@ namespace AllJoynDotNet
 		/// - #ER_BAD_ARG_3 indicates a null string was used as the password.
 		/// - Other error status codes indicating a failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_addlogonentry(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string userName, [MarshalAs(UnmanagedType.LPStr)]string password);
+		internal static extern QStatus alljoyn_busattachment_addlogonentry(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string userName, [MarshalAs(UnmanagedType.LPStr)]string password);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_addlogonentry(alljoyn_busattachment bus, const char* authMechanism,const char* userName, const char* password);
 
 		/// <summary>
@@ -1002,7 +966,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_addmatch(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string rule);
+		internal static extern QStatus alljoyn_busattachment_addmatch(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string rule);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_addmatch(alljoyn_busattachment bus, const char* rule);
 
 		/// <summary>
@@ -1015,7 +979,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_removematch(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string rule);
+		internal static extern QStatus alljoyn_busattachment_removematch(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string rule);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_removematch(alljoyn_busattachment bus, const char* rule);
 
 		/// <summary>
@@ -1028,7 +992,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">The SessionListener to associate with the session. May be NULL to clear previous listener.</param>
 		/// <returns>ER_OK if successful.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_setsessionlistener(IntPtr bus, IntPtr sessionId, IntPtr listener);
+		internal static extern QStatus alljoyn_busattachment_setsessionlistener(IntPtr bus, IntPtr sessionId, IntPtr listener);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_setsessionlistener(alljoyn_busattachment bus, alljoyn_sessionid sessionId,alljoyn_sessionlistener listener);
 
 		/// <summary>
@@ -1042,7 +1006,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_leavesession(IntPtr bus, IntPtr sessionId);
+		internal static extern QStatus alljoyn_busattachment_leavesession(IntPtr bus, IntPtr sessionId);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_leavesession(alljoyn_busattachment bus, alljoyn_sessionid sessionId);
 
 		/// <summary>
@@ -1066,7 +1030,7 @@ namespace AllJoynDotNet
 		/// - #ER_AUTH_FAIL if the attempt(s) to authenticate the peer failed.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_secureconnection(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 forceAuth);
+		internal static extern QStatus alljoyn_busattachment_secureconnection(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 forceAuth);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_secureconnection(alljoyn_busattachment bus, const char* name, QCC_BOOL forceAuth);
 
 		/// <summary>
@@ -1087,7 +1051,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NO_AUTHENTICATION_MECHANISM if alljoyn_busattachment_enablepeersecurity() has not been called.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_secureconnectionasync(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 forceAuth);
+		internal static extern QStatus alljoyn_busattachment_secureconnectionasync(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 forceAuth);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_secureconnectionasync(alljoyn_busattachment bus, const char* name, QCC_BOOL forceAuth);
 
 		/// <summary>
@@ -1106,7 +1070,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_removesessionmember(IntPtr bus, IntPtr sessionId, [MarshalAs(UnmanagedType.LPStr)]string memberName);
+		internal static extern QStatus alljoyn_busattachment_removesessionmember(IntPtr bus, IntPtr sessionId, [MarshalAs(UnmanagedType.LPStr)]string memberName);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_removesessionmember(alljoyn_busattachment bus, alljoyn_sessionid sessionId, const char* memberName);
 
 		/// <summary>
@@ -1133,7 +1097,7 @@ namespace AllJoynDotNet
 		/// - #ER_ALLJOYN_SETLINKTIMEOUT_REPLY_FAILED if SetLinkTimeout failed
 		/// - #ER_BUS_NOT_CONNECTED if the alljoyn_busattachment is not connected to the router</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_setlinktimeout(IntPtr bus, IntPtr sessionid, UInt32[] linkTimeout);
+		internal static extern QStatus alljoyn_busattachment_setlinktimeout(IntPtr bus, IntPtr sessionid, UInt32[] linkTimeout);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_setlinktimeout(alljoyn_busattachment bus, alljoyn_sessionid sessionid, uint32_t* linkTimeout);
 
 		/// <summary>
@@ -1164,7 +1128,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_setlinktimeoutasync(IntPtr bus, IntPtr sessionid, UInt32 linkTimeout, alljoyn_busattachment_setlinktimeoutcb_ptr callback, IntPtr context);
+		internal static extern QStatus alljoyn_busattachment_setlinktimeoutasync(IntPtr bus, IntPtr sessionid, UInt32 linkTimeout, alljoyn_busattachment_setlinktimeoutcb_ptr callback, IntPtr context);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_setlinktimeoutasync(alljoyn_busattachment bus, alljoyn_sessionid sessionid,uint32_t linkTimeout, alljoyn_busattachment_setlinktimeoutcb_ptr callback,void* context);
 
 		/// <summary>
@@ -1178,7 +1142,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if name ownership was able to be determined.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_namehasowner(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 hasOwner);
+		internal static extern QStatus alljoyn_busattachment_namehasowner(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, Int32 hasOwner);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_namehasowner(alljoyn_busattachment bus, const char* name, QCC_BOOL* hasOwner);
 
 		/// <summary>
@@ -1196,7 +1160,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the requested GUID was obtained.
 		/// - An error status otherwise.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_getpeerguid(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt64[] guidSz);
+		internal static extern QStatus alljoyn_busattachment_getpeerguid(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt64[] guidSz);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_getpeerguid(alljoyn_busattachment bus, const char* name, char* guid, size_t* guidSz);
 
 		/// <summary>
@@ -1237,7 +1201,7 @@ namespace AllJoynDotNet
 		/// router.
 		/// - #ER_BUS_NO_SUCH_OBJECT if router was not built in debug mode.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_setdaemondebug(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string module, UInt32 level);
+		internal static extern QStatus alljoyn_busattachment_setdaemondebug(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string module, UInt32 level);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_setdaemondebug(alljoyn_busattachment bus, const char* module, uint32_t level);
 
 		/// <summary>
@@ -1273,7 +1237,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_BAD_BUS_NAME the name parameter is not a valid bus name
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_ping(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt32 timeout);
+		internal static extern QStatus alljoyn_busattachment_ping(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, UInt32 timeout);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_ping(alljoyn_busattachment bus, const char* name, uint32_t timeout);
 
 		/// <summary>
@@ -1301,7 +1265,7 @@ namespace AllJoynDotNet
 		/// <param name="aboutListener">alljoyn_aboutlistener to be unregistered</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_unregisteraboutlistener(IntPtr bus, IntPtr aboutListener);
+		internal static extern void alljoyn_busattachment_unregisteraboutlistener(IntPtr bus, IntPtr aboutListener);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_unregisteraboutlistener(alljoyn_busattachment bus,alljoyn_aboutlistener aboutListener);
 
 		/// <summary>
@@ -1310,7 +1274,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">alljoyn_busattachment this call is made for</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_unregisterallaboutlisteners(IntPtr bus);
+		internal static extern void alljoyn_busattachment_unregisterallaboutlisteners(IntPtr bus);
 		// extern AJ_API void AJ_CALL alljoyn_busattachment_unregisterallaboutlisteners(alljoyn_busattachment bus);
 
 		/// <summary>
@@ -1338,7 +1302,7 @@ namespace AllJoynDotNet
 		/// <param name="numberInterfaces">the number of interfaces in theimplementsInterfaces list</param>
 		/// <returns>status</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_whoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
+		internal static extern QStatus alljoyn_busattachment_whoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_whoimplements_interfaces(alljoyn_busattachment bus,const char** implementsInterfaces,size_t numberInterfaces);
 
 		/// <summary>
@@ -1360,7 +1324,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK on success
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_whoimplements_interface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string implementsInterface);
+		internal static extern QStatus alljoyn_busattachment_whoimplements_interface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string implementsInterface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_whoimplements_interface(alljoyn_busattachment bus,const char* implementsInterface);
 
 		/// <summary>
@@ -1381,7 +1345,7 @@ namespace AllJoynDotNet
 		/// member function were not found.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_cancelwhoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
+		internal static extern QStatus alljoyn_busattachment_cancelwhoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelwhoimplements_interfaces(alljoyn_busattachment bus,const char** implementsInterfaces,size_t numberInterfaces);
 
 		/// <summary>
@@ -1400,41 +1364,8 @@ namespace AllJoynDotNet
 		/// member function were not found.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_cancelwhoimplements_interface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string implementsInterface);
+		internal static extern QStatus alljoyn_busattachment_cancelwhoimplements_interface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string implementsInterface);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelwhoimplements_interface(alljoyn_busattachment bus,const char* implementsInterface);
-
-		/// <summary>
-		/// Retrieves the alljoyn_permissionconfigurator associated with this alljoyn_busattachment.
-		/// </summary>
-		/// <param name="bus">The alljoyn_busattachment containing the alljoyn_permissionconfigurator.</param>
-		/// <returns>- The alljoyn_permissionconfigurator</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busattachment_getpermissionconfigurator(IntPtr bus);
-		// extern AJ_API const alljoyn_permissionconfigurator AJ_CALL alljoyn_busattachment_getpermissionconfigurator(alljoyn_busattachment bus);
-
-		/// <summary>
-		/// Registers a handler to receive the org.alljoyn.Bus.Application State signal.
-		/// </summary>
-		/// <param name="bus">The alljoyn_busattachment which registers the alljoyn_applicationstatelistener.</param>
-		/// <param name="listener">Listener instance that will receive state event notifications.</param>
-		/// <returns>- #ER_OK on success
-		/// - #ER_APPLICATION_STATE_LISTENER_ALREADY_EXISTS when the same listener has already been registered.
-		/// - Different error status otherwise</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_registerapplicationstatelistener(IntPtr bus, IntPtr listener);
-		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_registerapplicationstatelistener(alljoyn_busattachment bus,alljoyn_applicationstatelistener listener);
-
-		/// <summary>
-		/// Unregisters the listener that was registered with alljoyn_busattachment_registerapplicationstatelistener
-		/// </summary>
-		/// <param name="bus">The alljoyn_busattachment from which to detach the alljoyn_applicationstatelistener.</param>
-		/// <param name="listener">Object instance to unregister as a listener.</param>
-		/// <returns>- #ER_OK on success
-		/// - #ER_APPLICATION_STATE_LISTENER_NO_SUCH_LISTENER when this listener has not been registered.
-		/// - Different error status otherwise</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_busattachment_unregisterapplicationstatelistener(IntPtr bus, IntPtr listener);
-        // extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregisterapplicationstatelistener(alljoyn_busattachment bus,alljoyn_applicationstatelistener listener);
 
 
     }
