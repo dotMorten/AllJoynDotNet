@@ -11,7 +11,7 @@ namespace AllJoynDotNet
         {
             var error = ErrorCodeLookup.GetError(code);
             Source = Constants.DLL_IMPORT_TARGET;
-            _message = message ?? $"{error.Name}: {error.Comment}";
+            _message = message ?? $"0x{code:x4} {error.Name}: {error.Comment}";
             AllJoynError = error.Name;
             AllJoynErrorCode = error.Value;
             AllJoynComment = error.Comment;
@@ -22,7 +22,6 @@ namespace AllJoynDotNet
         public int AllJoynErrorCode { get; }
         public string AllJoynError { get; }
         public string AllJoynComment { get; }
-
 
         public override string Message
         {
