@@ -39,7 +39,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// <returns>the number of callbacks processed.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_unity_deferred_callbacks_process();
+		internal static extern int alljoyn_unity_deferred_callbacks_process();
 		// extern AJ_API int AJ_CALL alljoyn_unity_deferred_callbacks_process();
 
 		/// <summary>
@@ -47,7 +47,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_unity_set_deferred_callback_mainthread_only(Int32 mainthread_only);
+		internal static extern void alljoyn_unity_set_deferred_callback_mainthread_only(Int32 mainthread_only);
 		// extern AJ_API void AJ_CALL alljoyn_unity_set_deferred_callback_mainthread_only(QCC_BOOL mainthread_only);
 
 

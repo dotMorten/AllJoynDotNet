@@ -154,11 +154,11 @@ namespace AllJoynDotNet
 
         public InterfaceDescription[] GetInterfaces()
         {
-            ulong numIfaces = alljoyn_busattachment_getinterfaces(Handle, IntPtr.Zero, 0);
+            ulong numIfaces = (ulong)alljoyn_busattachment_getinterfaces(Handle, IntPtr.Zero,  UIntPtr.Zero);
             IntPtr[] ifaces = new IntPtr[(int)numIfaces];
             GCHandle gch = GCHandle.Alloc(ifaces, GCHandleType.Pinned);
-            ulong numIfacesFilled = alljoyn_busattachment_getinterfaces(Handle,
-                gch.AddrOfPinnedObject(), numIfaces);
+            ulong numIfacesFilled = (ulong)alljoyn_busattachment_getinterfaces(Handle,
+                gch.AddrOfPinnedObject(), (UIntPtr)numIfaces);
             gch.Free();
             if (numIfaces != numIfacesFilled)
             {
@@ -174,7 +174,7 @@ namespace AllJoynDotNet
 
         public void WhoImplementsInterfaces(string[] interfaces)
         {
-            var result = alljoyn_busattachment_whoimplements_interfaces(Handle, interfaces, (ulong)interfaces.Length);
+            var result = alljoyn_busattachment_whoimplements_interfaces(Handle, interfaces, (UIntPtr)interfaces.Length);
             if (result > 0)
                 throw new AllJoynException(result);
         }

@@ -14,14 +14,14 @@ CD to root of AllJoyn Submodule ( `\alljoyn\` where `SConstruct` file is):
 
 **ANDROID x86**
 ```
-c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=android ANDROID_NDK=%ANDROID_NDK_PATH% BINDINGS=c VARIANT=release CPU=x86 
+c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=android ANDROID_NDK=%ANDROID_NDK_PATH% BINDINGS=c BUILD_SERVICES_SAMPLES=off VARIANT=release CPU=x86 
 ```
 Output location: `\alljoyn\build\android\x86\release\dist\c\lib\liballjoyn_c.so`
 
 
 **ANDROID ARMv7**
 ```
-c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=android ANDROID_NDK=%ANDROID_NDK_PATH% BINDINGS=c VARIANT=release CPU=arm
+c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=android ANDROID_NDK=%ANDROID_NDK_PATH% BINDINGS=c BUILD_SERVICES_SAMPLES=off VARIANT=release CPU=arm
 ```
 Output location: `\alljoyn\build\android\arm\release\dist\c\lib\liballjoyn_c.so`
 

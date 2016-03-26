@@ -9,5 +9,9 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <TextBox x:Name="logger" TextWrapping="Wrap">
+            
+        </TextBox>
+        
     </Grid>
 </Page>

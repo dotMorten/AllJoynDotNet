@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0afb822a-f55f-4088-bf84-d58f23c8db30</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>TestApp.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AboutServiceTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CreateInterfaceTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
+  </ItemGroup>
+</Project>

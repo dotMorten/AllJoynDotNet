@@ -36,7 +36,6 @@ namespace AllJoynDotNet
 		// typedef void (AJ_CALL * alljoyn_busattachment_setlinktimeoutcb_ptr)(QStatus status, uint32_t timeout, void* context);
 		// 
 
-//
     public partial class BusAttachment : AllJoynWrapper
     {
         internal BusAttachment(IntPtr handle) : base(handle) { }
@@ -678,7 +677,7 @@ namespace AllJoynDotNet
 		/// <param name="numIfaces">The size of the InterfaceDescription array. If this value is smaller than the totalnumber of interfaces only numIfaces will be returned.</param>
 		/// <returns>The number of interfaces returned or the total number of interfaces if ifaces is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_busattachment_getinterfaces(IntPtr bus, IntPtr ifaces, UInt64 numIfaces);
+		internal static extern UIntPtr alljoyn_busattachment_getinterfaces(IntPtr bus, IntPtr ifaces, UIntPtr numIfaces);
 		// extern AJ_API size_t AJ_CALL alljoyn_busattachment_getinterfaces(const alljoyn_busattachment bus,const alljoyn_interfacedescription* ifaces, size_t numIfaces);
 
 		/// <summary>
@@ -1160,7 +1159,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the requested GUID was obtained.
 		/// - An error status otherwise.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busattachment_getpeerguid(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string guid, UInt64[] guidSz);
+		internal static extern QStatus alljoyn_busattachment_getpeerguid(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string name, [MarshalAs(UnmanagedType.LPStr)]string guid, UIntPtr[] guidSz);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_getpeerguid(alljoyn_busattachment bus, const char* name, char* guid, size_t* guidSz);
 
 		/// <summary>
@@ -1302,7 +1301,7 @@ namespace AllJoynDotNet
 		/// <param name="numberInterfaces">the number of interfaces in theimplementsInterfaces list</param>
 		/// <returns>status</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busattachment_whoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
+		internal static extern QStatus alljoyn_busattachment_whoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UIntPtr numberInterfaces);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_whoimplements_interfaces(alljoyn_busattachment bus,const char** implementsInterfaces,size_t numberInterfaces);
 
 		/// <summary>
@@ -1345,7 +1344,7 @@ namespace AllJoynDotNet
 		/// member function were not found.
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busattachment_cancelwhoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UInt64 numberInterfaces);
+		internal static extern QStatus alljoyn_busattachment_cancelwhoimplements_interfaces(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] implementsInterfaces, UIntPtr numberInterfaces);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelwhoimplements_interfaces(alljoyn_busattachment bus,const char** implementsInterfaces,size_t numberInterfaces);
 
 		/// <summary>

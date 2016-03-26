@@ -13,6 +13,7 @@ namespace AllJoynDotNet
         {
             get
             {
+                Init.Initialize();
                 IntPtr p = alljoyn_getversion();
                 return Marshal.PtrToStringAnsi(p);
             }
@@ -25,6 +26,7 @@ namespace AllJoynDotNet
         {
             get
             {
+                Init.Initialize();
                 IntPtr p = alljoyn_getbuildinfo();
                 return Marshal.PtrToStringAnsi(p);
             }
@@ -37,6 +39,7 @@ namespace AllJoynDotNet
         {
             get
             {
+                Init.Initialize();
                 UInt32 v = alljoyn_getnumericversion();                
                 var major = (int)((v >> 24) & 0xff);
                 var minor = (int)((v >> 16) & 0xff);

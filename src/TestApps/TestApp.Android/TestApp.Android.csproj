@@ -20,7 +20,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
@@ -29,7 +29,15 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkSkip />
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
     <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <Debugger>Microsoft</Debugger>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -48,6 +56,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidNativeLibrary Include="$(ANDROID_NDK_PATH)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Configuration)' == 'Debug'">
+      <Link>lib\armeabi-v7a\gdbserver</Link>
+    </AndroidNativeLibrary>
+    <AndroidNativeLibrary Include="$(ANDROID_NDK_PATH)\prebuilt\android-x86\gdbserver\gdbserver" Condition="'$(Configuration)' == 'Debug'">
+      <Link>lib\x86\gdbserver</Link>
+    </AndroidNativeLibrary>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
