@@ -33,13 +33,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.NET45", "TestApps\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NET45", "Tests\NET45\UnitTests.NET45.csproj", "{E8BE30ED-815B-4498-99B6-819F33CEC5D8}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestApp.Shared", "TestApp.Shared\TestApp.Shared.shproj", "{0AFB822A-F55F-4088-BF84-D58F23C8DB30}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
+		TestApp.Shared\TestApp.Shared.projitems*{e629be54-196f-4eeb-878c-5cb2c5f5c645}*SharedItemsImports = 4
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{f362bd9c-88a5-46fb-8b06-d07b484222c0}*SharedItemsImports = 13
+		TestApp.Shared\TestApp.Shared.projitems*{0afb822a-f55f-4088-bf84-d58f23c8db30}*SharedItemsImports = 13
+		TestApp.Shared\TestApp.Shared.projitems*{fe5d7c82-a340-49d9-ba6f-001ee03c1793}*SharedItemsImports = 4
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{d44b775e-6a8d-41d7-96d7-c6eeaffe8efe}*SharedItemsImports = 13
@@ -212,5 +217,6 @@ Global
 		{792443C9-6C9F-4434-AD5C-88193C118FC8} = {C257BD17-9B68-4CA2-858D-A616983E340D}
 		{E629BE54-196F-4EEB-878C-5CB2C5F5C645} = {C257BD17-9B68-4CA2-858D-A616983E340D}
 		{E8BE30ED-815B-4498-99B6-819F33CEC5D8} = {4D4CC3E6-5BD8-4BB2-91F5-154D9F82AABB}
+		{0AFB822A-F55F-4088-BF84-D58F23C8DB30} = {C257BD17-9B68-4CA2-858D-A616983E340D}
 	EndGlobalSection
 EndGlobal

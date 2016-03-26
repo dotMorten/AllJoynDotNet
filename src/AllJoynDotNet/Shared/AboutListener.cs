@@ -4,31 +4,30 @@ using System.Runtime.InteropServices;
 
 namespace AllJoynDotNet
 {
-    public abstract partial class AboutListener : AllJoynWrapper
+    public partial class AboutListener : AllJoynWrapper
     {
-        private alljoyn_aboutlistener_callback handler;
-        private AboutListener(alljoyn_aboutlistener_callback callback) : base(Create(callback))
+        private alljoyn_aboutlistener_callback callback;
+        private AboutListener(alljoyn_aboutlistener_callback callback) : base(IntPtr.Zero)
         {
-            handler = callback;
+            this.callback = callback;
         }
-        public AboutListener() : this(new alljoyn_aboutlistener_callback() { about_listener_announced = alljoyn_about_announced_delegate2 })
+        public AboutListener() : base(IntPtr.Zero)
         {
-            handler.about_listener_announced = alljoyn_about_announced_delegate;
+            callback = new alljoyn_aboutlistener_callback()
+            {
+                about_listener_announced = Marshal.GetFunctionPointerForDelegate<alljoyn_about_announced_ptr>((alljoyn_about_announced_ptr)alljoyn_about_announced_delegate)
+            };
+            GCHandle gch = GCHandle.Alloc(callback, GCHandleType.Pinned);
+            var handle = alljoyn_aboutlistener_create(gch.AddrOfPinnedObject(), IntPtr.Zero);
+            SetHandle(handle);
+            gch.Free();
         }
-        private static IntPtr Create(alljoyn_aboutlistener_callback callback)
-        {
-            return alljoyn_aboutlistener_create(callback, IntPtr.Zero);
-        }
-        private static void alljoyn_about_announced_delegate2(IntPtr context, string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg)
-        {
-            Debug.WriteLine("alljoyn_about_announced_delegate2");
-        }
-
+        
         private void alljoyn_about_announced_delegate(IntPtr context, string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg)
         {
-            OnCallback(busName, version);
+            AboutAnnounced?.Invoke(this, EventArgs.Empty); // (busName, version);
         }
 
-        protected abstract void OnCallback(string busName, UInt16 version);
+        public event EventHandler AboutAnnounced;
     }
 }

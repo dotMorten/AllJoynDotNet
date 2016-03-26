@@ -5,39 +5,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestApp.Shared;
 
 namespace TestApp.NET45
 {
     class Program
-    {
-        private static BusAttachment bus;
-        static void Main(string[] args)
-        {
-            // Create the bus attachment
-            bus = new BusAttachment("ServiceTest", true);
-            bus.Start();
-            bus.Connect();
-            Debug.WriteLine("Bus started successfully. Unique name: " + bus.UniqueName);
-            //Create interface
-            string interfaceName = "org.test.a1234.AnnounceHandlerTest";
-            string interfaceQcc = "<node>" +
-                                    $"<interface name='{interfaceName}'>" +
-                                    "  <method name='Foo'>" +
-                                    "  </method>" +
-                                    "</interface>" +
-                                    "</node>";
-            bus.CreateInterfacesFromXml(interfaceQcc);
-            //Test if the interface is there
-            var iface = bus.GetInterface(interfaceName);
-            var secure = iface.IsSecure;
-            var name = iface.Name;
-            Console.WriteLine("Bus started successfully. Unique name: " + bus.UniqueName);
+    { 
+       static void Main(string[] args)
+       {
+            Log.OnMessage += Log_OnMessage;
+            Log.WriteLine($"AllJoyn Library Version: {version.VersionString} ({version.Version})\nAllJoyn BuildInfo:{version.BuildInfo}");
+            var sample = new Shared.AboutServiceTest();
+            sample.Start();
             Console.ReadKey();
+            sample.Stop();
+            //CreateInterfaceTest.Start(args);
+        }
 
-            bus.Stop();
-            bus.Join();
-            bus.Dispose();
-
+        private static void Log_OnMessage(object sender, string e)
+        {
+            Console.Write(e);
         }
     }
 }

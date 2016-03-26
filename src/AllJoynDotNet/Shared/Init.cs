@@ -37,9 +37,14 @@ namespace AllJoynDotNet
             }
         }
         
-		internal static Int32 Shutdown()
+		internal static QStatus Shutdown()
         {
             return alljoyn_shutdown();
+        }
+
+        internal static QStatus InitRouter()
+        {
+            return alljoyn_routerinit();
         }
     }
 }
