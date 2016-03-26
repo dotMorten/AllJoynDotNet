@@ -10,7 +10,7 @@ Features:
 What's not working:
   - Besides limited creation of bus attachments, no classes has been done for the rest yet.
   - Generated interop code is mostly untested, but so far seems to work in most places.
-  - Xamarin-Android currently doesn't work at all (can't find the library).
+  - Xamarin-Android hardly works (ER_OS_ERROR when connecting the BusAttachment).
   - Xamarin-iOS hasn't been started yet (help wanted).
 
 #### FAQ
