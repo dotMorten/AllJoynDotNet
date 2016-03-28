@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AboutServiceTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CreateInterfaceTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GetLibraryInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
   </ItemGroup>

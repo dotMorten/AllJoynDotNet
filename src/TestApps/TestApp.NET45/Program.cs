@@ -14,7 +14,7 @@ namespace TestApp.NET45
        static void Main(string[] args)
        {
             Log.OnMessage += Log_OnMessage;
-            Log.WriteLine($"AllJoyn Library Version: {version.VersionString} ({version.Version})\nAllJoyn BuildInfo:{version.BuildInfo}");
+            new GetLibraryInfo().Start();
             var sample = new Shared.AboutServiceTest();
             sample.Start();
             Console.ReadKey();

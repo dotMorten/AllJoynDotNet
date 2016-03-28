@@ -25,13 +25,12 @@ namespace TestApp.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        static BusAttachment g_bus;
         ISample currentSample;
         public MainPage()
         {
             this.InitializeComponent();
             Log.OnMessage += Log_OnMessage;
-            Log.WriteLine($"AllJoyn Library Version: {version.VersionString} ({version.Version})\nAllJoyn BuildInfo:{version.BuildInfo}");
+            new GetLibraryInfo().Start();
             //currentSample = new CreateInterfaceTest();
             currentSample = new AboutServiceTest();
             currentSample.Start();

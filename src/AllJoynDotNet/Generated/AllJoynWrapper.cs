@@ -6,13 +6,20 @@ namespace AllJoynDotNet
     public abstract class AllJoynWrapper : IDisposable
     {
         private IntPtr _handle;
+        private bool isHandleSet;
+        internal AllJoynWrapper(IntPtr handle) {
+            _handle = handle;
+            isHandleSet = IntPtr.Zero != handle;
+        }
 
-        internal AllJoynWrapper(IntPtr handle) { _handle = handle; }
-
-        //Should ONLY be called from a constructor:
+        //Should ONLY be called from a constructor - if possible
+        //pass in the handle to the constructor
         internal void SetHandle(IntPtr handle)
         {
+            if (isHandleSet)
+                throw new InvalidOperationException();
             _handle = handle;
+            isHandleSet = IntPtr.Zero != handle;
         }
         internal IntPtr Handle { get { return _handle; } }
 

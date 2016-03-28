@@ -37,6 +37,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestApp.Shared", "TestApp.S
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TestApp.Shared\TestApp.Shared.projitems*{792443c9-6c9f-4434-ad5c-88193c118fc8}*SharedItemsImports = 4
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
 		TestApp.Shared\TestApp.Shared.projitems*{e629be54-196f-4eeb-878c-5cb2c5f5c645}*SharedItemsImports = 4

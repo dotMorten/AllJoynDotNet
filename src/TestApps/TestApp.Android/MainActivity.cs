@@ -6,14 +6,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using TestApp.Shared;
 
 namespace TestApp.Android
 {
     [Activity(Label = "AllJoynDotNet - TestApp", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-        BusAttachment bus;
+        ISample currentSample;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -29,34 +29,21 @@ namespace TestApp.Android
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.MyButton);
             TextView status = FindViewById<TextView>(Resource.Id.StatusTextView);
-            status.Text = $"AllJoyn Library Version: {version.VersionString} ({version.Version})\nAllJoyn BuildInfo:{version.BuildInfo}\n";
+
+            Log.OnMessage += (s, e) =>
+            {
+                status.Text += e;
+            };
+            new GetLibraryInfo().Start();
+
             button.Click += delegate {
-                try {
-                    button.Enabled = false;
-                    bus = new BusAttachment("ServiceTest", true);
-                    status.Text += "\nBus created";
-                    bus.Start();
-                    status.Text += "\nBus started";
-                    bus.Connect();
-                    status.Text += "\nBus connected. ID:" + bus.UniqueName;
-
-                    string interfaceName = "org.test.a1234.AnnounceHandlerTest";
-                    string interfaceQcc = "<node>" +
-                                            $"<interface name='{interfaceName}'>" +
-                                            "  <method name='Foo'>" +
-                                            "  </method>" +
-                                            "</interface>" +
-                                            "</node>";
-                    bus.CreateInterfacesFromXml(interfaceQcc);
-                    var name = bus.GetInterface(interfaceName);
-                    bus.Stop();
-                    status.Text += "\nBus stopped";
-
-                    bus.Join();
-                    status.Text += "\nBus join complete";
-                    bus.Dispose();
-                    status.Text += "\nBus disposed";
-                    button.Text = "Success";
+                button.Enabled = false;
+                if (currentSample != null)
+                    currentSample.Stop();
+                try
+                {
+                    currentSample = new AboutServiceTest();
+                    currentSample.Start();
                 }
                 catch(AllJoynException ex)
                 {
@@ -71,7 +58,6 @@ namespace TestApp.Android
                         status.Text += "\n\tInner Exception : " + ex.InnerException.Message;
                 }
                 button.Enabled = true;
-
             };
         }
     }

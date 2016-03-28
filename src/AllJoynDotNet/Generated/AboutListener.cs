@@ -13,38 +13,39 @@ using System.Runtime.InteropServices;
 
 namespace AllJoynDotNet
 {
-		/// <summary>
-		/// Callback type for the handler of an org.alljoyn.About.Anounce sessionless signal.
-		/// </summary>
-		/// <remarks>
-		/// <para>The objectDescriptionArg contains an array with a signature of `a(oas)`
-		/// this is an array object paths with a list of interfaces found at those paths.
-		/// </para>
-		/// <para>The aboutDataArg contains a dictionary with About data fields that have been
-		/// announced. These fields are the following:
-		/// - AppId
-		/// - DefaultLanguage
-		/// - DeviceName
-		/// - DeviceId
-		/// - AppName
-		/// - Manufacturer
-		/// - ModelNumber
-		/// </para>
-		/// <para>The DeviceName is optional and is allowed to not be included in the aboutDataArg.
-		/// </para>
-		/// <para>DeviceName, AppName, Manufacturer are localizable values. The localization
-		/// for these values in the aboutDataArg will always be for the language specified
-		/// in the DefaultLanguage field.
-		/// </para>
-		/// </remarks>
-		/// <param name="context">the context pointer that was passed into thealljoyn_aboutlistener_create function</param>
-		/// <param name="busName">well known name of the remote BusAttachment</param>
-		/// <param name="version">version of the Announce signal from the remote About Object</param>
-		/// <param name="port">session port used by the announcer</param>
-		/// <param name="objectDescriptionArg">the list of object paths and interfaces in the announcement</param>
-		/// <param name="aboutDataArg">alljoyn_msgarg containing a dictionary of Key/Value pairs of the About data</param>
-		/// 
-		internal delegate void alljoyn_about_announced_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg);
+    /// <summary>
+    /// Callback type for the handler of an org.alljoyn.About.Anounce sessionless signal.
+    /// </summary>
+    /// <remarks>
+    /// <para>The objectDescriptionArg contains an array with a signature of `a(oas)`
+    /// this is an array object paths with a list of interfaces found at those paths.
+    /// </para>
+    /// <para>The aboutDataArg contains a dictionary with About data fields that have been
+    /// announced. These fields are the following:
+    /// - AppId
+    /// - DefaultLanguage
+    /// - DeviceName
+    /// - DeviceId
+    /// - AppName
+    /// - Manufacturer
+    /// - ModelNumber
+    /// </para>
+    /// <para>The DeviceName is optional and is allowed to not be included in the aboutDataArg.
+    /// </para>
+    /// <para>DeviceName, AppName, Manufacturer are localizable values. The localization
+    /// for these values in the aboutDataArg will always be for the language specified
+    /// in the DefaultLanguage field.
+    /// </para>
+    /// </remarks>
+    /// <param name="context">the context pointer that was passed into thealljoyn_aboutlistener_create function</param>
+    /// <param name="busName">well known name of the remote BusAttachment</param>
+    /// <param name="version">version of the Announce signal from the remote About Object</param>
+    /// <param name="port">session port used by the announcer</param>
+    /// <param name="objectDescriptionArg">the list of object paths and interfaces in the announcement</param>
+    /// <param name="aboutDataArg">alljoyn_msgarg containing a dictionary of Key/Value pairs of the About data</param>
+    /// 
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal delegate void alljoyn_about_announced_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg);
 		// typedef void (AJ_CALL * alljoyn_about_announced_ptr)(const void* context,
 		// const char* busName,
 		// uint16_t version,
@@ -60,23 +61,22 @@ namespace AllJoynDotNet
 		[StructLayout(LayoutKind.Sequential)]
 		internal partial class alljoyn_aboutlistener_callback
 		{
-			public alljoyn_about_announced_ptr about_listener_announced;
-			//
-			///**
-			//* handler for the org.alljoyn.About.Anounce sessionless signal
-			//*/
-			//alljoyn_about_announced_ptr about_listener_announced;
-			//
-		}
-		// typedef struct {
-		// /**
-		// * handler for the org.alljoyn.About.Anounce sessionless signal
-		// */
-		// alljoyn_about_announced_ptr about_listener_announced;
-		// } alljoyn_aboutlistener_callback;
-		// 
+            public alljoyn_about_announced_ptr about_listener_announced;
+        ///**
+        //* handler for the org.alljoyn.About.Anounce sessionless signal
+        //*/
+        //alljoyn_about_announced_ptr about_listener_announced;
+        //
+    }
+    // typedef struct {
+    // /**
+    // * handler for the org.alljoyn.About.Anounce sessionless signal
+    // */
+    // alljoyn_about_announced_ptr about_listener_announced;
+    // } alljoyn_aboutlistener_callback;
+    // 
 
-//
+    //
     public partial class AboutListener : AllJoynWrapper
     {
         internal AboutListener(IntPtr handle) : base(handle) { }

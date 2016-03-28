@@ -30,19 +30,16 @@ namespace TestApp.Shared
             Log.WriteLine("WhoImplements called.");
         }
         public void Stop()
-        { 
+        {
             myAboutListener.Dispose();
+            Log.WriteLine("AboutListener disposed");
 
             bus.Stop();
+            Log.WriteLine("BusAttachment stopped");
             bus.Join();
+            Log.WriteLine("Join complete");
             bus.Dispose();
-
-        }
-        static SessionListener create_my_alljoyn_sessionlistener()
-        {
-            var listener = new SessionListener();
-            listener.SessionLost += Listener_SessionLost;
-            return listener;
+            Log.WriteLine("BusAttachment disposed");
         }
 
         private static void Listener_SessionLost(object sender, EventArgs e)
