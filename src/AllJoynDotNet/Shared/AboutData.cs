@@ -15,5 +15,13 @@ namespace AllJoynDotNet
         {
             return AllJoynNative.GetStringArrayHelper(alljoyn_aboutdata_getfields, Handle);
         }
+        public object GetField(string fieldName)
+        {
+            var tmp = new MsgArg();
+            var status = alljoyn_aboutdata_getfield(Handle, fieldName, tmp.Handle, null);
+            if (status > 0)
+                throw new AllJoynException(status);
+            return tmp;
+        }
     }
 }

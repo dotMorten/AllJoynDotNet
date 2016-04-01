@@ -85,6 +85,7 @@ namespace TestApp.Shared
             var fields = e.AboutData.GetFields();
             foreach (var field in fields)
             {
+                var f = e.AboutData.GetField(field);
                 Log.WriteLine($"\t\t{field}");
             }
         }

@@ -15,6 +15,11 @@ namespace AllJoynDotNet
 {
     public partial class MsgArg : AllJoynWrapper
     {
+        public MsgArg() : base(alljoyn_msgarg_create())
+        {
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             alljoyn_msgarg_destroy(Handle);

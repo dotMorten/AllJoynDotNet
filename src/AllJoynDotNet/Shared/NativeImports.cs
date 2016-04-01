@@ -40,8 +40,6 @@ namespace AllJoynDotNet
                 strings[i] = Marshal.PtrToStringAnsi(unsafeStrings[i]);
             }
             return strings;
-
         }
-
     }
 }
