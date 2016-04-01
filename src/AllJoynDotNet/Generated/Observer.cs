@@ -19,6 +19,7 @@ namespace AllJoynDotNet
 		/// <param name="context">the context pointer that was passed into thealljoyn_observerlistener_create function</param>
 		/// <param name="proxyref">a reference to a proxy bus object supporting all interfacesannounced in the About signal.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_observer_object_discovered_ptr(IntPtr context, IntPtr proxyref);
 		// typedef void (AJ_CALL * alljoyn_observer_object_discovered_ptr)(const void* context,
 		// alljoyn_proxybusobject_ref proxyref);
@@ -30,6 +31,7 @@ namespace AllJoynDotNet
 		/// <param name="context">the context pointer that was passed into thealljoyn_observerlistener_create function</param>
 		/// <param name="proxyref">a reference to the proxy bus object representing the objectthat has been lost.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_observer_object_lost_ptr(IntPtr context, IntPtr proxyref);
 		// typedef void (AJ_CALL * alljoyn_observer_object_lost_ptr)(const void* context,
 		// alljoyn_proxybusobject_ref proxyref);
@@ -84,7 +86,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observerlistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_observerlistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_observerlistener_destroy(alljoyn_observerlistener listener);
 
 		/// <summary>
@@ -100,7 +102,7 @@ namespace AllJoynDotNet
 		/// before creation of the Observer.
 		/// - mandatoryInterfaces must not be empty or NULL</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observer_create(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string[] mandatoryInterfaces, UInt64 numMandatoryInterfaces);
+		internal static extern IntPtr alljoyn_observer_create(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string[] mandatoryInterfaces, UIntPtr numMandatoryInterfaces);
 		// extern AJ_API alljoyn_observer AJ_CALL alljoyn_observer_create(alljoyn_busattachment bus,const char* mandatoryInterfaces[],size_t numMandatoryInterfaces);
 
 		/// <summary>
@@ -109,7 +111,7 @@ namespace AllJoynDotNet
 		/// <param name="observer">the alljoyn_observer to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observer_destroy(IntPtr observer);
+		internal static extern void alljoyn_observer_destroy(IntPtr observer);
 		// extern AJ_API void AJ_CALL alljoyn_observer_destroy(alljoyn_observer observer);
 
 		/// <summary>
@@ -120,7 +122,7 @@ namespace AllJoynDotNet
 		/// <param name="triggerOnExisting">trigger object_discovered callbacks foralready-discovered objects</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observer_registerlistener(IntPtr observer, IntPtr listener, Int32 triggerOnExisting);
+		internal static extern void alljoyn_observer_registerlistener(IntPtr observer, IntPtr listener, Int32 triggerOnExisting);
 		// extern AJ_API void AJ_CALL alljoyn_observer_registerlistener(alljoyn_observer observer,alljoyn_observerlistener listener,QCC_BOOL triggerOnExisting);
 
 		/// <summary>
@@ -130,7 +132,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">the listener to unregister</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observer_unregisterlistener(IntPtr observer, IntPtr listener);
+		internal static extern void alljoyn_observer_unregisterlistener(IntPtr observer, IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_observer_unregisterlistener(alljoyn_observer observer,alljoyn_observerlistener listener);
 
 		/// <summary>
@@ -144,7 +146,7 @@ namespace AllJoynDotNet
 		/// <param name="observer">the observer this call is made for</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_observer_unregisteralllisteners(IntPtr observer);
+		internal static extern void alljoyn_observer_unregisteralllisteners(IntPtr observer);
 		// extern AJ_API void AJ_CALL alljoyn_observer_unregisteralllisteners(alljoyn_observer observer);
 
 		/// <summary>

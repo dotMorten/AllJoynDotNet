@@ -34,7 +34,7 @@ namespace AllJoynDotNet
 		/// <param name="proxy">The alljoyn_aboutproxy to be freed</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_aboutproxy_destroy(IntPtr proxy);
+		internal static extern void alljoyn_aboutproxy_destroy(IntPtr proxy);
 		// extern AJ_API void AJ_CALL alljoyn_aboutproxy_destroy(alljoyn_aboutproxy proxy);
 
 		/// <summary>

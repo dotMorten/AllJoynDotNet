@@ -31,7 +31,7 @@ namespace AllJoynDotNet
 		/// <param name="icon">the alljoyn_abouticon to be freed.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_abouticon_destroy(IntPtr icon);
+		internal static extern void alljoyn_abouticon_destroy(IntPtr icon);
 		// extern AJ_API void AJ_CALL alljoyn_abouticon_destroy(alljoyn_abouticon icon);
 
 		/// <summary>
@@ -42,7 +42,7 @@ namespace AllJoynDotNet
 		/// <param name="size">size (in number of bytes) of the icon content data</param><!-- out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_abouticon_getcontent(IntPtr icon, byte[] data, UInt64 size);
+		internal static extern void alljoyn_abouticon_getcontent(IntPtr icon, byte[] data, UIntPtr size);
 		// extern AJ_API void AJ_CALL alljoyn_abouticon_getcontent(alljoyn_abouticon icon,const uint8_t** data,size_t* size);
 
 		/// <summary>
@@ -67,7 +67,7 @@ namespace AllJoynDotNet
 		/// - ER_BUS_BAD_VALUE if the data is to large to be marshaled
 		/// - other status indicating failure</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_abouticon_setcontent(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, byte[] data, UInt64 csize, bool ownsData);
+		internal static extern QStatus alljoyn_abouticon_setcontent(IntPtr icon, [MarshalAs(UnmanagedType.LPStr)]string type, byte[] data, UIntPtr csize, bool ownsData);
 		// extern AJ_API QStatus AJ_CALL alljoyn_abouticon_setcontent(alljoyn_abouticon icon,const char* type,uint8_t* data,size_t csize,bool ownsData);
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace AllJoynDotNet
 		/// <param name="url">the URL that contains the location of the icon</param><!-- out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_abouticon_geturl(IntPtr icon, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] type, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] url);
+		internal static extern void alljoyn_abouticon_geturl(IntPtr icon, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] type, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] url);
 		// extern AJ_API void AJ_CALL alljoyn_abouticon_geturl(alljoyn_abouticon icon,const char** type,const char** url);
 
 		/// <summary>
@@ -105,7 +105,7 @@ namespace AllJoynDotNet
 		/// <param name="icon">the alljoyn_abouticon object this call is made for</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_abouticon_clear(IntPtr icon);
+		internal static extern void alljoyn_abouticon_clear(IntPtr icon);
 		// extern AJ_API void AJ_CALL alljoyn_abouticon_clear(alljoyn_abouticon icon);
 
 		/// <summary>

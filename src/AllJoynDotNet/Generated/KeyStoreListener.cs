@@ -26,6 +26,7 @@ namespace AllJoynDotNet
 		/// <param name="keyStore">Reference to the alljoyn_keystore to be loaded.</param>
 		/// <returns>- #ER_OK if the load request was satisfied
 		/// - An error status otherwise</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_keystorelistener_loadrequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
 		// typedef QStatus (AJ_CALL * alljoyn_keystorelistener_loadrequest_ptr)(const void* context, alljoyn_keystorelistener listener, alljoyn_keystore keyStore);
 		// 
@@ -43,6 +44,7 @@ namespace AllJoynDotNet
 		/// <param name="keyStore">Reference to the @c alljoyn_keystore to be stored.</param>
 		/// <returns>- #ER_OK if the store request was satisfied
 		/// - An error status otherwise</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_keystorelistener_storerequest_ptr(IntPtr context, IntPtr listener, IntPtr keyStore);
 		// typedef QStatus (AJ_CALL * alljoyn_keystorelistener_storerequest_ptr)(const void* context, alljoyn_keystorelistener listener, alljoyn_keystore keyStore);
 		// 
@@ -102,7 +104,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">The alljoyn_keystorelistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_keystorelistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_keystorelistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_keystorelistener_destroy(alljoyn_keystorelistener listener);
 
 		/// <summary>
@@ -133,7 +135,7 @@ namespace AllJoynDotNet
 		/// to hold the sink
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_keystorelistener_getkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string sink, [In, Out]UInt64 sink_sz);
+		internal static extern QStatus alljoyn_keystorelistener_getkeys(IntPtr listener, IntPtr keyStore, [MarshalAs(UnmanagedType.LPStr)]string sink, [In, Out]UIntPtr sink_sz);
 		// extern AJ_API QStatus AJ_CALL alljoyn_keystorelistener_getkeys(alljoyn_keystorelistener listener, alljoyn_keystore keyStore,char* sink, size_t* sink_sz);
 
 

@@ -24,6 +24,7 @@ namespace AllJoynDotNet
 		/// <param name="context">The context pointer that was passed into the alljoyn_buslistener_create function</param>
 		/// <param name="bus">The alljoyn_busattachment the listener is registered with.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_listener_registered_ptr(IntPtr context, IntPtr bus);
 		// typedef void (AJ_CALL * alljoyn_buslistener_listener_registered_ptr)(const void* context, alljoyn_busattachment bus);
 		// 
@@ -37,6 +38,7 @@ namespace AllJoynDotNet
 		/// </remarks>
 		/// <param name="context">The context pointer that was passed into the alljoyn_buslistener_create function</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_listener_unregistered_ptr(IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_buslistener_listener_unregistered_ptr)(const void* context);
 		// 
@@ -54,6 +56,7 @@ namespace AllJoynDotNet
 		/// <param name="transport">Transport that received the advertisement.</param>
 		/// <param name="namePrefix">The well-known name prefix used in call to FindAdvertisedName that triggered this callback.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_found_advertised_name_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transport, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
 		// typedef void (AJ_CALL * alljoyn_buslistener_found_advertised_name_ptr)(const void* context, const char* name, alljoyn_transportmask transport, const char* namePrefix);
 		// 
@@ -71,6 +74,7 @@ namespace AllJoynDotNet
 		/// <param name="transport">Transport that stopped receiving the given advertised name.</param>
 		/// <param name="namePrefix">The well-known name prefix that was used in a call to FindAdvertisedName that triggered this callback.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_lost_advertised_name_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string name, UInt16 transport, [MarshalAs(UnmanagedType.LPStr)]string namePrefix);
 		// typedef void (AJ_CALL * alljoyn_buslistener_lost_advertised_name_ptr)(const void* context, const char* name, alljoyn_transportmask transport, const char* namePrefix);
 		// 
@@ -87,6 +91,7 @@ namespace AllJoynDotNet
 		/// <param name="previousOwner">The unique name that previously owned the name or NULL if there was no previous owner.</param>
 		/// <param name="newOwner">The unique name that now owns the name or NULL if there is no new owner.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_name_owner_changed_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string busName, [MarshalAs(UnmanagedType.LPStr)]string previousOwner, [MarshalAs(UnmanagedType.LPStr)]string newOwner);
 		// typedef void (AJ_CALL * alljoyn_buslistener_name_owner_changed_ptr)(const void* context, const char* busName, const char* previousOwner, const char* newOwner);
 		// 
@@ -96,6 +101,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// <param name="context">The context pointer that was passed into the alljoyn_buslistener_create function</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_bus_stopping_ptr(IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_buslistener_bus_stopping_ptr)(const void* context);
 		// 
@@ -105,6 +111,7 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// <param name="context">The context pointer that was passed into the alljoyn_buslistener_create function</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_bus_disconnected_ptr(IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_buslistener_bus_disconnected_ptr)(const void* context);
 		// 
@@ -120,6 +127,7 @@ namespace AllJoynDotNet
 		/// <param name="propName">The well-known name that has changed.</param>
 		/// <param name="propValue">The new value of the property; NULL if not present</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_buslistener_bus_prop_changed_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string prop_name, IntPtr prop_value);
 		// typedef void (AJ_CALL * alljoyn_buslistener_bus_prop_changed_ptr)(const void* context, const char* prop_name, alljoyn_msgarg prop_value);
 		// 
@@ -236,7 +244,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_buslistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_buslistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_buslistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_buslistener_destroy(alljoyn_buslistener listener);
 
 

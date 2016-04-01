@@ -119,7 +119,7 @@ namespace AllJoynDotNet
 		/// <param name="member">The alljoyn interfacedescription member that we want theannotations count from</param>
 		/// <returns>the number of annotations</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_member_getannotationscount(alljoyn_interfacedescription_member member);
+		internal static extern UIntPtr alljoyn_interfacedescription_member_getannotationscount(alljoyn_interfacedescription_member member);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_member_getannotationscount(alljoyn_interfacedescription_member member);
 
 		/// <summary>
@@ -136,7 +136,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">the size of the value string if value == NULL this will return the size of the value string plus nul character</param><!-- in, out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_member_getannotationatindex(alljoyn_interfacedescription_member member, UInt64 index, sbyte name, [In, Out]UInt64 name_size, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern void alljoyn_interfacedescription_member_getannotationatindex(alljoyn_interfacedescription_member member, UIntPtr index, sbyte name, [In, Out]UIntPtr name_size, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_member_getannotationatindex(alljoyn_interfacedescription_member member,size_t index,char* name, size_t* name_size,char* value, size_t* value_size);
 
 		/// <summary>
@@ -149,7 +149,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">size of the value string if value == NULL it will return the size of the value string plus nul character</param><!-- in, out -->
 		/// <returns>true iff annotations[name] == value</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_member_getannotation(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern Int32 alljoyn_interfacedescription_member_getannotation(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_member_getannotation(alljoyn_interfacedescription_member member, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
@@ -164,7 +164,7 @@ namespace AllJoynDotNet
 		/// <param name="property">The alljoyn interfacedescription property that we want theannotations count from</param>
 		/// <returns>the number of annotations</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_property_getannotationscount(alljoyn_interfacedescription_property property);
+		internal static extern UIntPtr alljoyn_interfacedescription_property_getannotationscount(alljoyn_interfacedescription_property property);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_property_getannotationscount(alljoyn_interfacedescription_property property);
 
 		/// <summary>
@@ -181,7 +181,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">the size of the value string if value == NULL this will return the size of the value string plus nul character</param><!-- in, out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_property_getannotationatindex(alljoyn_interfacedescription_property property, UInt64 index, sbyte name, [In, Out]UInt64 name_size, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern void alljoyn_interfacedescription_property_getannotationatindex(alljoyn_interfacedescription_property property, UIntPtr index, sbyte name, [In, Out]UIntPtr name_size, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_property_getannotationatindex(alljoyn_interfacedescription_property property,size_t index,char* name, size_t* name_size,char* value, size_t* value_size);
 
 		/// <summary>
@@ -194,7 +194,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">size of the value string if value == NULL it will return the size of the value string plus nul character</param><!-- in, out -->
 		/// <returns>true iff annotations[name] == value</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_property_getannotation(alljoyn_interfacedescription_property property, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern Int32 alljoyn_interfacedescription_property_getannotation(alljoyn_interfacedescription_property property, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_property_getannotation(alljoyn_interfacedescription_property property, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
@@ -204,7 +204,7 @@ namespace AllJoynDotNet
 		/// <param name="iface">alljoyn_interfacedescription to activate.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_activate(IntPtr iface);
+		internal static extern void alljoyn_interfacedescription_activate(IntPtr iface);
 		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_activate(alljoyn_interfacedescription iface);
 
 		/// <summary>
@@ -229,7 +229,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">return the size of the string if value == NULL plus nul character orspecifies the max size of value if value != NULL.</param><!-- in, out -->
 		/// <returns>QC_FALSE if annotation does not exist, QC_TRUE otherwise.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_getannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern Int32 alljoyn_interfacedescription_getannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_getannotation(alljoyn_interfacedescription iface, const char* name, char* value, size_t* value_size);
 
 		/// <summary>
@@ -244,7 +244,7 @@ namespace AllJoynDotNet
 		/// <param name="iface">The alljoyn_interfacedescription that we want the annotations count from</param>
 		/// <returns>the number of annotations</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_getannotationscount(IntPtr iface);
+		internal static extern UIntPtr alljoyn_interfacedescription_getannotationscount(IntPtr iface);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_getannotationscount(alljoyn_interfacedescription iface);
 
 		/// <summary>
@@ -261,7 +261,7 @@ namespace AllJoynDotNet
 		/// <param name="value_size">the size of the value string if value == NULL this will return the size of the value string plus nul character</param><!-- in, out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_interfacedescription_getannotationatindex(IntPtr iface, UInt64 index, sbyte name, [In, Out]UInt64 name_size, sbyte value, [In, Out]UInt64 value_size);
+		internal static extern void alljoyn_interfacedescription_getannotationatindex(IntPtr iface, UIntPtr index, sbyte name, [In, Out]UIntPtr name_size, sbyte value, [In, Out]UIntPtr value_size);
 		// extern AJ_API void AJ_CALL alljoyn_interfacedescription_getannotationatindex(alljoyn_interfacedescription iface,size_t index,char* name, size_t* name_size,char* value, size_t* value_size);
 
 		/// <summary>
@@ -313,7 +313,7 @@ namespace AllJoynDotNet
 		/// <param name="numMembers">The size of the Member array. If this value is smaller than the totalnumber of members only numMembers will be returned.</param>
 		/// <returns>The number of members returned or the total number of members if members is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_getmembers(IntPtr iface, alljoyn_interfacedescription_member members, UInt64 numMembers);
+		internal static extern UIntPtr alljoyn_interfacedescription_getmembers(IntPtr iface, alljoyn_interfacedescription_member members, UIntPtr numMembers);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_getmembers(const alljoyn_interfacedescription iface,alljoyn_interfacedescription_member* members,size_t numMembers);
 
 		/// <summary>
@@ -402,7 +402,7 @@ namespace AllJoynDotNet
 		/// <param name="numProps">The size of the Property array. If this value is smaller than the totalnumber of properties only numProperties will be returned.</param>
 		/// <returns>The number of properties returned or the total number of properties if props is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_getproperties(IntPtr iface, alljoyn_interfacedescription_property props, UInt64 numProps);
+		internal static extern UIntPtr alljoyn_interfacedescription_getproperties(IntPtr iface, alljoyn_interfacedescription_property props, UIntPtr numProps);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_getproperties(const alljoyn_interfacedescription iface,alljoyn_interfacedescription_property* props,size_t numProps);
 
 		/// <summary>
@@ -442,7 +442,7 @@ namespace AllJoynDotNet
 		/// <param name="str_size">the size of the char* value if value == NULL return the size of the value string plus nul character</param><!-- in, out -->
 		/// <returns>QCC_TRUE if found, QCC_FALSE if not found</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_getpropertyannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string property, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UInt64 str_size);
+		internal static extern Int32 alljoyn_interfacedescription_getpropertyannotation(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string property, [MarshalAs(UnmanagedType.LPStr)]string name, sbyte value, [In, Out]UIntPtr str_size);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_getpropertyannotation(alljoyn_interfacedescription iface,const char* property,const char* name,char* value,size_t* str_size);
 
 		/// <summary>
@@ -484,7 +484,7 @@ namespace AllJoynDotNet
 		/// available.  Thus returning a value larger than buf means the output
 		/// was truncated.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_interfacedescription_introspect(IntPtr iface, sbyte str, UInt64 buf, UInt64 indent);
+		internal static extern UIntPtr alljoyn_interfacedescription_introspect(IntPtr iface, sbyte str, UIntPtr buf, UIntPtr indent);
 		// extern AJ_API size_t AJ_CALL alljoyn_interfacedescription_introspect(const alljoyn_interfacedescription iface, char* str, size_t buf, size_t indent);
 
 		/// <summary>

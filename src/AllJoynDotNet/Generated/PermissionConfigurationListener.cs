@@ -22,6 +22,7 @@ namespace AllJoynDotNet
 		/// </remarks>
 		/// <param name="context">The context pointer passed into the alljoyn_permissionconfigurationlistener_create function.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_permissionconfigurationlistener_factoryreset_ptr(IntPtr context);
 		// typedef QStatus (AJ_CALL * alljoyn_permissionconfigurationlistener_factoryreset_ptr)(const void* context);
 		// 
@@ -35,6 +36,7 @@ namespace AllJoynDotNet
 		/// </remarks>
 		/// <param name="context">The context pointer passed into the alljoyn_permissionconfigurationlistener_create function.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_permissionconfigurationlistener_policychanged_ptr(IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_permissionconfigurationlistener_policychanged_ptr)(const void* context);
 		// 
@@ -94,7 +96,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_permissionconfigurationlistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_permissionconfigurationlistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_permissionconfigurationlistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_permissionconfigurationlistener_destroy(alljoyn_permissionconfigurationlistener listener);
 
 

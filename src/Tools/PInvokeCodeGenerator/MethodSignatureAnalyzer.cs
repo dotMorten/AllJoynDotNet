@@ -106,7 +106,7 @@ namespace PInvokeCodeGenerator
                     name = name.Substring(0, endIdx - 1);
                 }
                 AddKnownType(name, name, TypeInfo.PropertyType.Delegate);
-                StringBuilder sb = new StringBuilder($"internal delegate {cstype} {name}(");
+                StringBuilder sb = new StringBuilder($"[UnmanagedFunctionPointer(CallingConvention.Cdecl)]\ninternal delegate {cstype} {name}(");
                 int pCount = 0;
                 for(int i=4;i<parts.Length - 1;i++)
                 {
@@ -319,13 +319,23 @@ namespace PInvokeCodeGenerator
             }
             switch (type)
             {
+                case "void":
+                    return "void";
                 case "char*":
                     cstype = "string";
                     marshalAs = "UnmanagedType.LPStr";
                     break;
                 case "char**":
-                    cstype = "IntPtr[]";
-                    marshalAs = "UnmanagedType.LPArray, Out";
+                    if (isOutput)
+                    {
+                        cstype = "IntPtr[]";
+                        marshalAs = "UnmanagedType.LPArray";
+                    }
+                    else
+                    {
+                        cstype = "string[]";
+                        marshalAs = "UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr";
+                    }
                     break;
                 case "size_t":
                     cstype = "UIntPtr"; break;
@@ -431,6 +441,12 @@ namespace PInvokeCodeGenerator
                 {
                     if (sb.Length > 1) sb.Append(", ");
                     sb.Append("In, Out");
+                }
+                if (type == "char**" && isOutput)
+                {
+                    isOutput = false;
+                    if (sb.Length > 1) sb.Append(", ");
+                    sb.Append("Out");
                 }
                 sb.Append("]");
                 if (isOutput && !isInput)

@@ -17,6 +17,7 @@ namespace AllJoynDotNet
 		/// Type for the joinsession callback used with the asynchronous joinsession request.
 		/// </summary>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_busattachment_joinsessioncb_ptr(QStatus status, IntPtr sessionId, IntPtr opts, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_busattachment_joinsessioncb_ptr)(QStatus status, alljoyn_sessionid sessionId, const alljoyn_sessionopts opts, void* context);
 		// 
@@ -32,10 +33,12 @@ namespace AllJoynDotNet
 		/// <param name="timeout">Timeout value (possibly adjusted from original request).</param>
 		/// <param name="context">User defined context which will be passed as-is to callback.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_busattachment_setlinktimeoutcb_ptr(QStatus status, UInt32 timeout, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_busattachment_setlinktimeoutcb_ptr)(QStatus status, uint32_t timeout, void* context);
 		// 
 
+//
     public partial class BusAttachment : AllJoynWrapper
     {
         internal BusAttachment(IntPtr handle) : base(handle) { }
@@ -848,8 +851,8 @@ namespace AllJoynDotNet
 		/// <returns>#ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern QStatus alljoyn_busattachment_unregistersignalhandlerwithrule(IntPtr bus, alljoyn_messagereceiver_signalhandler_ptr signal_handler, alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string matchRule);
-
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_unregistersignalhandlerwithrule(alljoyn_busattachment bus,alljoyn_messagereceiver_signalhandler_ptr signal_handler,const alljoyn_interfacedescription_member member,const char* matchRule);
+
 		/// <summary>
 		/// Unregister all signal and reply handlers for the specified alljoyn_busattachment.
 		/// </summary>

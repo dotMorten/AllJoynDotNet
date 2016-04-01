@@ -48,6 +48,7 @@ namespace AllJoynDotNet
 		/// - #ER_LANGUAGE_NOT_SUPPORTED if language is not supported
 		/// - #ER_ABOUT_ABOUTDATA_MISSING_REQUIRED_FIELD if a required field is missing
 		/// - other error indicating failure</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_aboutdatalistener_getaboutdata_ptr(IntPtr context, IntPtr msgArg, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// typedef QStatus (AJ_CALL * alljoyn_aboutdatalistener_getaboutdata_ptr)(const void* context,
 		// alljoyn_msgarg msgArg,
@@ -81,6 +82,7 @@ namespace AllJoynDotNet
 		/// <param name="context">the context pointer that was passed into thealljoyn_aboutdatalistener_create function</param>
 		/// <param name="msgArg">an alljoyn_msgarg dictionary with the a{sv} that containsthe Announce data</param><!-- out -->
 		/// <returns>ER_OK if successful</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_aboutdatalistener_getannouncedaboutdata_ptr(IntPtr context, IntPtr msgArg);
 		// typedef QStatus (AJ_CALL * alljoyn_aboutdatalistener_getannouncedaboutdata_ptr)(const void* context,
 		// alljoyn_msgarg msgArg);
@@ -137,7 +139,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">The alljoyn_aboutdatalistener to be freed.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_aboutdatalistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_aboutdatalistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_aboutdatalistener_destroy(alljoyn_aboutdatalistener listener);
 
 

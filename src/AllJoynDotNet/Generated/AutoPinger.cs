@@ -21,6 +21,7 @@ namespace AllJoynDotNet
 		/// <param name="group">The pinging group name.</param>
 		/// <param name="destination">The unique name of the destination that was pinged.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_autopinger_destination_lost_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination);
 		// typedef void (AJ_CALL * alljoyn_autopinger_destination_lost_ptr)(const void* context,
 		// const char* group,
@@ -35,6 +36,7 @@ namespace AllJoynDotNet
 		/// <param name="group">The pinging group name.</param>
 		/// <param name="destination">The unique name of the destination that was pinged.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_autopinger_destination_found_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string group, [MarshalAs(UnmanagedType.LPStr)]string destination);
 		// typedef void (AJ_CALL * alljoyn_autopinger_destination_found_ptr)(const void* context,
 		// const char* group,
@@ -95,7 +97,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">The pinglistener that was previously created byalljoyn_pinglistener_create that needs to be deleted.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_pinglistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_pinglistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_pinglistener_destroy(alljoyn_pinglistener listener);
 
 		/// <summary>
@@ -114,7 +116,7 @@ namespace AllJoynDotNet
 		/// callback. This will cause a deadlock.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_autopinger_destroy(IntPtr autopinger);
+		internal static extern void alljoyn_autopinger_destroy(IntPtr autopinger);
 		// extern AJ_API void AJ_CALL alljoyn_autopinger_destroy(alljoyn_autopinger autopinger);
 
 		/// <summary>
@@ -123,7 +125,7 @@ namespace AllJoynDotNet
 		/// <param name="autopinger">Reference to the autopinger.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_autopinger_pause(IntPtr autopinger);
+		internal static extern void alljoyn_autopinger_pause(IntPtr autopinger);
 		// extern AJ_API void AJ_CALL alljoyn_autopinger_pause(alljoyn_autopinger autopinger);
 
 		/// <summary>
@@ -132,7 +134,7 @@ namespace AllJoynDotNet
 		/// <param name="autopinger">Reference to the autopinger.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_autopinger_resume(IntPtr autopinger);
+		internal static extern void alljoyn_autopinger_resume(IntPtr autopinger);
 		// extern AJ_API void AJ_CALL alljoyn_autopinger_resume(alljoyn_autopinger autopinger);
 
 		/// <summary>
@@ -144,7 +146,7 @@ namespace AllJoynDotNet
 		/// <param name="pingInterval">Ping interval in seconds.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_autopinger_addpinggroup(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, IntPtr listener, UInt32 pinginterval = 5);
+		internal static extern void alljoyn_autopinger_addpinggroup(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group, IntPtr listener, UInt32 pinginterval = 5);
 		// extern AJ_API void AJ_CALL alljoyn_autopinger_addpinggroup(alljoyn_autopinger autopinger,const char* group,alljoyn_pinglistener listener,uint32_t pinginterval = 5);
 
 		/// <summary>
@@ -159,7 +161,7 @@ namespace AllJoynDotNet
 		/// <param name="group">Ping group name.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_autopinger_removepinggroup(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group);
+		internal static extern void alljoyn_autopinger_removepinggroup(IntPtr autopinger, [MarshalAs(UnmanagedType.LPStr)]string group);
 		// extern AJ_API void AJ_CALL alljoyn_autopinger_removepinggroup(alljoyn_autopinger autopinger,const char* group);
 
 		/// <summary>

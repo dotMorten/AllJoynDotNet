@@ -21,6 +21,7 @@ namespace AllJoynDotNet
 		/// <param name="member">Method interface member entry.</param>
 		/// <param name="message">The received method call message.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_messagereceiver_methodhandler_ptr(IntPtr bus, alljoyn_interfacedescription_member member, IntPtr message);
 		// typedef void (AJ_CALL * alljoyn_messagereceiver_methodhandler_ptr)(alljoyn_busobject bus,
 		// const alljoyn_interfacedescription_member* member,
@@ -34,6 +35,7 @@ namespace AllJoynDotNet
 		/// <param name="message">The received message.</param>
 		/// <param name="context">User-defined context passed to MethodCall and returned upon reply.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_messagereceiver_replyhandler_ptr(IntPtr message, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_messagereceiver_replyhandler_ptr)(alljoyn_message message, void* context);
 		// 
@@ -46,6 +48,7 @@ namespace AllJoynDotNet
 		/// <param name="srcPath">Object path of signal emitter.</param>
 		/// <param name="message">The received message.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_messagereceiver_signalhandler_ptr(alljoyn_interfacedescription_member member, [MarshalAs(UnmanagedType.LPStr)]string srcPath, IntPtr message);
 		// typedef void (AJ_CALL * alljoyn_messagereceiver_signalhandler_ptr)(const alljoyn_interfacedescription_member* member,
 		// const char* srcPath, alljoyn_message message);

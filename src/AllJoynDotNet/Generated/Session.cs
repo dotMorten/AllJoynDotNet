@@ -35,7 +35,7 @@ namespace AllJoynDotNet
 		/// <param name="opts">alljoyn_sessionopts to destroy</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionopts_destroy(IntPtr opts);
+		internal static extern void alljoyn_sessionopts_destroy(IntPtr opts);
 		// extern AJ_API void AJ_CALL alljoyn_sessionopts_destroy(alljoyn_sessionopts opts);
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace AllJoynDotNet
 		/// <param name="traffic">Traffic type to set in the alljoyn_sessionopts.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionopts_set_traffic(IntPtr opts, byte traffic);
+		internal static extern void alljoyn_sessionopts_set_traffic(IntPtr opts, byte traffic);
 		// extern AJ_API void AJ_CALL alljoyn_sessionopts_set_traffic(alljoyn_sessionopts opts, uint8_t traffic);
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace AllJoynDotNet
 		/// <param name="isMultipoint">Multipoint value to set in the alljoyn_sessionopts.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionopts_set_multipoint(IntPtr opts, Int32 isMultipoint);
+		internal static extern void alljoyn_sessionopts_set_multipoint(IntPtr opts, Int32 isMultipoint);
 		// extern AJ_API void AJ_CALL alljoyn_sessionopts_set_multipoint(alljoyn_sessionopts opts, QCC_BOOL isMultipoint);
 
 		/// <summary>
@@ -92,7 +92,7 @@ namespace AllJoynDotNet
 		/// <param name="proximity">Proximity value to set in the alljoyn_sessionopts.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionopts_set_proximity(IntPtr opts, byte proximity);
+		internal static extern void alljoyn_sessionopts_set_proximity(IntPtr opts, byte proximity);
 		// extern AJ_API void AJ_CALL alljoyn_sessionopts_set_proximity(alljoyn_sessionopts opts, uint8_t proximity);
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace AllJoynDotNet
 		/// <param name="transports">change the transports allowed by the specified alljoyn_sessionopts.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionopts_set_transports(IntPtr opts, UInt16 transports);
+		internal static extern void alljoyn_sessionopts_set_transports(IntPtr opts, UInt16 transports);
 		// extern AJ_API void AJ_CALL alljoyn_sessionopts_set_transports(alljoyn_sessionopts opts, alljoyn_transportmask transports);
 
 		/// <summary>

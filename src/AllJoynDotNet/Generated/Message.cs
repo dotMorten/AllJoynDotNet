@@ -55,7 +55,7 @@ namespace AllJoynDotNet
 		/// <param name="msg">The alljoyn_message to destroy</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_destroy(IntPtr msg);
+		internal static extern void alljoyn_message_destroy(IntPtr msg);
 		// extern AJ_API void AJ_CALL alljoyn_message_destroy(alljoyn_message msg);
 
 		/// <summary>
@@ -150,7 +150,7 @@ namespace AllJoynDotNet
 		/// <param name="args">Returns the arguments</param><!-- out -->
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_getargs(IntPtr msg, UInt64 numArgs, IntPtr args);
+		internal static extern void alljoyn_message_getargs(IntPtr msg, UIntPtr numArgs, IntPtr args);
 		// extern AJ_API void AJ_CALL alljoyn_message_getargs(alljoyn_message msg, size_t* numArgs, alljoyn_msgarg* args);
 
 		/// <summary>
@@ -161,7 +161,7 @@ namespace AllJoynDotNet
 		/// <returns>- The argument
 		/// - NULL if unmarshal failed or there is not such argument.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_getarg(IntPtr msg, UInt64 argN);
+		internal static extern IntPtr alljoyn_message_getarg(IntPtr msg, UIntPtr argN);
 		// extern AJ_API const alljoyn_msgarg AJ_CALL alljoyn_message_getarg(alljoyn_message msg, size_t argN);
 
 		/// <summary>
@@ -287,7 +287,7 @@ namespace AllJoynDotNet
 		/// <returns>- If error detected return error name stored in the AllJoyn header field
 		/// - NULL if error not detected</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_geterrorname(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string errorMessage, [In, Out]UInt64 errorMessage_size);
+		internal static extern IntPtr alljoyn_message_geterrorname(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string errorMessage, [In, Out]UIntPtr errorMessage_size);
 		// extern AJ_API const char* AJ_CALL alljoyn_message_geterrorname(alljoyn_message msg, char* errorMessage, size_t* errorMessage_size);
 
 		/// <summary>
@@ -300,7 +300,7 @@ namespace AllJoynDotNet
 		/// available.  Thus returning a value of buf or larger means the output
 		/// was truncated.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_message_tostring(IntPtr msg, sbyte str, UInt64 buf);
+		internal static extern UIntPtr alljoyn_message_tostring(IntPtr msg, sbyte str, UIntPtr buf);
 		// extern AJ_API size_t AJ_CALL alljoyn_message_tostring(alljoyn_message msg, char* str, size_t buf);
 
 		/// <summary>
@@ -313,7 +313,7 @@ namespace AllJoynDotNet
 		/// available.  Thus returning a value of buf or larger means the output
 		/// was truncated.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_message_description(IntPtr msg, sbyte str, UInt64 buf);
+		internal static extern UIntPtr alljoyn_message_description(IntPtr msg, sbyte str, UIntPtr buf);
 		// extern AJ_API size_t AJ_CALL alljoyn_message_description(alljoyn_message msg, char* str, size_t buf);
 
 		/// <summary>
@@ -344,7 +344,7 @@ namespace AllJoynDotNet
 		/// <param name="endian">Either ALLJOYN_LITTLE_ENDIAN or ALLJOYN_BIG_ENDIAN. Any other valuesets the endianness to the native endianness for this platform.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_setendianess(sbyte endian);
+		internal static extern void alljoyn_message_setendianess(sbyte endian);
 		// extern AJ_API void AJ_CALL alljoyn_message_setendianess(const char endian);
 
 

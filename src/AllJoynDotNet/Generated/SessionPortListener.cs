@@ -29,6 +29,7 @@ namespace AllJoynDotNet
 		/// <param name="joiner">Unique name of potential joiner.</param>
 		/// <param name="opts">Session options requested by the joiner.</param>
 		/// <returns>Return true if JoinSession request is accepted. false if rejected.</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate Int32 alljoyn_sessionportlistener_acceptsessionjoiner_ptr(IntPtr context, UInt16 sessionPort, [MarshalAs(UnmanagedType.LPStr)]string joiner, IntPtr opts);
 		// typedef QCC_BOOL (AJ_CALL * alljoyn_sessionportlistener_acceptsessionjoiner_ptr)(const void* context, alljoyn_sessionport sessionPort,
 		// const char* joiner,  const alljoyn_sessionopts opts);
@@ -49,6 +50,7 @@ namespace AllJoynDotNet
 		/// <param name="id">Id of session.</param>
 		/// <param name="joiner">Unique name of the joiner.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_sessionportlistener_sessionjoined_ptr(IntPtr context, UInt16 sessionPort, IntPtr id, [MarshalAs(UnmanagedType.LPStr)]string joiner);
 		// typedef void (AJ_CALL * alljoyn_sessionportlistener_sessionjoined_ptr)(const void* context, alljoyn_sessionport sessionPort,
 		// alljoyn_sessionid id, const char* joiner);
@@ -110,7 +112,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_sessionportlistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionportlistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_sessionportlistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_sessionportlistener_destroy(alljoyn_sessionportlistener listener);
 
 

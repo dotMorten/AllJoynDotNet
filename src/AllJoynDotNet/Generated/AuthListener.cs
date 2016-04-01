@@ -35,6 +35,7 @@ namespace AllJoynDotNet
 		/// <param name="credentials">The credentials returned.</param><!-- out -->
 		/// <returns>The caller should return true if the request is being accepted or false if therequests is being rejected. If the request is rejected the authentication is
 		/// complete.</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate Int32 alljoyn_authlistener_requestcredentials_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, UInt16 authCount, [MarshalAs(UnmanagedType.LPStr)]string userName, UInt16 credMask, IntPtr credentials);
 		// typedef QCC_BOOL (AJ_CALL * alljoyn_authlistener_requestcredentials_ptr)(const void* context, const char* authMechanism, const char* peerName, uint16_t authCount,
 		// const char* userName, uint16_t credMask, alljoyn_credentials credentials);
@@ -61,6 +62,7 @@ namespace AllJoynDotNet
 		/// <param name="authContext">Callback context for associating the request with the returned credentials.</param>
 		/// <returns>Return- ER_OK if the request is handled.
 		/// - ER_NOT_IMPLEMENTED if implementation not found (default)</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_authlistener_requestcredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, UInt16 authCount, [MarshalAs(UnmanagedType.LPStr)]string userName, UInt16 credMask, IntPtr authContext);
 		// typedef QStatus (AJ_CALL * alljoyn_authlistener_requestcredentialsasync_ptr)(const void* context, alljoyn_authlistener listener,
 		// const char* authMechanism, const char* peerName, uint16_t authCount,
@@ -80,6 +82,7 @@ namespace AllJoynDotNet
 		/// accepting side this will be the unique bus name for the remote peer.</param>
 		/// <param name="credentials">The credentials to be verified.</param>
 		/// <returns>The listener should return true if the credentials are acceptable or false if thecredentials are being rejected.</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate Int32 alljoyn_authlistener_verifycredentials_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, IntPtr credentials);
 		// typedef QCC_BOOL (AJ_CALL * alljoyn_authlistener_verifycredentials_ptr)(const void* context, const char* authMechanism, const char* peerName,
 		// const alljoyn_credentials credentials);
@@ -97,6 +100,7 @@ namespace AllJoynDotNet
 		/// <param name="authContext">Callback context for associating the request with the verification response.</param>
 		/// <returns>Return- ER_OK if the request is handled.
 		/// - ER_NOT_IMPLEMENTED (default)</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_authlistener_verifycredentialsasync_ptr(IntPtr context, IntPtr listener, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, IntPtr credentials, IntPtr authContext);
 		// typedef QStatus (AJ_CALL * alljoyn_authlistener_verifycredentialsasync_ptr)(const void* context, alljoyn_authlistener listener,
 		// const char* authMechanism, const char* peerName, const alljoyn_credentials credentials, void* authContext);
@@ -116,6 +120,7 @@ namespace AllJoynDotNet
 		/// <param name="status">A status code indicating the type of security violation.</param>
 		/// <param name="msg">The message that cause the security violation.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_authlistener_securityviolation_ptr(IntPtr context, QStatus status, IntPtr msg);
 		// typedef void (AJ_CALL * alljoyn_authlistener_securityviolation_ptr)(const void* context, QStatus status, const alljoyn_message msg);
 		// 
@@ -132,6 +137,7 @@ namespace AllJoynDotNet
 		/// accepting side this will be the unique bus name for the remote peer.</param>
 		/// <param name="success">true if the authentication was successful, otherwise false.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_authlistener_authenticationcomplete_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string authMechanism, [MarshalAs(UnmanagedType.LPStr)]string peerName, Int32 success);
 		// typedef void (AJ_CALL * alljoyn_authlistener_authenticationcomplete_ptr)(const void* context, const char* authMechanism, const char* peerName, QCC_BOOL success);
 		// 
@@ -297,7 +303,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_authlistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_authlistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_authlistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_authlistener_destroy(alljoyn_authlistener listener);
 
 		/// <summary>
@@ -306,7 +312,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_authlistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_authlistenerasync_destroy(IntPtr listener);
+		internal static extern void alljoyn_authlistenerasync_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_authlistenerasync_destroy(alljoyn_authlistener listener);
 
 		/// <summary>
@@ -323,7 +329,7 @@ namespace AllJoynDotNet
 		/// <param name="cred">Credentials to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_destroy(IntPtr cred);
+		internal static extern void alljoyn_credentials_destroy(IntPtr cred);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_destroy(alljoyn_credentials cred);
 
 		/// <summary>
@@ -343,7 +349,7 @@ namespace AllJoynDotNet
 		/// <param name="pwd">The password to set.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setpassword(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string pwd);
+		internal static extern void alljoyn_credentials_setpassword(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string pwd);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setpassword(alljoyn_credentials cred, const char* pwd);
 
 		/// <summary>
@@ -353,7 +359,7 @@ namespace AllJoynDotNet
 		/// <param name="userName">The user name to set.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setusername(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string userName);
+		internal static extern void alljoyn_credentials_setusername(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string userName);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setusername(alljoyn_credentials cred, const char* userName);
 
 		/// <summary>
@@ -363,7 +369,7 @@ namespace AllJoynDotNet
 		/// <param name="certChain">The certificate chain to set.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setcertchain(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string certChain);
+		internal static extern void alljoyn_credentials_setcertchain(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string certChain);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setcertchain(alljoyn_credentials cred, const char* certChain);
 
 		/// <summary>
@@ -374,7 +380,7 @@ namespace AllJoynDotNet
 		/// <param name="pk">The private key to set.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setprivatekey(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string pk);
+		internal static extern void alljoyn_credentials_setprivatekey(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string pk);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setprivatekey(alljoyn_credentials cred, const char* pk);
 
 		/// <summary>
@@ -387,7 +393,7 @@ namespace AllJoynDotNet
 		/// <param name="logonEntry">The logon entry to set.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setlogonentry(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string logonEntry);
+		internal static extern void alljoyn_credentials_setlogonentry(IntPtr cred, [MarshalAs(UnmanagedType.LPStr)]string logonEntry);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setlogonentry(alljoyn_credentials cred, const char* logonEntry);
 
 		/// <summary>
@@ -400,7 +406,7 @@ namespace AllJoynDotNet
 		/// <param name="expiration">The expiration time in seconds.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_setexpiration(IntPtr cred, UInt32 expiration);
+		internal static extern void alljoyn_credentials_setexpiration(IntPtr cred, UInt32 expiration);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_setexpiration(alljoyn_credentials cred, uint32_t expiration);
 
 		/// <summary>
@@ -463,7 +469,7 @@ namespace AllJoynDotNet
 		/// <param name="cred">The credentials to clear.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_credentials_clear(IntPtr cred);
+		internal static extern void alljoyn_credentials_clear(IntPtr cred);
 		// extern AJ_API void AJ_CALL alljoyn_credentials_clear(alljoyn_credentials cred);
 
 

@@ -20,6 +20,7 @@ namespace AllJoynDotNet
 		/// <param name="obj">Remote bus object that was introspected</param>
 		/// <param name="context">Context passed in IntrospectRemoteObjectAsync()</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_proxybusobject_listener_introspectcb_ptr(QStatus status, IntPtr obj, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_proxybusobject_listener_introspectcb_ptr)(QStatus status, alljoyn_proxybusobject obj, void* context);
 		// 
@@ -34,6 +35,7 @@ namespace AllJoynDotNet
 		/// <param name="value">If status is ER_OK a MsgArg containing the returned property value</param>
 		/// <param name="context">Caller provided context passed in to alljoyn_proxybusobject_getpropertyasync()</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_proxybusobject_listener_getpropertycb_ptr(QStatus status, IntPtr obj, IntPtr value, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_proxybusobject_listener_getpropertycb_ptr)(QStatus status, alljoyn_proxybusobject obj, const alljoyn_msgarg value, void* context);
 		// 
@@ -47,6 +49,7 @@ namespace AllJoynDotNet
 		/// <param name="values">If status is ER_OK an array of dictionary entries, signature "a{sv}" listing the properties.</param>
 		/// <param name="context">Caller provided context passed in to alljoyn_proxybusobject_getallpropertiesasync()</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_proxybusobject_listener_getallpropertiescb_ptr(QStatus status, IntPtr obj, IntPtr values, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_proxybusobject_listener_getallpropertiescb_ptr)(QStatus status, alljoyn_proxybusobject obj, const alljoyn_msgarg values, void* context);
 		// 
@@ -60,6 +63,7 @@ namespace AllJoynDotNet
 		/// <param name="obj">Remote bus object that was introspected</param>
 		/// <param name="context">Caller provided context passed in to alljoyn_proxybusobject_setpropertyasync()</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_proxybusobject_listener_setpropertycb_ptr(QStatus status, IntPtr obj, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_proxybusobject_listener_setpropertycb_ptr)(QStatus status, alljoyn_proxybusobject obj, void* context);
 		// 
@@ -73,6 +77,7 @@ namespace AllJoynDotNet
 		/// <param name="invalidated">Properties whose values have been invalidated, signature "as".</param>
 		/// <param name="context">Caller provided context passed in to RegisterPropertiesChangedListener</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_proxybusobject_listener_propertieschanged_ptr(IntPtr obj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, IntPtr changed, IntPtr invalidated, IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_proxybusobject_listener_propertieschanged_ptr)(alljoyn_proxybusobject obj, const char* ifaceName, const alljoyn_msgarg changed, const alljoyn_msgarg invalidated, void* context);
 		// 
@@ -136,7 +141,7 @@ namespace AllJoynDotNet
 		/// <param name="proxyObj">The proxy bus object to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_proxybusobject_destroy(IntPtr proxyObj);
+		internal static extern void alljoyn_proxybusobject_destroy(IntPtr proxyObj);
 		// extern AJ_API void AJ_CALL alljoyn_proxybusobject_destroy(alljoyn_proxybusobject proxyObj);
 
 		/// <summary>
@@ -177,7 +182,7 @@ namespace AllJoynDotNet
 		/// <param name="numChildren">The size of the %alljoyn_proxybusobject array. If this value is smaller than the totalnumber of children only numChildren will be returned.</param>
 		/// <returns>The number of children returned or the total number of children if children is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_proxybusobject_getchildren(IntPtr proxyObj, IntPtr children, UInt64 numChildren);
+		internal static extern UIntPtr alljoyn_proxybusobject_getchildren(IntPtr proxyObj, IntPtr children, UIntPtr numChildren);
 		// extern AJ_API size_t AJ_CALL alljoyn_proxybusobject_getchildren(alljoyn_proxybusobject proxyObj, alljoyn_proxybusobject* children, size_t numChildren);
 
 		/// <summary>
@@ -352,7 +357,7 @@ namespace AllJoynDotNet
 		/// exist on the remote object.
 		/// - #ER_BUS_NO_SUCH_PROPERTY if the property does not exist</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_registerpropertieschangedlistener(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string iface, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] properties, UInt64 numProperties, alljoyn_proxybusobject_listener_propertieschanged_ptr callback, IntPtr context);
+		internal static extern QStatus alljoyn_proxybusobject_registerpropertieschangedlistener(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string iface, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] properties, UIntPtr numProperties, alljoyn_proxybusobject_listener_propertieschanged_ptr callback, IntPtr context);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_registerpropertieschangedlistener(alljoyn_proxybusobject proxyObj,const char* iface,const char** properties,size_t numProperties,alljoyn_proxybusobject_listener_propertieschanged_ptr callback,void* context);
 
 		/// <summary>
@@ -400,7 +405,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the method call succeeded and the reply message type is #ALLJOYN_MESSAGE_METHOD_RET
 		/// - #ER_BUS_REPLY_IS_ERROR_MESSAGE if the reply message type is #ALLJOYN_MESSAGE_ERROR</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcall(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, IntPtr args, UInt64 numArgs, IntPtr replyMsg, UInt32 timeout, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcall(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, IntPtr args, UIntPtr numArgs, IntPtr replyMsg, UInt32 timeout, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcall(alljoyn_proxybusobject proxyObj,const char* ifaceName,const char* methodName,const alljoyn_msgarg args,size_t numArgs,alljoyn_message replyMsg,uint32_t timeout,uint8_t flags);
 
 		/// <summary>
@@ -418,7 +423,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if the method call succeeded and the reply message type is #ALLJOYN_MESSAGE_METHOD_RET
 		/// - #ER_BUS_REPLY_IS_ERROR_MESSAGE if the reply message type is #ALLJOYN_MESSAGE_ERROR</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcall_member(IntPtr proxyObj, alljoyn_interfacedescription_member method, IntPtr args, UInt64 numArgs, IntPtr replyMsg, UInt32 timeout, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcall_member(IntPtr proxyObj, alljoyn_interfacedescription_member method, IntPtr args, UIntPtr numArgs, IntPtr replyMsg, UInt32 timeout, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcall_member(alljoyn_proxybusobject proxyObj,const alljoyn_interfacedescription_member method,const alljoyn_msgarg args,size_t numArgs,alljoyn_message replyMsg,uint32_t timeout,uint8_t flags);
 
 		/// <summary>
@@ -437,7 +442,7 @@ namespace AllJoynDotNet
 		/// Set value to '0' for no flags.</param>
 		/// <returns>- #ER_OK if the method call succeeded</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcall_noreply(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, IntPtr args, UInt64 numArgs, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcall_noreply(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, IntPtr args, UIntPtr numArgs, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcall_noreply(alljoyn_proxybusobject proxyObj,const char* ifaceName,const char* methodName,const alljoyn_msgarg args,size_t numArgs,uint8_t flags);
 
 		/// <summary>
@@ -455,7 +460,7 @@ namespace AllJoynDotNet
 		/// Set value to '0' for no flags.</param>
 		/// <returns>- #ER_OK if the method call succeeded</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcall_member_noreply(IntPtr proxyObj, alljoyn_interfacedescription_member method, IntPtr args, UInt64 numArgs, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcall_member_noreply(IntPtr proxyObj, alljoyn_interfacedescription_member method, IntPtr args, UIntPtr numArgs, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcall_member_noreply(alljoyn_proxybusobject proxyObj,const alljoyn_interfacedescription_member method,const alljoyn_msgarg args,size_t numArgs,uint8_t flags);
 
 		/// <summary>
@@ -475,7 +480,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcallasync(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, alljoyn_messagereceiver_replyhandler_ptr replyFunc, IntPtr args, UInt64 numArgs, IntPtr context, UInt32 timeout, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcallasync(IntPtr proxyObj, [MarshalAs(UnmanagedType.LPStr)]string ifaceName, [MarshalAs(UnmanagedType.LPStr)]string methodName, alljoyn_messagereceiver_replyhandler_ptr replyFunc, IntPtr args, UIntPtr numArgs, IntPtr context, UInt32 timeout, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcallasync(alljoyn_proxybusobject proxyObj,const char* ifaceName,const char* methodName,alljoyn_messagereceiver_replyhandler_ptr replyFunc,const alljoyn_msgarg args,size_t numArgs,void* context,uint32_t timeout,uint8_t flags);
 
 		/// <summary>
@@ -494,7 +499,7 @@ namespace AllJoynDotNet
 		/// <returns>- ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_proxybusobject_methodcallasync_member(IntPtr proxyObj, alljoyn_interfacedescription_member method, alljoyn_messagereceiver_replyhandler_ptr replyFunc, IntPtr args, UInt64 numArgs, IntPtr context, UInt32 timeout, byte flags);
+		internal static extern QStatus alljoyn_proxybusobject_methodcallasync_member(IntPtr proxyObj, alljoyn_interfacedescription_member method, alljoyn_messagereceiver_replyhandler_ptr replyFunc, IntPtr args, UIntPtr numArgs, IntPtr context, UInt32 timeout, byte flags);
 		// extern AJ_API QStatus AJ_CALL alljoyn_proxybusobject_methodcallasync_member(alljoyn_proxybusobject proxyObj,const alljoyn_interfacedescription_member method,alljoyn_messagereceiver_replyhandler_ptr replyFunc,const alljoyn_msgarg args,size_t numArgs,void* context,uint32_t timeout,uint8_t flags);
 
 		/// <summary>
@@ -597,7 +602,7 @@ namespace AllJoynDotNet
 		/// (DEFAULT) if numInterfaces is 0 then an array of all the interfaces will be returned.</param>
 		/// <returns>The number of interfaces returned or the total number of interfaces if ifaces is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_proxybusobject_getinterfaces(IntPtr proxyObj, IntPtr ifaces, UInt64 numIfaces);
+		internal static extern UIntPtr alljoyn_proxybusobject_getinterfaces(IntPtr proxyObj, IntPtr ifaces, UIntPtr numIfaces);
 		// extern AJ_API size_t AJ_CALL alljoyn_proxybusobject_getinterfaces(alljoyn_proxybusobject proxyObj, const alljoyn_interfacedescription* ifaces, size_t numIfaces);
 
 		/// <summary>
@@ -680,7 +685,7 @@ namespace AllJoynDotNet
 		/// <param name="proxyObj">The alljoyn_proxybusobject for which caching must be enabled</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_proxybusobject_enablepropertycaching(IntPtr proxyObj);
+		internal static extern void alljoyn_proxybusobject_enablepropertycaching(IntPtr proxyObj);
 		// extern AJ_API void AJ_CALL alljoyn_proxybusobject_enablepropertycaching(alljoyn_proxybusobject proxyObj);
 
 

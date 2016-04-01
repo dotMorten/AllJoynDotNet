@@ -50,7 +50,7 @@ namespace AllJoynDotNet
 		/// <param name="obj">The alljoyn_aboutobj to be freed.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_aboutobj_destroy(IntPtr obj);
+		internal static extern void alljoyn_aboutobj_destroy(IntPtr obj);
 		// extern AJ_API void AJ_CALL alljoyn_aboutobj_destroy(alljoyn_aboutobj obj);
 
 		/// <summary>

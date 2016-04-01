@@ -63,6 +63,7 @@ namespace AllJoynDotNet
 		/// <param name="alljoyn_sessionid">Id of session that was lost.</param>
 		/// <param name="reason">The reason for the session being lost</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_sessionlistener_sessionlost_ptr(IntPtr context, IntPtr sessionId, alljoyn_sessionlostreason reason);
 		// typedef void (AJ_CALL * alljoyn_sessionlistener_sessionlost_ptr)(const void* context, alljoyn_sessionid sessionId, alljoyn_sessionlostreason reason);
 		// 
@@ -78,6 +79,7 @@ namespace AllJoynDotNet
 		/// <param name="alljoyn_sessionid">Id of session whose member(s) changed.</param>
 		/// <param name="uniqueName">Unique name of member who was added.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_sessionlistener_sessionmemberadded_ptr(IntPtr context, IntPtr sessionId, [MarshalAs(UnmanagedType.LPStr)]string uniqueName);
 		// typedef void (AJ_CALL * alljoyn_sessionlistener_sessionmemberadded_ptr)(const void* context, alljoyn_sessionid sessionId,
 		// const char* uniqueName);
@@ -94,6 +96,7 @@ namespace AllJoynDotNet
 		/// <param name="alljoyn_sessionid">Id of session whose member(s) changed.</param>
 		/// <param name="uniqueName">Unique name of member who was removed.</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_sessionlistener_sessionmemberremoved_ptr(IntPtr context, IntPtr sessionId, [MarshalAs(UnmanagedType.LPStr)]string uniqueName);
 		// typedef void (AJ_CALL * alljoyn_sessionlistener_sessionmemberremoved_ptr)(const void* context, alljoyn_sessionid sessionId,
 		// const char* uniqueName);
@@ -161,7 +164,7 @@ namespace AllJoynDotNet
 		/// <param name="listener">alljoyn_sessionlistener to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_sessionlistener_destroy(IntPtr listener);
+		internal static extern void alljoyn_sessionlistener_destroy(IntPtr listener);
 		// extern AJ_API void AJ_CALL alljoyn_sessionlistener_destroy(alljoyn_sessionlistener listener);
 
 

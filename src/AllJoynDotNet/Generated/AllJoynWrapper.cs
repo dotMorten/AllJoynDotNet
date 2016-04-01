@@ -12,8 +12,7 @@ namespace AllJoynDotNet
             isHandleSet = IntPtr.Zero != handle;
         }
 
-        //Should ONLY be called from a constructor - if possible
-        //pass in the handle to the constructor
+        //Should ONLY be called from a constructor:
         internal void SetHandle(IntPtr handle)
         {
             if (isHandleSet)

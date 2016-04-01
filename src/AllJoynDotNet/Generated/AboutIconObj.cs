@@ -33,7 +33,7 @@ namespace AllJoynDotNet
 		/// <param name="icon">the alljoyn_abouticonobj to be freed.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_abouticonobj_destroy(IntPtr icon);
+		internal static extern void alljoyn_abouticonobj_destroy(IntPtr icon);
 		// extern AJ_API void AJ_CALL alljoyn_abouticonobj_destroy(alljoyn_abouticonobj icon);
 
 

@@ -28,6 +28,7 @@ namespace AllJoynDotNet
 		/// <param name="propName">Identifies the property to get</param>
 		/// <param name="val">Returns the property value. The type of this value is the actual valuetype.</param><!-- out -->
 		/// <returns>#ER_BUS_NO_SUCH_PROPERTY (Should be changed to #ER_OK by user implementation of alljoyn_busobject_prop_get_ptrif the request results in successfully reading a property from the object.)</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_busobject_prop_get_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
 		// typedef QStatus (AJ_CALL * alljoyn_busobject_prop_get_ptr)(const void* context, const char* ifcName, const char* propName, alljoyn_msgarg val);
 		// 
@@ -47,6 +48,7 @@ namespace AllJoynDotNet
 		/// <param name="propName">Identifies the property to set</param>
 		/// <param name="val">The property value to set. The type of this value is the actual valuetype.</param>
 		/// <returns>#ER_BUS_NO_SUCH_PROPERTY (Should be changed to #ER_OK by user implementation of alljoyn_busobject_prop_set_ptris the set request results in successfully changing the property.)</returns>
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate QStatus alljoyn_busobject_prop_set_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val);
 		// typedef QStatus (AJ_CALL * alljoyn_busobject_prop_set_ptr)(const void* context, const char* ifcName, const char* propName, alljoyn_msgarg val);
 		// 
@@ -61,6 +63,7 @@ namespace AllJoynDotNet
 		/// </remarks>
 		/// <param name="context">context pointer passed in when creating a new alljoyn_busobject</param>
 		/// 
+		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		internal delegate void alljoyn_busobject_object_registration_ptr(IntPtr context);
 		// typedef void (AJ_CALL * alljoyn_busobject_object_registration_ptr)(const void* context);
 		// 
@@ -163,7 +166,7 @@ namespace AllJoynDotNet
 		/// <param name="bus">Bus to destroy.</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busobject_destroy(IntPtr bus);
+		internal static extern void alljoyn_busobject_destroy(IntPtr bus);
 		// extern AJ_API void AJ_CALL alljoyn_busobject_destroy(alljoyn_busobject bus);
 
 		/// <summary>
@@ -185,7 +188,7 @@ namespace AllJoynDotNet
 		/// <param name="id">ID of the session we broadcast the signal to (0 for all)</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busobject_emitpropertychanged(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val, IntPtr id);
+		internal static extern void alljoyn_busobject_emitpropertychanged(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPStr)]string propName, IntPtr val, IntPtr id);
 		// extern AJ_API void AJ_CALL alljoyn_busobject_emitpropertychanged(alljoyn_busobject bus,const char* ifcName,const char* propName,alljoyn_msgarg val,alljoyn_sessionid id);
 
 		/// <summary>
@@ -198,7 +201,7 @@ namespace AllJoynDotNet
 		/// <param name="id">ID of the session we broadcast the signal to (0 for all)</param>
 		/// 
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_busobject_emitpropertieschanged(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] propNames, UInt64 numProps, IntPtr id);
+		internal static extern void alljoyn_busobject_emitpropertieschanged(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string ifcName, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] propNames, UIntPtr numProps, IntPtr id);
 		// extern AJ_API void AJ_CALL alljoyn_busobject_emitpropertieschanged(alljoyn_busobject bus,const char* ifcName,const char** propNames,size_t numProps,alljoyn_sessionid id);
 
 		/// <summary>
@@ -214,7 +217,7 @@ namespace AllJoynDotNet
 		/// <param name="bufferSz">The size of the buffer provided.</param>
 		/// <returns>The size of the name string, if the returned value is > bufferSz, the entire name was not copied into buffer.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_busobject_getname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string buffer, UInt64 bufferSz);
+		internal static extern UIntPtr alljoyn_busobject_getname(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string buffer, UIntPtr bufferSz);
 		// extern AJ_API size_t AJ_CALL alljoyn_busobject_getname(alljoyn_busobject bus, char* buffer, size_t bufferSz);
 
 		/// <summary>
@@ -261,7 +264,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if all the methods were added
 		/// - #ER_BUS_NO_SUCH_INTERFACE is method can not be added because interface does not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busobject_addmethodhandlers(IntPtr bus, alljoyn_busobject_methodentry entries, UInt64 numEntries);
+		internal static extern QStatus alljoyn_busobject_addmethodhandlers(IntPtr bus, alljoyn_busobject_methodentry entries, UIntPtr numEntries);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addmethodhandlers(alljoyn_busobject bus,const alljoyn_busobject_methodentry* entries,size_t numEntries);
 
 		/// <summary>
@@ -274,7 +277,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busobject_methodreply_args(IntPtr bus, IntPtr msg, IntPtr args, UInt64 numArgs);
+		internal static extern QStatus alljoyn_busobject_methodreply_args(IntPtr bus, IntPtr msg, IntPtr args, UIntPtr numArgs);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_methodreply_args(alljoyn_busobject bus, alljoyn_message msg,const alljoyn_msgarg args, size_t numArgs);
 
 		/// <summary>
@@ -340,7 +343,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if successful
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busobject_signal(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string destination, IntPtr sessionId, alljoyn_interfacedescription_member signal, IntPtr args, UInt64 numArgs, UInt16 timeToLive, byte flags, IntPtr msg);
+		internal static extern QStatus alljoyn_busobject_signal(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string destination, IntPtr sessionId, alljoyn_interfacedescription_member signal, IntPtr args, UIntPtr numArgs, UInt16 timeToLive, byte flags, IntPtr msg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_signal(alljoyn_busobject bus,const char* destination,alljoyn_sessionid sessionId,const alljoyn_interfacedescription_member signal,const alljoyn_msgarg args,size_t numArgs,uint16_t timeToLive,uint8_t flags,alljoyn_message msg);
 
 		/// <summary>
@@ -383,7 +386,7 @@ namespace AllJoynDotNet
 		/// <returns>The total number of interfaces found that are announced.  If this number
 		/// is larger than `numInterfaces` then only `numInterfaces` will be returned.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_busobject_getannouncedinterfacenames(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] interfaces, UInt64 numInterfaces);
+		internal static extern UIntPtr alljoyn_busobject_getannouncedinterfacenames(IntPtr bus, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] interfaces, UIntPtr numInterfaces);
 		// extern AJ_API size_t AJ_CALL alljoyn_busobject_getannouncedinterfacenames(alljoyn_busobject bus,const char** interfaces,size_t numInterfaces);
 
 		/// <summary>
