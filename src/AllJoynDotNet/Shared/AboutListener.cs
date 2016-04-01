@@ -15,21 +15,41 @@ namespace AllJoynDotNet
         {
             callback = new alljoyn_aboutlistener_callback()
             {
-                //about_listener_announced = Marshal.GetFunctionPointerForDelegate<alljoyn_about_announced_ptr>((alljoyn_about_announced_ptr)alljoyn_about_announced_delegate)
                 about_listener_announced = alljoyn_about_announced_delegate
             };
-            //GCHandle gch = GCHandle.Alloc(callback, GCHandleType.Pinned);
-            //var handle = alljoyn_aboutlistener_create(gch.AddrOfPinnedObject(), IntPtr.Zero);
             var handle = alljoyn_aboutlistener_create(callback, IntPtr.Zero);
             SetHandle(handle);
-            //gch.Free();
         }
         
         private void alljoyn_about_announced_delegate(IntPtr context, string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg)
         {
-            AboutAnnounced?.Invoke(this, EventArgs.Empty); // (busName, version);
+            AboutAnnounced?.Invoke(this, new AboutAnnouncedEventArgs(
+                busName, version, port, objectDescriptionArg, aboutDataArg));
         }
 
-        public event EventHandler AboutAnnounced;
+        public event EventHandler<AboutAnnouncedEventArgs> AboutAnnounced;
+
+        public sealed class AboutAnnouncedEventArgs : EventArgs
+        {
+            internal AboutAnnouncedEventArgs(string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg)
+            {
+                BusName = busName;
+                Version = version;
+                Port = port;
+                IntPtr handle = AboutObjectDescription.alljoyn_aboutobjectdescription_create();
+                var status = AboutObjectDescription.alljoyn_aboutobjectdescription_createfrommsgarg(handle, objectDescriptionArg);
+                if (status != 0)
+                    throw new AllJoynException(status);
+                ObjectDescription = new AboutObjectDescription(handle);
+                handle = AboutData.alljoyn_aboutdata_create_full(aboutDataArg, "en");
+                AboutData = new AboutData(handle);
+            }
+
+            public string BusName { get; }
+            public UInt16 Version { get; }
+            public UInt16 Port { get; }
+            public AboutObjectDescription ObjectDescription { get; }
+            public AboutData AboutData { get; }
+        }
     }
 }

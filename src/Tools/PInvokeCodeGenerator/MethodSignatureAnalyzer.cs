@@ -324,8 +324,8 @@ namespace PInvokeCodeGenerator
                     marshalAs = "UnmanagedType.LPStr";
                     break;
                 case "char**":
-                    cstype = "string[]";
-                    marshalAs = "UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr";
+                    cstype = "IntPtr[]";
+                    marshalAs = "UnmanagedType.LPArray, Out";
                     break;
                 case "size_t":
                     cstype = "UIntPtr"; break;

@@ -50,7 +50,7 @@ namespace TestApp.Shared
         private static AboutListener create_my_alljoyn_aboutlistener()
         {
             var result = new AboutListener();
-            result.AboutAnnounced += announced_cb;
+            result.AboutAnnounced += Result_AboutAnnounced;
 //            my_about_listener* result =
 //       (my_about_listener*)malloc(sizeof(my_about_listener));
 //            alljoyn_aboutlistener_callback* callback =
@@ -63,8 +63,19 @@ namespace TestApp.Shared
 
         }
 
-        private static void announced_cb(object sender, EventArgs e)
+        private static void Result_AboutAnnounced(object sender, AboutListener.AboutAnnouncedEventArgs e)
         {
+            var paths = e.ObjectDescription.GetPaths().ToArray();
+            foreach(var path in paths)
+            {
+                Log.WriteLine("Found Path: " + path);
+                var interfaces = e.ObjectDescription.GetInterfaces(path);
+                foreach(var i in interfaces)
+                {
+                    Log.WriteLine("\tFound interface: " + i);
+                }
+            }
+            //e.ObjectDescription.GetSignature();
             Log.WriteLine("About announced");
         }
 

@@ -35,6 +35,9 @@ namespace AllJoynDotNet
             var handle = alljoyn_busattachment_create(busName, allowRemoteMessages.ToQccBool());
             if (handle == IntPtr.Zero)
                 throw new InvalidOperationException("Could not create bus attachment");
+#if DEBUG
+            alljoyn_busattachment_setdaemondebug(handle, "ALL", 7);
+#endif
             return handle;
         }
 

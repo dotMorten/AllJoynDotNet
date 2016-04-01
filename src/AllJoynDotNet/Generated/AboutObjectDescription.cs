@@ -93,23 +93,23 @@ namespace AllJoynDotNet
 		/// number is larger than `numPaths` then only `numPaths` of paths will be
 		/// returned in the `paths` array.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_aboutobjectdescription_getpaths(IntPtr description, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] paths, UInt64 numPaths);
-		// extern AJ_API size_t AJ_CALL alljoyn_aboutobjectdescription_getpaths(alljoyn_aboutobjectdescription description,const char** paths,size_t numPaths);
+        internal static extern UIntPtr alljoyn_aboutobjectdescription_getpaths(IntPtr description, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] paths, UIntPtr numPaths);
+        // extern AJ_API size_t AJ_CALL alljoyn_aboutobjectdescription_getpaths(alljoyn_aboutobjectdescription description,const char** paths,size_t numPaths);
 
-		/// <summary>
-		/// Get a list of interfaces advertised at the given path that are part of
-		/// this AboutObjectDescription.
-		/// </summary>
-		/// <param name="description">the alljoyn_aboutobjectdescription object this call is made for</param>
-		/// <param name="path">the path we want to get a list of interfaces for</param>
-		/// <param name="interfaces">array of interface names</param><!-- out -->
-		/// <param name="numInterfaces">number of interface names</param>
-		/// <returns>The total number of interfaces found in the AboutObjectDescription for
-		/// the specified path.  If this number is larger than `numInterfaces`
-		/// then only `numInterfaces` of interfaces will be returned in the
-		/// `interfaces` array.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_aboutobjectdescription_getinterfaces(IntPtr description, [MarshalAs(UnmanagedType.LPStr)]string path, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] interfaces, UInt64 numInterfaces);
+        /// <summary>
+        /// Get a list of interfaces advertised at the given path that are part of
+        /// this AboutObjectDescription.
+        /// </summary>
+        /// <param name="description">the alljoyn_aboutobjectdescription object this call is made for</param>
+        /// <param name="path">the path we want to get a list of interfaces for</param>
+        /// <param name="interfaces">array of interface names</param><!-- out -->
+        /// <param name="numInterfaces">number of interface names</param>
+        /// <returns>The total number of interfaces found in the AboutObjectDescription for
+        /// the specified path.  If this number is larger than `numInterfaces`
+        /// then only `numInterfaces` of interfaces will be returned in the
+        /// `interfaces` array.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+		internal static extern UIntPtr alljoyn_aboutobjectdescription_getinterfaces(IntPtr description, [MarshalAs(UnmanagedType.LPStr)]string path, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] interfaces, UIntPtr numInterfaces);
 		// extern AJ_API size_t AJ_CALL alljoyn_aboutobjectdescription_getinterfaces(alljoyn_aboutobjectdescription description,const char* path,const char** interfaces,size_t numInterfaces);
 
 		/// <summary>
@@ -125,7 +125,7 @@ namespace AllJoynDotNet
 		/// then only `numPaths` of interfaces will be returned in the `paths`
 		/// array</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UInt64 alljoyn_aboutobjectdescription_getinterfacepaths(IntPtr description, [MarshalAs(UnmanagedType.LPStr)]string interfaceName, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)] out string[] paths, UInt64 numPaths);
+		internal static extern UIntPtr alljoyn_aboutobjectdescription_getinterfacepaths(IntPtr description, [MarshalAs(UnmanagedType.LPStr)]string interfaceName, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] paths, UIntPtr numPaths);
 		// extern AJ_API size_t AJ_CALL alljoyn_aboutobjectdescription_getinterfacepaths(alljoyn_aboutobjectdescription description,const char* interfaceName,const char** paths,size_t numPaths);
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace AllJoynDotNet
 		/// <param name="description">The alljoyn_aboutobjectdescription object this call is made for</param>
 		/// <returns>ER_OK</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_aboutobjectdescription_clear(IntPtr description);
+		internal static extern void alljoyn_aboutobjectdescription_clear(IntPtr description);
 		// extern AJ_API void AJ_CALL alljoyn_aboutobjectdescription_clear(alljoyn_aboutobjectdescription description);
 
 		/// <summary>
