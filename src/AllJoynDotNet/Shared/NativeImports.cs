@@ -28,5 +28,20 @@ namespace AllJoynDotNet
         {
             return flag ? QCC_TRUE : QCC_FALSE;
         }
+        internal static string[] GetStringArrayHelper(Func<IntPtr, IntPtr[], UIntPtr, UIntPtr> method,
+    IntPtr Handle)
+        {
+            UIntPtr result = method(Handle, null, UIntPtr.Zero);
+            IntPtr[] unsafeStrings = new IntPtr[result.ToUInt64()];
+            result = method(Handle, unsafeStrings, result);
+            string[] strings = new string[result.ToUInt32()];
+            for (int i = 0; i < strings.Length; ++i)
+            {
+                strings[i] = Marshal.PtrToStringAnsi(unsafeStrings[i]);
+            }
+            return strings;
+
+        }
+
     }
 }

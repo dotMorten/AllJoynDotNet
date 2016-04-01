@@ -28,6 +28,7 @@ namespace TestApp.Shared
             string[] interfaces = new[] { "INTERFACE_NAME" };
             bus.WhoImplementsInterfaces(interfaces);
             Log.WriteLine("WhoImplements called.");
+            Log.LogBreak();
         }
         public void Stop()
         {
@@ -65,26 +66,35 @@ namespace TestApp.Shared
 
         private static void Result_AboutAnnounced(object sender, AboutListener.AboutAnnouncedEventArgs e)
         {
+            Log.WriteLine("Announce signal discovered");
+            Log.WriteLine($"\tFrom bus :{e.BusName}");
+            Log.WriteLine($"\tAbout version {e.Version}");
+            Log.WriteLine($"\tSessionPort {e.Port}");
+            Log.WriteLine($"\tObjectDescription:");
             var paths = e.ObjectDescription.GetPaths().ToArray();
             foreach(var path in paths)
             {
-                Log.WriteLine("Found Path: " + path);
+                Log.WriteLine($"\t\t{path}");
                 var interfaces = e.ObjectDescription.GetInterfaces(path);
                 foreach(var i in interfaces)
                 {
-                    Log.WriteLine("\tFound interface: " + i);
+                    Log.WriteLine($"\t\t\t" + i);
                 }
             }
-            //e.ObjectDescription.GetSignature();
-            Log.WriteLine("About announced");
+            Log.WriteLine($"\tAboutData:");
+            var fields = e.AboutData.GetFields();
+            foreach (var field in fields)
+            {
+                Log.WriteLine($"\t\t{field}");
+            }
         }
 
-        //        typedef struct my_about_listener_t
-        //        {
-        //            alljoyn_sessionlistener sessionlistener;
-        //            alljoyn_aboutlistener aboutlistener;
-        //        }
-        //        my_about_listener;
+            //        typedef struct my_about_listener_t
+            //        {
+            //            alljoyn_sessionlistener sessionlistener;
+            //            alljoyn_aboutlistener aboutlistener;
+            //        }
+            //        my_about_listener;
 
-    }
+        }
 }

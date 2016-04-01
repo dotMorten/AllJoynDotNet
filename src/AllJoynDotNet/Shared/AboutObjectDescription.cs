@@ -13,27 +13,11 @@ namespace AllJoynDotNet
         }
         public IEnumerable<string> GetPaths()
         {
-            UIntPtr result = alljoyn_aboutobjectdescription_getpaths(Handle, null, UIntPtr.Zero);
-            IntPtr[] unsafePaths = new IntPtr[result.ToUInt64()];
-            result = alljoyn_aboutobjectdescription_getpaths(Handle, unsafePaths, result);
-            string[] paths = new string[result.ToUInt32()];
-            for (int i = 0; i < paths.Length; ++i)
-            {
-                paths[i] = Marshal.PtrToStringAnsi(unsafePaths[i]);
-            }
-            return paths;
+            return AllJoynNative.GetStringArrayHelper(alljoyn_aboutobjectdescription_getpaths, Handle);
         }
         public IEnumerable<string> GetInterfaces(string path)
         {
-            UIntPtr result = alljoyn_aboutobjectdescription_getinterfaces(Handle, path, null, UIntPtr.Zero);
-            IntPtr[] unsafeInterfaces = new IntPtr[result.ToUInt32()];
-            result = alljoyn_aboutobjectdescription_getinterfaces(Handle, path, unsafeInterfaces, result);
-            string[] ifaces = new string[result.ToUInt32()];
-            for (int i = 0; i < ifaces.Length; ++i)
-            {
-                ifaces[i] = Marshal.PtrToStringAnsi(unsafeInterfaces[i]);
-            }
-            return ifaces;
+            return AllJoynNative.GetStringArrayHelper((a, b, c) => { return alljoyn_aboutobjectdescription_getinterfaces(a, path, b, c); }, Handle);
         }
 
         public void Clear()

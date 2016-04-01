@@ -7,6 +7,10 @@ namespace TestApp.Shared
 {
     internal static class Log
     {
+        public static void LogBreak()
+        {
+            Log.WriteLine("*********************************************************************************");
+        }
         public static void WriteLine(string message)
         {
             Debug.WriteLine("*** LOG *** " + message);
