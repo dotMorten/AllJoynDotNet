@@ -40,12 +40,28 @@ namespace AllJoynDotNet
 #endif
             return handle;
         }
+        private static IntPtr CreateConcurrencyHandle(string busName, bool allowRemoteMessages, UInt32 concurrency)
+        {
+            var handle = alljoyn_busattachment_create_concurrency(busName, allowRemoteMessages.ToQccBool(), concurrency);
+            if (handle == IntPtr.Zero)
+                throw new InvalidOperationException("Could not create bus attachment");
+#if DEBUG
+            alljoyn_busattachment_setdaemondebug(handle, "ALL", 7);
+#endif
+            return handle;
+        }
 
         public BusAttachment() : this(GenerateBusName(), true)
         {
         }
 
         public BusAttachment(string busName, bool allowRemoteMessages) : base(CreateHandle(busName, allowRemoteMessages))
+        {
+            _busName = busName;
+            _allowRemoteMessages = allowRemoteMessages;
+            _sBusAttachmentMap.Add(Handle, new WeakReference<BusAttachment>(this));
+        }
+        public BusAttachment(string busName, bool allowRemoteMessages, UInt32 concurrency) : base(CreateConcurrencyHandle(busName, allowRemoteMessages, concurrency))
         {
             _busName = busName;
             _allowRemoteMessages = allowRemoteMessages;
@@ -94,9 +110,18 @@ namespace AllJoynDotNet
 
         public void Join()
         {
-            var result = alljoyn_busattachment_join(Handle);
-            if (result != 0)
-                throw new AllJoynException(result); //, "Failed to join bus attachment.");
+            var status = alljoyn_busattachment_join(Handle);
+            if (status != 0)
+                throw new AllJoynException(status); //, "Failed to join bus attachment.");
+        }
+
+        public void JoinSession(string sessionHost, UInt16 sessionPort)
+        {
+            //TODO: Missing parameters
+            var status = alljoyn_busattachment_joinsession(Handle, sessionHost, sessionPort, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+            if (status != 0)
+                throw new AllJoynException(status);
+
         }
 
         public void Connect(string connectSpec = null)
@@ -138,15 +163,50 @@ namespace AllJoynDotNet
             }
         }
 
+        public UInt32 Concurrency
+        {
+            get
+            {
+                return alljoyn_busattachment_getconcurrency(Handle);
+            }
+        }
+
+        public string ConnectionSpec
+        {
+            get
+            {
+                IntPtr str = alljoyn_busattachment_getconnectspec(Handle);
+                return Marshal.PtrToStringAnsi(str);
+            }
+        }
+
+        public void EnableConcurrentCallbacks()
+        {
+            alljoyn_busattachment_enableconcurrentcallbacks(Handle);
+        }
         #endregion
 
         #region Interfaces
 
+        public void CreateInterface(string name, InterfaceDescription iface)
+        {
+            var status = alljoyn_busattachment_createinterface(Handle, name, iface.Handle);
+            if (status != 0)
+                throw new AllJoynException(status, "Failed to create interface");
+        }
+
+        public void CreateInterfaceSecure(string name, InterfaceDescription iface, InterfaceDescription.SecurityPolicy policy)
+        {
+            var status = alljoyn_busattachment_createinterface_secure(Handle, name, iface.Handle, (alljoyn_interfacedescription_securitypolicy)policy);
+            if (status != 0)
+                throw new AllJoynException(status, "Failed to create interface");
+        }
+
         public void CreateInterfacesFromXml(string xml)
         {
-            var result = alljoyn_busattachment_createinterfacesfromxml(Handle, xml);
-            if (result != 0)
-                throw new AllJoynException(result, "Failed to create interface");
+            var status = alljoyn_busattachment_createinterfacesfromxml(Handle, xml);
+            if (status != 0)
+                throw new AllJoynException(status, "Failed to create interface");
         }
 
         public InterfaceDescription GetInterface(string name)
@@ -177,18 +237,96 @@ namespace AllJoynDotNet
 
         public void WhoImplementsInterfaces(string[] interfaces)
         {
-            var result = alljoyn_busattachment_whoimplements_interfaces(Handle, interfaces, (UIntPtr)interfaces.Length);
-            if (result > 0)
-                throw new AllJoynException(result);
+            var status = alljoyn_busattachment_whoimplements_interfaces(Handle, interfaces, (UIntPtr)interfaces.Length);
+            if (status > 0)
+                throw new AllJoynException(status);
         }
 
         #endregion
+        public void RegisterBusObject(BusObject busObject)
+        {
+            var status = alljoyn_busattachment_registerbusobject(Handle, busObject.Handle);
+        }
+        public void UnregisterBusObject(BusObject busObject)
+        {
+            alljoyn_busattachment_unregisterbusobject(Handle, busObject.Handle);
+        }
+
+        public void RegisterBusObjectSecure(BusObject busObject)
+        {
+            var status = alljoyn_busattachment_registerbusobject_secure(Handle, busObject.Handle);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void RequestName(string requestedName, uint flags)
+        {
+            var status = alljoyn_busattachment_requestname(Handle, requestedName, flags);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        //TODO: These listeners should probable just be event handlers instead
+        public void RegisterBusListener(BusListener listener)
+        {
+            alljoyn_busattachment_registerbuslistener(Handle, listener.Handle);
+        }
+        public void UnregisterBusListener(BusListener listener)
+        {
+            alljoyn_busattachment_unregisterbuslistener(Handle, listener.Handle);
+        }
 
         public void RegisterAboutListener(AboutListener listener)
         {
             alljoyn_busattachment_registeraboutlistener(Handle, listener.Handle);
         }
-        
+
+        public void UnregisterAboutListener(AboutListener listener)
+        {
+            alljoyn_busattachment_unregisteraboutlistener(Handle, listener.Handle);
+        }
+
+        public void FindAdvertisedName(string namePrefix)
+        {
+            var status = alljoyn_busattachment_findadvertisedname(Handle, namePrefix);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void CancelFindAdvertisedName(string namePrefix)
+        {
+            var status = alljoyn_busattachment_cancelfindadvertisedname(Handle, namePrefix);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void FindAdvertisedNameByTransport(string namePrefix, ushort transports)
+        {
+            var status = alljoyn_busattachment_findadvertisednamebytransport(Handle, namePrefix, transports);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void CancelFindAdvertisedNameByTransport(string namePrefix, ushort transports)
+        {
+            var status = alljoyn_busattachment_cancelfindadvertisednamebytransport(Handle, namePrefix, transports);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void AdvertiseName(string namePrefix, ushort transports)
+        {
+            var status = alljoyn_busattachment_advertisename(Handle, namePrefix, transports);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
+
+        public void CancelAdvertiseName(string namePrefix, ushort transports)
+        {
+            var status = alljoyn_busattachment_canceladvertisename(Handle, namePrefix, transports);
+            if (status > 0)
+                throw new AllJoynException(status);
+        }
 
         private static string GenerateBusName()
         {
