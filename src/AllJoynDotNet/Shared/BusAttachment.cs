@@ -131,7 +131,7 @@ namespace AllJoynDotNet
                 throw new AllJoynException(result); //, "Failed to connect bus attachment.");
             Debug.WriteLine($"BusAttachment connect succeeded. Bus name = {_busName}");
         }
-        
+
         public void Disconnect()
         {
             var result = alljoyn_busattachment_disconnect(Handle, "");
@@ -217,7 +217,7 @@ namespace AllJoynDotNet
 
         public InterfaceDescription[] GetInterfaces()
         {
-            ulong numIfaces = (ulong)alljoyn_busattachment_getinterfaces(Handle, IntPtr.Zero,  UIntPtr.Zero);
+            ulong numIfaces = (ulong)alljoyn_busattachment_getinterfaces(Handle, IntPtr.Zero, UIntPtr.Zero);
             IntPtr[] ifaces = new IntPtr[(int)numIfaces];
             GCHandle gch = GCHandle.Alloc(ifaces, GCHandleType.Pinned);
             ulong numIfacesFilled = (ulong)alljoyn_busattachment_getinterfaces(Handle,
@@ -276,12 +276,38 @@ namespace AllJoynDotNet
             alljoyn_busattachment_unregisterbuslistener(Handle, listener.Handle);
         }
 
-        public void RegisterAboutListener(AboutListener listener)
+        private AboutListener _about_listener;
+        private EventHandler<AboutListener.AboutAnnouncedEventArgs> _AboutAnnounced;
+        public event EventHandler<AboutListener.AboutAnnouncedEventArgs> AboutAnnounced
+        {
+            add
+            {
+                if(_AboutAnnounced == null)
+                {
+                    _about_listener = new AboutListener();
+                    _about_listener.AboutAnnounced += (s, e) => _AboutAnnounced?.Invoke(this, e);
+                    RegisterAboutListener(_about_listener);
+                }
+                _AboutAnnounced += value;
+            }
+            remove
+            {
+                _AboutAnnounced -= value;
+                if(_AboutAnnounced == null)
+                {
+                    UnregisterAboutListener(_about_listener);
+                    _about_listener.Dispose();
+                    _about_listener = null;
+                }
+            }
+        }
+
+        private void RegisterAboutListener(AboutListener listener)
         {
             alljoyn_busattachment_registeraboutlistener(Handle, listener.Handle);
         }
 
-        public void UnregisterAboutListener(AboutListener listener)
+        private void UnregisterAboutListener(AboutListener listener)
         {
             alljoyn_busattachment_unregisteraboutlistener(Handle, listener.Handle);
         }

@@ -11,7 +11,7 @@ namespace AllJoynDotNet
         {
             this.callback = callback;
         }
-        public AboutListener() : base(IntPtr.Zero)
+        internal AboutListener() : base(IntPtr.Zero)
         {
             callback = new alljoyn_aboutlistener_callback()
             {
