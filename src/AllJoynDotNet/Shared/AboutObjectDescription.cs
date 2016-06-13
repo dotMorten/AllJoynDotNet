@@ -6,6 +6,12 @@ namespace AllJoynDotNet
 {
     public partial class AboutObjectDescription : AllJoynWrapper
     {
+        internal AboutObjectDescription(MsgArg arg) : base(AboutObjectDescription.alljoyn_aboutobjectdescription_create())
+        {
+            var status = AboutObjectDescription.alljoyn_aboutobjectdescription_createfrommsgarg(Handle, arg.Handle);
+            if (status != QStatus.ER_OK) throw new AllJoynException(status);
+        }
+
         protected override void Dispose(bool disposing)
         {
             alljoyn_aboutobjectdescription_destroy(Handle);

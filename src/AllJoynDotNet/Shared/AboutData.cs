@@ -5,6 +5,13 @@ namespace AllJoynDotNet
 {
     public partial class AboutData : AllJoynWrapper
     {
+        internal AboutData(MsgArg arg, string defaultLanguage) : base(AboutData.alljoyn_aboutdata_create(defaultLanguage))
+        {
+            var status = AboutData.alljoyn_aboutdata_createfrommsgarg(Handle, arg.Handle, null);
+            if (status != QStatus.ER_OK)
+                throw new AllJoynException(status);
+        }
+
         protected override void Dispose(bool disposing)
         {
             alljoyn_aboutdata_destroy(Handle);
