@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+  <ItemGroup>
+    <EmbeddedNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\Libs\MonoAndroid10\armeabi-v7a-debug\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Debug' ">
+      <Link>libs\armeabi-v7a\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\Libs\MonoAndroid10\x86-debug\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Debug' ">
+      <Link>libs\x86\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\Libs\MonoAndroid10\armeabi-v7a\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Release' ">
+      <Link>libs\armeabi-v7a\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="$(MSBuildThisFileDirectory)..\..\Libs\MonoAndroid10\x86\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Release' ">
+      <Link>libs\x86\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+  </ItemGroup>
+
+</Project>

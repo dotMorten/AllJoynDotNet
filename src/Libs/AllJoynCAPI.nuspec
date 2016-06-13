@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="3.0">
+    <id>AllJoynCAPI</id>
+    <version>15.9.0</version>
+    <title>AllJoyn C-API</title>
+    <authors>AllSeen Alliance.</authors>
+    <owners>AllSeen Alliance.</owners>
+    <licenseUrl>https://allseenalliance.org/license</licenseUrl>
+    <projectUrl>https://allseenalliance.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>AllJoyn is a device-to-device communication protocol which enables mobile devices to support peer-to-peer applications such as multi-player gaming and social networking.</description>
+    <summary>ArcGIS Runtime SDK for .NET adds maps, 3D scenes, and powerful spatial capabilities to your UWP apps.</summary>
+    <copyright>Copyright © AllSeen Alliance.</copyright>
+    <tags>AllJoyn IoT</tags>
+  </metadata>
+</package>
