@@ -202,7 +202,7 @@ namespace AllJoynDotNet
 		/// <param name="defaultLanguage">a pointer to the default language tag</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getdefaultlanguage(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] defaultLanguage);
+		internal static extern QStatus alljoyn_aboutdata_getdefaultlanguage(IntPtr data, out IntPtr defaultLanguage);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdefaultlanguage(alljoyn_aboutdata data,char** defaultLanguage);
 
 		/// <summary>
@@ -408,7 +408,7 @@ namespace AllJoynDotNet
 		/// <param name="num">the size of the languageTags array.</param>
 		/// <returns>The number of languageTags returned or the total number oflanguage tags if languageTags is NULL.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UIntPtr alljoyn_aboutdata_getsupportedlanguages(IntPtr data, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]string[] languageTags, UIntPtr num);
+		internal static extern UIntPtr alljoyn_aboutdata_getsupportedlanguages(IntPtr data, IntPtr[] languageTags, UIntPtr num);
 		// extern AJ_API size_t AJ_CALL alljoyn_aboutdata_getsupportedlanguages(alljoyn_aboutdata data,const char** languageTags,size_t num);
 
 		/// <summary>
@@ -636,7 +636,7 @@ namespace AllJoynDotNet
 		/// <param name="language">the IETF language tag specified by RFC 5646If language is NULL the field for the default language will be returned.</param>
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
+		internal static extern QStatus alljoyn_aboutdata_getfield(IntPtr data, [MarshalAs(UnmanagedType.LPStr)]string name, out IntPtr value, [MarshalAs(UnmanagedType.LPStr)]string language);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getfield(alljoyn_aboutdata data,const char* name,alljoyn_msgarg* value,const char* language);
 
 		/// <summary>

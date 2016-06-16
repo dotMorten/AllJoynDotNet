@@ -51,9 +51,11 @@ namespace AllJoynDotNet
             return handle;
         }
 
-        public BusAttachment() : this(GenerateBusName(), true)
-        {
-        }
+// #if !WINDOWS_UWP
+//         public BusAttachment() : this(GenerateBusName(), true)
+//         {
+//         }
+// #endif
 
         public BusAttachment(string busName, bool allowRemoteMessages) : base(CreateHandle(busName, allowRemoteMessages))
         {
@@ -108,6 +110,11 @@ namespace AllJoynDotNet
                 throw new AllJoynException(result, "Failed to stop bus attachment.");
         }
 
+        public void EnableConcurrentCallbacks()
+        {
+            alljoyn_busattachment_enableconcurrentcallbacks(Handle);
+        }
+
         public void Join()
         {
             var status = alljoyn_busattachment_join(Handle);
@@ -115,13 +122,14 @@ namespace AllJoynDotNet
                 throw new AllJoynException(status); //, "Failed to join bus attachment.");
         }
 
-        public void JoinSession(string sessionHost, UInt16 sessionPort)
+        public UInt32 JoinSession(string sessionHost, UInt16 sessionPort, SessionListener sessionListener, Session options)
         {
             //TODO: Missing parameters
-            var status = alljoyn_busattachment_joinsession(Handle, sessionHost, sessionPort, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+            UInt32 sessionId;
+            var status = alljoyn_busattachment_joinsession(Handle, sessionHost, sessionPort, sessionListener?.Handle ?? IntPtr.Zero, out sessionId, options.Handle);
             if (status != 0)
                 throw new AllJoynException(status);
-
+            return sessionId;
         }
 
         public void Connect(string connectSpec = null)
@@ -180,10 +188,6 @@ namespace AllJoynDotNet
             }
         }
 
-        public void EnableConcurrentCallbacks()
-        {
-            alljoyn_busattachment_enableconcurrentcallbacks(Handle);
-        }
         #endregion
 
         #region Interfaces
@@ -195,7 +199,7 @@ namespace AllJoynDotNet
                 throw new AllJoynException(status, "Failed to create interface");
         }
 
-        public void CreateInterfaceSecure(string name, InterfaceDescription iface, InterfaceDescription.SecurityPolicy policy)
+        public void CreateInterfaceSecure(string name, InterfaceDescription iface, SecurityPolicy policy)
         {
             var status = alljoyn_busattachment_createinterface_secure(Handle, name, iface.Handle, (alljoyn_interfacedescription_securitypolicy)policy);
             if (status != 0)

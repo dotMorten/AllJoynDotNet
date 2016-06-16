@@ -30,5 +30,24 @@ namespace AllJoynDotNet
         {
             alljoyn_msgarg_clear(Handle);
         }
+        public object Value
+        {
+            get
+            {
+                return TypeConversionHelpers.GetValueFromVariant(this, this.Signature);
+            }
+        }
+
+        
+        public string Signature
+        {
+            get
+            {
+                UIntPtr size = (UIntPtr)16;
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(256);
+                var resultLength = (UInt64)alljoyn_msgarg_signature(Handle, sb, size + 1);
+                return sb.ToString();
+            }
+        }
     }
 }

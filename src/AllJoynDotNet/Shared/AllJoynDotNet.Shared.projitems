@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AboutListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AboutObj.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AboutObjectDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AboutProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AllJoynException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusAttachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodeLookup.cs" />
@@ -21,7 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MsgArg.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NativeImports.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Session.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SessionListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TypeConversionHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)version.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -58,293 +58,296 @@ namespace AllJoynDotNet
 		
 		
 		}
-		// typedef enum {
-		// ALLJOYN_INVALID          =  0,     ///< AllJoyn INVALID typeId
-		// ALLJOYN_ARRAY            = 'a',    ///< AllJoyn array container type
-		// ALLJOYN_BOOLEAN          = 'b',    ///< AllJoyn boolean basic type, @c 0 is @c FALSE and @c 1 is @c TRUE - Everything else is invalid
-		// ALLJOYN_DOUBLE           = 'd',    ///< AllJoyn IEEE 754 double basic type
-		// ALLJOYN_DICT_ENTRY       = 'e',    ///< AllJoyn dictionary or map container type - an array of key-value pairs
-		// ALLJOYN_SIGNATURE        = 'g',    ///< AllJoyn signature basic type
-		// ALLJOYN_HANDLE           = 'h',    ///< AllJoyn socket handle basic type
-		// ALLJOYN_INT32            = 'i',    ///< AllJoyn 32-bit signed integer basic type
-		// ALLJOYN_INT16            = 'n',    ///< AllJoyn 16-bit signed integer basic type
-		// ALLJOYN_OBJECT_PATH      = 'o',    ///< AllJoyn Name of an AllJoyn object instance basic type
-		// ALLJOYN_UINT16           = 'q',    ///< AllJoyn 16-bit unsigned integer basic type
-		// ALLJOYN_STRUCT           = 'r',    ///< AllJoyn struct container type
-		// ALLJOYN_STRING           = 's',    ///< AllJoyn UTF-8 NULL terminated string basic type
-		// ALLJOYN_UINT64           = 't',    ///< AllJoyn 64-bit unsigned integer basic type
-		// ALLJOYN_UINT32           = 'u',    ///< AllJoyn 32-bit unsigned integer basic type
-		// ALLJOYN_VARIANT          = 'v',    ///< AllJoyn variant container type
-		// ALLJOYN_INT64            = 'x',    ///< AllJoyn 64-bit signed integer basic type
-		// ALLJOYN_BYTE             = 'y',    ///< AllJoyn 8-bit unsigned integer basic type
-		// 
-		// ALLJOYN_STRUCT_OPEN      = '(', /**< Never actually used as a typeId: specified as ALLJOYN_STRUCT */
-		// ALLJOYN_STRUCT_CLOSE     = ')', /**< Never actually used as a typeId: specified as ALLJOYN_STRUCT */
-		// ALLJOYN_DICT_ENTRY_OPEN  = '{', /**< Never actually used as a typeId: specified as ALLJOYN_DICT_ENTRY */
-		// ALLJOYN_DICT_ENTRY_CLOSE = '}', /**< Never actually used as a typeId: specified as ALLJOYN_DICT_ENTRY */
-		// 
-		// ALLJOYN_BOOLEAN_ARRAY    = ('b' << 8) | 'a',   ///< AllJoyn array of booleans
-		// ALLJOYN_DOUBLE_ARRAY     = ('d' << 8) | 'a',   ///< AllJoyn array of IEEE 754 doubles
-		// ALLJOYN_INT32_ARRAY      = ('i' << 8) | 'a',   ///< AllJoyn array of 32-bit signed integers
-		// ALLJOYN_INT16_ARRAY      = ('n' << 8) | 'a',   ///< AllJoyn array of 16-bit signed integers
-		// ALLJOYN_UINT16_ARRAY     = ('q' << 8) | 'a',   ///< AllJoyn array of 16-bit unsigned integers
-		// ALLJOYN_UINT64_ARRAY     = ('t' << 8) | 'a',   ///< AllJoyn array of 64-bit unsigned integers
-		// ALLJOYN_UINT32_ARRAY     = ('u' << 8) | 'a',   ///< AllJoyn array of 32-bit unsigned integers
-		// ALLJOYN_INT64_ARRAY      = ('x' << 8) | 'a',   ///< AllJoyn array of 64-bit signed integers
-		// ALLJOYN_BYTE_ARRAY       = ('y' << 8) | 'a',   ///< AllJoyn array of 8-bit unsigned integers
-		// 
-		// ALLJOYN_WILDCARD         = '*'     ///< This never appears in a signature but is used for matching arbitrary message args
-		// 
-		// } alljoyn_typeid;
-		// 
+    // typedef enum {
+    // ALLJOYN_INVALID          =  0,     ///< AllJoyn INVALID typeId
+    // ALLJOYN_ARRAY            = 'a',    ///< AllJoyn array container type
+    // ALLJOYN_BOOLEAN          = 'b',    ///< AllJoyn boolean basic type, @c 0 is @c FALSE and @c 1 is @c TRUE - Everything else is invalid
+    // ALLJOYN_DOUBLE           = 'd',    ///< AllJoyn IEEE 754 double basic type
+    // ALLJOYN_DICT_ENTRY       = 'e',    ///< AllJoyn dictionary or map container type - an array of key-value pairs
+    // ALLJOYN_SIGNATURE        = 'g',    ///< AllJoyn signature basic type
+    // ALLJOYN_HANDLE           = 'h',    ///< AllJoyn socket handle basic type
+    // ALLJOYN_INT32            = 'i',    ///< AllJoyn 32-bit signed integer basic type
+    // ALLJOYN_INT16            = 'n',    ///< AllJoyn 16-bit signed integer basic type
+    // ALLJOYN_OBJECT_PATH      = 'o',    ///< AllJoyn Name of an AllJoyn object instance basic type
+    // ALLJOYN_UINT16           = 'q',    ///< AllJoyn 16-bit unsigned integer basic type
+    // ALLJOYN_STRUCT           = 'r',    ///< AllJoyn struct container type
+    // ALLJOYN_STRING           = 's',    ///< AllJoyn UTF-8 NULL terminated string basic type
+    // ALLJOYN_UINT64           = 't',    ///< AllJoyn 64-bit unsigned integer basic type
+    // ALLJOYN_UINT32           = 'u',    ///< AllJoyn 32-bit unsigned integer basic type
+    // ALLJOYN_VARIANT          = 'v',    ///< AllJoyn variant container type
+    // ALLJOYN_INT64            = 'x',    ///< AllJoyn 64-bit signed integer basic type
+    // ALLJOYN_BYTE             = 'y',    ///< AllJoyn 8-bit unsigned integer basic type
+    // 
+    // ALLJOYN_STRUCT_OPEN      = '(', /**< Never actually used as a typeId: specified as ALLJOYN_STRUCT */
+    // ALLJOYN_STRUCT_CLOSE     = ')', /**< Never actually used as a typeId: specified as ALLJOYN_STRUCT */
+    // ALLJOYN_DICT_ENTRY_OPEN  = '{', /**< Never actually used as a typeId: specified as ALLJOYN_DICT_ENTRY */
+    // ALLJOYN_DICT_ENTRY_CLOSE = '}', /**< Never actually used as a typeId: specified as ALLJOYN_DICT_ENTRY */
+    // 
+    // ALLJOYN_BOOLEAN_ARRAY    = ('b' << 8) | 'a',   ///< AllJoyn array of booleans
+    // ALLJOYN_DOUBLE_ARRAY     = ('d' << 8) | 'a',   ///< AllJoyn array of IEEE 754 doubles
+    // ALLJOYN_INT32_ARRAY      = ('i' << 8) | 'a',   ///< AllJoyn array of 32-bit signed integers
+    // ALLJOYN_INT16_ARRAY      = ('n' << 8) | 'a',   ///< AllJoyn array of 16-bit signed integers
+    // ALLJOYN_UINT16_ARRAY     = ('q' << 8) | 'a',   ///< AllJoyn array of 16-bit unsigned integers
+    // ALLJOYN_UINT64_ARRAY     = ('t' << 8) | 'a',   ///< AllJoyn array of 64-bit unsigned integers
+    // ALLJOYN_UINT32_ARRAY     = ('u' << 8) | 'a',   ///< AllJoyn array of 32-bit unsigned integers
+    // ALLJOYN_INT64_ARRAY      = ('x' << 8) | 'a',   ///< AllJoyn array of 64-bit signed integers
+    // ALLJOYN_BYTE_ARRAY       = ('y' << 8) | 'a',   ///< AllJoyn array of 8-bit unsigned integers
+    // 
+    // ALLJOYN_WILDCARD         = '*'     ///< This never appears in a signature but is used for matching arbitrary message args
+    // 
+    // } alljoyn_typeid;
+    // 
 
-//
+    //
     public partial class MsgArg : AllJoynWrapper
     {
         internal MsgArg(IntPtr handle) : base(handle) { }
-		/// <summary>
-		/// Create a new message argument.
-		/// calling alljoyn_msgarg_create() is the same as calling
-		/// alljoyn_msgarg_array_create(1).
-		/// </summary>
-		/// <returns>the created message argument</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_msgarg_create();
-		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_create();
+        /// <summary>
+        /// Create a new message argument.
+        /// calling alljoyn_msgarg_create() is the same as calling
+        /// alljoyn_msgarg_array_create(1).
+        /// </summary>
+        /// <returns>the created message argument</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern IntPtr alljoyn_msgarg_create();
+        // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_create();
 
-		/// <summary>
-		/// Build a message argument that has its value already set. If the setting the
-		/// message argument value fails for any reason the message argument type will be
-		/// set to #ALLJOYN_INVALID. See the description of the #alljoyn_msgarg_set() function
-		/// for information about the signature and parameters. For initializing complex
-		/// values it is recommended to use the alljoyn_msgarg_create and alljoyn_msgarg_set
-		/// functions so the success of setting the value can be explicitly checked.
-		/// </summary>
-		/// <param name="signature">The signature for alljoyn_msgarg value.</param>
-		/// <param name="...">One or more values to initialize the alljoyn_msgarg.</param>
-		/// <returns>the created alljoyn_msgarg</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_msgarg_create_and_set([MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
-		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_create_and_set(const char* signature, ...);
+        /// <summary>
+        /// Build a message argument that has its value already set. If the setting the
+        /// message argument value fails for any reason the message argument type will be
+        /// set to #ALLJOYN_INVALID. See the description of the #alljoyn_msgarg_set() function
+        /// for information about the signature and parameters. For initializing complex
+        /// values it is recommended to use the alljoyn_msgarg_create and alljoyn_msgarg_set
+        /// functions so the success of setting the value can be explicitly checked.
+        /// </summary>
+        /// <param name="signature">The signature for alljoyn_msgarg value.</param>
+        /// <param name="...">One or more values to initialize the alljoyn_msgarg.</param>
+        /// <returns>the created alljoyn_msgarg</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern IntPtr alljoyn_msgarg_create_and_set([MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_create_and_set(const char* signature, ...);
 
-		/// <summary>
-		/// Destroy a message argument.
-		/// </summary>
-		/// <param name="arg">The message argument to destroy.</param>
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern void alljoyn_msgarg_destroy(IntPtr arg);
-		// extern AJ_API void AJ_CALL alljoyn_msgarg_destroy(alljoyn_msgarg arg);
+        /// <summary>
+        /// Destroy a message argument.
+        /// </summary>
+        /// <param name="arg">The message argument to destroy.</param>
+        /// 
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern void alljoyn_msgarg_destroy(IntPtr arg);
+        // extern AJ_API void AJ_CALL alljoyn_msgarg_destroy(alljoyn_msgarg arg);
 
-		/// <summary>
-		/// Create an array of message arguments
-		/// </summary>
-		/// <remarks>
-		/// <para>This returns and alljoyn_msgarg however the individual array elements can only
-		/// be accessed using alljoyn_msgarg_array_element() function.
-		/// </para>
-		/// <para>the alljoyn_msgarg returned can be used in any functions that states says
-		/// alljoyn_msgarg_array_*.  and alljoyn_msgarg created using alljoyn_msgarg_create()
-		/// is an array of message arguments with size of 1.
-		/// </para>
-		/// <para>If the function does not specifically say it is for an array it is assumed that
-		/// the message argument was created using alljoyn_msgarg_create() and will be treated
-		/// like an array with only one element.
-		/// </para>
-		/// <para>For example the following code would only copy the first msgarg in the array.
-		/// An alljoyn_msgarg of the string "hello". Not both array elements.
-		/// </para>
-		/// </remarks>
-		/// <param name="size">the size of the array of alljoyn_msgargs</param>
-		/// <returns>the created array of message arguments</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_msgarg_array_create(UIntPtr size);
-		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_array_create(size_t size);
+        /// <summary>
+        /// Create an array of message arguments
+        /// </summary>
+        /// <remarks>
+        /// <para>This returns and alljoyn_msgarg however the individual array elements can only
+        /// be accessed using alljoyn_msgarg_array_element() function.
+        /// </para>
+        /// <para>the alljoyn_msgarg returned can be used in any functions that states says
+        /// alljoyn_msgarg_array_*.  and alljoyn_msgarg created using alljoyn_msgarg_create()
+        /// is an array of message arguments with size of 1.
+        /// </para>
+        /// <para>If the function does not specifically say it is for an array it is assumed that
+        /// the message argument was created using alljoyn_msgarg_create() and will be treated
+        /// like an array with only one element.
+        /// </para>
+        /// <para>For example the following code would only copy the first msgarg in the array.
+        /// An alljoyn_msgarg of the string "hello". Not both array elements.
+        /// </para>
+        /// </remarks>
+        /// <param name="size">the size of the array of alljoyn_msgargs</param>
+        /// <returns>the created array of message arguments</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern IntPtr alljoyn_msgarg_array_create(UIntPtr size);
+        // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_array_create(size_t size);
 
-		/// <summary>
-		/// when working with an array of message arguments this will return the nth item
-		/// in the array.
-		/// </summary>
-		/// <param name="arg">the alljoyn_msgarg that contains an array of msgargs</param>
-		/// <param name="index">the index number of the element we wish to access.</param>
-		/// <returns>the individual alljoyn_msgarg specified by the index</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_msgarg_array_element(IntPtr arg, UIntPtr index);
-		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_array_element(alljoyn_msgarg arg, size_t index);
+        /// <summary>
+        /// when working with an array of message arguments this will return the nth item
+        /// in the array.
+        /// </summary>
+        /// <param name="arg">the alljoyn_msgarg that contains an array of msgargs</param>
+        /// <param name="index">the index number of the element we wish to access.</param>
+        /// <returns>the individual alljoyn_msgarg specified by the index</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern IntPtr alljoyn_msgarg_array_element(IntPtr arg, UIntPtr index);
+        // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_array_element(alljoyn_msgarg arg, size_t index);
 
-		/// <summary>
-		/// Set value of a message arg from a signature and a list of values. Note that any values or
-		/// alljoyn_msgarg pointers passed in must remain valid until this alljoyn_msgarg is freed using
-		/// alljoyn_msgarg_delete.
-		/// </summary>
-		/// <remarks>
-		/// <para>- @c 'a'  The array length followed by:
-		/// - If the element type is a basic type a pointer to an array of values of that type.
-		/// - If the element type is string a pointer to array of const char*, if array length is
-		/// non-zero, and the char* pointer is NULL, the NULL must be followed by a pointer to
-		/// an array of const qcc::String.
-		/// - If the element type is an @ref ALLJOYN_ARRAY "ARRAY", @ref ALLJOYN_STRUCT "STRUCT",
-		/// </para>
-		/// </remarks>
-		/// <param name="arg">The alljoyn_msgarg being set</param>
-		/// <param name="signature">The signature for alljoyn_msgarg value</param>
-		/// <param name="...">One or more values to initialize the alljoyn_msgarg.</param>
-		/// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
-		/// - An error status otherwise</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
-		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set(alljoyn_msgarg arg, const char* signature, ...);
+        /// <summary>
+        /// Set value of a message arg from a signature and a list of values. Note that any values or
+        /// alljoyn_msgarg pointers passed in must remain valid until this alljoyn_msgarg is freed using
+        /// alljoyn_msgarg_delete.
+        /// </summary>
+        /// <remarks>
+        /// <para>- @c 'a'  The array length followed by:
+        /// - If the element type is a basic type a pointer to an array of values of that type.
+        /// - If the element type is string a pointer to array of const char*, if array length is
+        /// non-zero, and the char* pointer is NULL, the NULL must be followed by a pointer to
+        /// an array of const qcc::String.
+        /// - If the element type is an @ref ALLJOYN_ARRAY "ARRAY", @ref ALLJOYN_STRUCT "STRUCT",
+        /// </para>
+        /// </remarks>
+        /// <param name="arg">The alljoyn_msgarg being set</param>
+        /// <param name="signature">The signature for alljoyn_msgarg value</param>
+        /// <param name="...">One or more values to initialize the alljoyn_msgarg.</param>
+        /// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
+        /// - An error status otherwise</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern QStatus alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        // extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set(alljoyn_msgarg arg, const char* signature, ...);
 
-		/// <summary>
-		/// Matches a signature to the alljoyn_msgarg and if the signature matches unpacks the component
-		/// values of an alljoyn_msgarg. Note that the values returned are references into the
-		/// alljoyn_msgarg itself so unless copied will become invalid if the alljoyn_msgarg is freed or
-		/// goes out of scope.  This function resolves through variants, so if the alljoyn_msgarg is a
-		/// variant that references a 32 bit integer it can be unpacked directly into a 32 bit integer
-		/// pointer.
-		/// </summary>
-		/// <remarks>
-		/// <para>- @c 'a'  A pointer to a length of type size_t that returns the number of elements in the array followed by:
-		/// - If the element type is a scalar type a pointer to a pointer of the correct type for the values.
-		/// - Otherwise a pointer to a pointer to an alljoyn_msgarg.
-		/// </para>
-		/// <para>- @c 'b'  A pointer to a bool
-		/// - @c 'd'  A pointer to a double (64 bits)
-		/// - @c 'g'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
-		/// - @c 'h'  A pointer to a qcc::SocketFd
-		/// - @c 'i'  A pointer to a uint32_t
-		/// - @c 'n'  A pointer to an int16_t
-		/// - @c 'o'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
-		/// - @c 'q'  A pointer to a uint16_t
-		/// - @c 's'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
-		/// - @c 't'  A pointer to a uint64_t
-		/// - @c 'u'  A pointer to a uint32_t
-		/// - @c 'v'  A pointer to a pointer to an alljoyn_msgarg, matches to a variant but returns a pointer to
-		/// the alljoyn_msgarg of the underlying real type.
-		/// - @c 'x'  A pointer to an int64_t
-		/// - @c 'y'  A pointer to a uint8_t
-		/// </para>
-		/// <para>- @c '(' and @c ')'  A list of pointers as required for each of the struct members.
-		/// - @c '{' and @c '}'  Pointers as required for the key and value members.
-		/// </para>
-		/// <para>- @c '*' A pointer to a pointer to an alljoyn_msgarg. This matches any value type.
-		/// </para>
-		/// <para>Examples:
-		/// </para>
-		/// <para>A struct with and uint32 and two string elements.
-		/// </para>
-		/// </remarks>
-		/// <param name="arg">The alljoyn_msgarg we are reading from</param>
-		/// <param name="signature">The signature for alljoyn_msgarg value</param>
-		/// <param name="...">Pointers to return the unpacked values.</param>
-		/// <returns>- #ER_OK if the signature matched and alljoyn_msgarg was successfully unpacked.
-		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
-		/// - An error status otherwise</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_msgarg_get(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
-		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get(alljoyn_msgarg arg, const char* signature, ...);
+        /// <summary>
+        /// Matches a signature to the alljoyn_msgarg and if the signature matches unpacks the component
+        /// values of an alljoyn_msgarg. Note that the values returned are references into the
+        /// alljoyn_msgarg itself so unless copied will become invalid if the alljoyn_msgarg is freed or
+        /// goes out of scope.  This function resolves through variants, so if the alljoyn_msgarg is a
+        /// variant that references a 32 bit integer it can be unpacked directly into a 32 bit integer
+        /// pointer.
+        /// </summary>
+        /// <remarks>
+        /// <para>- @c 'a'  A pointer to a length of type size_t that returns the number of elements in the array followed by:
+        /// - If the element type is a scalar type a pointer to a pointer of the correct type for the values.
+        /// - Otherwise a pointer to a pointer to an alljoyn_msgarg.
+        /// </para>
+        /// <para>- @c 'b'  A pointer to a bool
+        /// - @c 'd'  A pointer to a double (64 bits)
+        /// - @c 'g'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
+        /// - @c 'h'  A pointer to a qcc::SocketFd
+        /// - @c 'i'  A pointer to a uint32_t
+        /// - @c 'n'  A pointer to an int16_t
+        /// - @c 'o'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
+        /// - @c 'q'  A pointer to a uint16_t
+        /// - @c 's'  A pointer to a char*  (character string is valid for the lifetime of the alljoyn_msgarg)
+        /// - @c 't'  A pointer to a uint64_t
+        /// - @c 'u'  A pointer to a uint32_t
+        /// - @c 'v'  A pointer to a pointer to an alljoyn_msgarg, matches to a variant but returns a pointer to
+        /// the alljoyn_msgarg of the underlying real type.
+        /// - @c 'x'  A pointer to an int64_t
+        /// - @c 'y'  A pointer to a uint8_t
+        /// </para>
+        /// <para>- @c '(' and @c ')'  A list of pointers as required for each of the struct members.
+        /// - @c '{' and @c '}'  Pointers as required for the key and value members.
+        /// </para>
+        /// <para>- @c '*' A pointer to a pointer to an alljoyn_msgarg. This matches any value type.
+        /// </para>
+        /// <para>Examples:
+        /// </para>
+        /// <para>A struct with and uint32 and two string elements.
+        /// </para>
+        /// </remarks>
+        /// <param name="arg">The alljoyn_msgarg we are reading from</param>
+        /// <param name="signature">The signature for alljoyn_msgarg value</param>
+        /// <param name="...">Pointers to return the unpacked values.</param>
+        /// <returns>- #ER_OK if the signature matched and alljoyn_msgarg was successfully unpacked.
+        /// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
+        /// - An error status otherwise</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern QStatus alljoyn_msgarg_get(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature, [MarshalAs(UnmanagedType.AsAny)] __arglist /*TODO: '...' type*/);
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern QStatus alljoyn_msgarg_get(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature, out UIntPtr size, out byte[] elements /*TODO: '...' type*/);
+        // extern AJ_API QStatus AJ_CALL alljoyn_msgarg_get(alljoyn_msgarg arg, const char* signature, ...);
 
-		/// <summary>
-		/// create a copy of a message argument.  This will create a new alljoyn_msgarg and
-		/// must be cleaned up using alljoyn_msgarg_detroy.
-		/// </summary>
-		/// <param name="source">the alljoyn_msgarg to be copied</param>
-		/// <returns>copy of the source message argument is returned</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_msgarg_copy(IntPtr source);
-		// extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_copy(const alljoyn_msgarg source);
+        /// <summary>
+        /// create a copy of a message argument.  This will create a new alljoyn_msgarg and
+        /// must be cleaned up using alljoyn_msgarg_detroy.
+        /// </summary>
+        /// <param name="source">the alljoyn_msgarg to be copied</param>
+        /// <returns>copy of the source message argument is returned</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern IntPtr alljoyn_msgarg_copy(IntPtr source);
+        // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_copy(const alljoyn_msgarg source);
 
-		/// <summary>
-		/// Copy the contents of the source alljoyn_msgarg into the Destination alljoyn_msgarg. If the
-		/// destination already contains information it will be cleared before the source
-		/// alljoyn_msgarg is copied in.
-		/// </summary>
-		/// <param name="destination">the alljoyn_msgarg that will hold the copy</param>
-		/// <param name="source">the alljoyn_msgarg to be copied</param>
-		/// 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern void alljoyn_msgarg_clone(IntPtr destination, IntPtr source);
-		// extern AJ_API void AJ_CALL alljoyn_msgarg_clone(alljoyn_msgarg destination, const alljoyn_msgarg source);
+        /// <summary>
+        /// Copy the contents of the source alljoyn_msgarg into the Destination alljoyn_msgarg. If the
+        /// destination already contains information it will be cleared before the source
+        /// alljoyn_msgarg is copied in.
+        /// </summary>
+        /// <param name="destination">the alljoyn_msgarg that will hold the copy</param>
+        /// <param name="source">the alljoyn_msgarg to be copied</param>
+        /// 
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern void alljoyn_msgarg_clone(IntPtr destination, IntPtr source);
+        // extern AJ_API void AJ_CALL alljoyn_msgarg_clone(alljoyn_msgarg destination, const alljoyn_msgarg source);
 
-		/// <summary>
-		/// Equality operator.
-		/// </summary>
-		/// <param name="lhv">The alljoyn_msgarg to compare.</param>
-		/// <param name="rhv">The other alljoyn_msgarg to compare</param>
-		/// <returns>Returns true if the two message args have the same signatures and values.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_msgarg_equal(IntPtr lhv, IntPtr rhv);
-		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_msgarg_equal(alljoyn_msgarg lhv, alljoyn_msgarg rhv);
+        /// <summary>
+        /// Equality operator.
+        /// </summary>
+        /// <param name="lhv">The alljoyn_msgarg to compare.</param>
+        /// <param name="rhv">The other alljoyn_msgarg to compare</param>
+        /// <returns>Returns true if the two message args have the same signatures and values.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern Int32 alljoyn_msgarg_equal(IntPtr lhv, IntPtr rhv);
+        // extern AJ_API QCC_BOOL AJ_CALL alljoyn_msgarg_equal(alljoyn_msgarg lhv, alljoyn_msgarg rhv);
 
-		/// <summary>
-		/// Set an array of alljoyn_msgargs by applying the alljoyn_msgarg_set() function to each alljoyn_msgarg in turn.
-		/// </summary>
-		/// <param name="args">An array of alljoyn_msgargs to set.</param>
-		/// <param name="numArgs">[in,out] On input the size of the args array. On output the number of alljoyn_msgargsthat were set. There must be at least enough alljoyn_msgargs to completely
-		/// initialize the signature.</param>
-		/// <param name="signature">The signature for alljoyn_msgarg values</param>
-		/// <param name="...">One or more values to initialize the alljoyn_msgarg list.</param>
-		/// <returns>- #ER_OK if the alljoyn_msgargs were successfully set.
-		/// - #ER_BUS_TRUNCATED if the signature was longer than expected.
-		/// - Other error status codes indicating a failure.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_msgarg_array_set(IntPtr args, UIntPtr[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
-		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_set(alljoyn_msgarg args, size_t* numArgs, const char* signature, ...);
+        /// <summary>
+        /// Set an array of alljoyn_msgargs by applying the alljoyn_msgarg_set() function to each alljoyn_msgarg in turn.
+        /// </summary>
+        /// <param name="args">An array of alljoyn_msgargs to set.</param>
+        /// <param name="numArgs">[in,out] On input the size of the args array. On output the number of alljoyn_msgargsthat were set. There must be at least enough alljoyn_msgargs to completely
+        /// initialize the signature.</param>
+        /// <param name="signature">The signature for alljoyn_msgarg values</param>
+        /// <param name="...">One or more values to initialize the alljoyn_msgarg list.</param>
+        /// <returns>- #ER_OK if the alljoyn_msgargs were successfully set.
+        /// - #ER_BUS_TRUNCATED if the signature was longer than expected.
+        /// - Other error status codes indicating a failure.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern QStatus alljoyn_msgarg_array_set(IntPtr args, UIntPtr[] numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        // extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_set(alljoyn_msgarg args, size_t* numArgs, const char* signature, ...);
 
-		/// <summary>
-		/// Unpack an array of alljoyn_msgargs by applying the alljoyn_msgarg_get() function to each alljoyn_msgarg in turn.
-		/// </summary>
-		/// <param name="args">An array of alljoyn_msgargs to unpack.</param>
-		/// <param name="numArgs">The size of the alljoyn_msgargs array.</param>
-		/// <param name="signature">The signature to match against the alljoyn_msgarg values</param>
-		/// <param name="...">Pointers to return references to the unpacked values.</param>
-		/// <returns>- #ER_OK if the alljoyn_msgargs were successfully set.
-		/// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
-		/// - Other error status codes indicating a failure.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_msgarg_array_get(IntPtr args, UIntPtr numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
-		// extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_get(const alljoyn_msgarg args, size_t numArgs, const char* signature, ...);
+        /// <summary>
+        /// Unpack an array of alljoyn_msgargs by applying the alljoyn_msgarg_get() function to each alljoyn_msgarg in turn.
+        /// </summary>
+        /// <param name="args">An array of alljoyn_msgargs to unpack.</param>
+        /// <param name="numArgs">The size of the alljoyn_msgargs array.</param>
+        /// <param name="signature">The signature to match against the alljoyn_msgarg values</param>
+        /// <param name="...">Pointers to return references to the unpacked values.</param>
+        /// <returns>- #ER_OK if the alljoyn_msgargs were successfully set.
+        /// - #ER_BUS_SIGNATURE_MISMATCH if the signature did not match.
+        /// - Other error status codes indicating a failure.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern QStatus alljoyn_msgarg_array_get(IntPtr args, UIntPtr numArgs, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        // extern AJ_API QStatus AJ_CALL alljoyn_msgarg_array_get(const alljoyn_msgarg args, size_t numArgs, const char* signature, ...);
 
-		/// <summary>
-		/// Returns an XML string representation of this type
-		/// </summary>
-		/// <param name="arg">The message arg to generate the XML string representation of</param>
-		/// <param name="str">The character string that will hold the XML stringrepresentation of the alljoyn_msgarg</param><!-- out -->
-		/// <param name="buf">The size of the char* array that will hold the string</param>
-		/// <param name="indent">Number of spaces to indent the generated xml (default value 0)</param>
-		/// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space
-		/// available.  Thus returning a value of buf or larger means the output
-		/// was truncated.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UIntPtr alljoyn_msgarg_tostring(IntPtr arg, sbyte str, UIntPtr buf, UIntPtr indent);
-		// extern AJ_API size_t AJ_CALL alljoyn_msgarg_tostring(alljoyn_msgarg arg, char* str, size_t buf, size_t indent);
+        /// <summary>
+        /// Returns an XML string representation of this type
+        /// </summary>
+        /// <param name="arg">The message arg to generate the XML string representation of</param>
+        /// <param name="str">The character string that will hold the XML stringrepresentation of the alljoyn_msgarg</param><!-- out -->
+        /// <param name="buf">The size of the char* array that will hold the string</param>
+        /// <param name="indent">Number of spaces to indent the generated xml (default value 0)</param>
+        /// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space
+        /// available.  Thus returning a value of buf or larger means the output
+        /// was truncated.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern UIntPtr alljoyn_msgarg_tostring(IntPtr arg, sbyte str, UIntPtr buf, UIntPtr indent);
+        // extern AJ_API size_t AJ_CALL alljoyn_msgarg_tostring(alljoyn_msgarg arg, char* str, size_t buf, size_t indent);
 
-		/// <summary>
-		/// Returns an XML string representation for an array of message args.
-		/// </summary>
-		/// <param name="args">The message arg array to generate the XML string representation of</param>
-		/// <param name="numArgs">The size of the message arg array.</param>
-		/// <param name="str">The character string that will hold the XML stringrepresentation of the alljoyn_msgarg array</param><!-- out -->
-		/// <param name="buf">The size of the char* array that will hold the string</param>
-		/// <param name="indent">Number of spaces to indent the generated xml (default value 0)</param>
-		/// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space is
-		/// available.  Thus returning a value of buf or larger means the output
-		/// was truncated.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UIntPtr alljoyn_msgarg_array_tostring(IntPtr args, UIntPtr numArgs, sbyte str, UIntPtr buf, UIntPtr indent);
-		// extern AJ_API size_t AJ_CALL alljoyn_msgarg_array_tostring(const alljoyn_msgarg args, size_t numArgs, char* str, size_t buf, size_t indent);
+        /// <summary>
+        /// Returns an XML string representation for an array of message args.
+        /// </summary>
+        /// <param name="args">The message arg array to generate the XML string representation of</param>
+        /// <param name="numArgs">The size of the message arg array.</param>
+        /// <param name="str">The character string that will hold the XML stringrepresentation of the alljoyn_msgarg array</param><!-- out -->
+        /// <param name="buf">The size of the char* array that will hold the string</param>
+        /// <param name="indent">Number of spaces to indent the generated xml (default value 0)</param>
+        /// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space is
+        /// available.  Thus returning a value of buf or larger means the output
+        /// was truncated.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
+        internal static extern UIntPtr alljoyn_msgarg_array_tostring(IntPtr args, UIntPtr numArgs, sbyte str, UIntPtr buf, UIntPtr indent);
+        // extern AJ_API size_t AJ_CALL alljoyn_msgarg_array_tostring(const alljoyn_msgarg args, size_t numArgs, char* str, size_t buf, size_t indent);
 
-		/// <summary>
-		/// Returns a string for the signature of this value
-		/// </summary>
-		/// <param name="arg">the argument to read the signature from</param>
-		/// <param name="str">a string containing the signature of the alljoyn_msgarg use NULL pointerto find string size.</param><!-- out -->
-		/// <param name="buf">The size of the char* array that will hold the string</param>
-		/// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space is
-		/// available.  Thus returning a value of buf or larger means the output
-		/// was truncated.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern UIntPtr alljoyn_msgarg_signature(IntPtr arg, sbyte str, UIntPtr buf);
+        /// <summary>
+        /// Returns a string for the signature of this value
+        /// </summary>
+        /// <param name="arg">the argument to read the signature from</param>
+        /// <param name="str">a string containing the signature of the alljoyn_msgarg use NULL pointerto find string size.</param><!-- out -->
+        /// <param name="buf">The size of the char* array that will hold the string</param>
+        /// <returns>The number of characters (including the terminating nul byte) whichwould have been written to the final string if enough space is
+        /// available.  Thus returning a value of buf or larger means the output
+        /// was truncated.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET, CharSet = CharSet.Ansi)]
+        internal static extern UIntPtr alljoyn_msgarg_signature(IntPtr arg,
+             [MarshalAs(UnmanagedType.LPStr)][Out] System.Text.StringBuilder str, UIntPtr buf);
 		// extern AJ_API size_t AJ_CALL alljoyn_msgarg_signature(alljoyn_msgarg arg, char* str, size_t buf);
 
 		/// <summary>
@@ -359,7 +362,7 @@ namespace AllJoynDotNet
 		/// was truncated.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern UIntPtr alljoyn_msgarg_array_signature(IntPtr values, UIntPtr numValues, sbyte str, UIntPtr buf);
-		// extern AJ_API size_t AJ_CALL alljoyn_msgarg_array_signature(alljoyn_msgarg values, size_t numValues, char* str, size_t buf);
+  		// extern AJ_API size_t AJ_CALL alljoyn_msgarg_array_signature(alljoyn_msgarg values, size_t numValues, char* str, size_t buf);
 
 		/// <summary>
 		/// Checks the signature of this arg.

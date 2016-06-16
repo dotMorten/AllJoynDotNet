@@ -25,3 +25,12 @@ c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=android ANDROID_NDK=%ANDR
 ```
 Output location: `\alljoyn\build\android\arm\release\dist\c\lib\liballjoyn_c.so`
 
+
+** Windows x86 debug **
+c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=win7 BINDINGS=c BUILD_SERVICES_SAMPLES=off VARIANT=debug CPU=x86 
+
+
+** Windows UWP - x86 debug **
+c:\Python27\python.exe c:\Python27\Scripts\scons.py OS=win10 BINDINGS=c BUILD_SERVICES_SAMPLES=off VARIANT=debug CPU=x86 
+
+

@@ -25,7 +25,7 @@ namespace AllJoynDotNet
 		/// <param name="sessionId">the session received after joining AllJoyn session</param>
 		/// <returns>The allocated alljoyn_aboutproxy.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_aboutproxy_create(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string busName, IntPtr sessionId);
+		internal static extern IntPtr alljoyn_aboutproxy_create(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string busName, UInt32 sessionId);
 		// extern AJ_API alljoyn_aboutproxy AJ_CALL alljoyn_aboutproxy_create(alljoyn_busattachment bus,const char* busName,alljoyn_sessionid sessionId);
 
 		/// <summary>

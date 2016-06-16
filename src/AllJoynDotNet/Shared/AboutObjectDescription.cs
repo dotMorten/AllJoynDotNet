@@ -17,11 +17,15 @@ namespace AllJoynDotNet
             alljoyn_aboutobjectdescription_destroy(Handle);
             base.Dispose(disposing);
         }
-        public IEnumerable<string> GetPaths()
+        public string[] Paths
         {
-            return AllJoynNative.GetStringArrayHelper(alljoyn_aboutobjectdescription_getpaths, Handle);
+            get
+            {
+                return AllJoynNative.GetStringArrayHelper(alljoyn_aboutobjectdescription_getpaths, Handle);
+            }
         }
-        public IEnumerable<string> GetInterfaces(string path)
+
+        public string[] GetInterfaces(string path)
         {
             return AllJoynNative.GetStringArrayHelper((a, b, c) => { return alljoyn_aboutobjectdescription_getinterfaces(a, path, b, c); }, Handle);
         }

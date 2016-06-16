@@ -44,7 +44,7 @@ namespace AllJoynDotNet
 		/// <param name="objectDescriptionArg">the list of object paths and interfaces in the announcement</param>
 		/// <param name="aboutDataArg">alljoyn_msgarg containing a dictionary of Key/Value pairs of the About data</param>
 		/// 
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		internal delegate void alljoyn_about_announced_ptr(IntPtr context, [MarshalAs(UnmanagedType.LPStr)]string busName, UInt16 version, UInt16 port, IntPtr objectDescriptionArg, IntPtr aboutDataArg);
 		// typedef void (AJ_CALL * alljoyn_about_announced_ptr)(const void* context,
 		// const char* busName,

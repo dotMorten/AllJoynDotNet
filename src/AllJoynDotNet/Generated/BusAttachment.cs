@@ -447,7 +447,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busattachment_joinsession(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, IntPtr sessionId, [In, Out]IntPtr opts);
+		internal static extern QStatus alljoyn_busattachment_joinsession(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string sessionHost, UInt16 sessionPort, IntPtr listener, out UInt32 sessionId, [In, Out]IntPtr opts);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_joinsession(alljoyn_busattachment bus, const char* sessionHost,alljoyn_sessionport sessionPort, alljoyn_sessionlistener listener,alljoyn_sessionid* sessionId, alljoyn_sessionopts opts);
 
 		/// <summary>

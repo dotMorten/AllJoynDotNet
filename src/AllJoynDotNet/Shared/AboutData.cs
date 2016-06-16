@@ -8,8 +8,7 @@ namespace AllJoynDotNet
         internal AboutData(MsgArg arg, string defaultLanguage) : base(AboutData.alljoyn_aboutdata_create(defaultLanguage))
         {
             var status = AboutData.alljoyn_aboutdata_createfrommsgarg(Handle, arg.Handle, null);
-            if (status != QStatus.ER_OK)
-                throw new AllJoynException(status);
+            AllJoynException.CheckStatus(status);
         }
 
         protected override void Dispose(bool disposing)
@@ -18,17 +17,40 @@ namespace AllJoynDotNet
             base.Dispose(disposing);
         }
 
-        public string[] GetFields()
+        public string[] Fields
         {
-            return AllJoynNative.GetStringArrayHelper(alljoyn_aboutdata_getfields, Handle);
+            get
+            {
+                return AllJoynNative.GetStringArrayHelper(alljoyn_aboutdata_getfields, Handle);
+            }
         }
-        public object GetField(string fieldName)
+
+        public MsgArg GetField(string fieldName, string language = null)
         {
-            var tmp = new MsgArg();
-            var status = alljoyn_aboutdata_getfield(Handle, fieldName, tmp.Handle, null);
-            if (status > 0)
-                throw new AllJoynException(status);
+            IntPtr outvalue;
+            var status = alljoyn_aboutdata_getfield(Handle, fieldName, out outvalue, language);
+            AllJoynException.CheckStatus(status);
+            var tmp = new MsgArg(outvalue);
             return tmp;
+        }
+
+        public string[] SupportedLanguages
+        {
+            get
+            {
+                return AllJoynNative.GetStringArrayHelper(alljoyn_aboutdata_getsupportedlanguages, Handle);
+            }
+        }
+
+        public string DefaultLanguage
+        {
+            get
+            {
+                IntPtr lang;
+                var status = alljoyn_aboutdata_getdefaultlanguage(Handle, out lang);
+                AllJoynException.CheckStatus(status);
+                return Marshal.PtrToStringAnsi(lang);
+            }
         }
     }
 }

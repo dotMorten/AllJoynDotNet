@@ -4,15 +4,15 @@ using System.Text;
 
 namespace AllJoynDotNet
 {
+    public enum SecurityPolicy
+    {
+        Inherit = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_INHERIT,
+        Required = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_REQUIRED,
+        Off = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_OFF
+    }
+
     public partial class InterfaceDescription
     {
-        public enum SecurityPolicy
-        {
-            Inherit = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_INHERIT,
-            Required = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_REQUIRED,
-            Off = alljoyn_interfacedescription_securitypolicy.AJ_IFC_SECURITY_OFF
-        }
-
         internal static InterfaceDescription Create(IntPtr handle)
         {
             if (handle == IntPtr.Zero) return null;

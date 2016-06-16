@@ -31,5 +31,11 @@ namespace AllJoynDotNet
                 return _message;
             }
         }
+
+        internal static void CheckStatus(QStatus status)
+        {
+            if (status != QStatus.ER_OK)
+                throw new AllJoynException(status);
+        }
     }
 }

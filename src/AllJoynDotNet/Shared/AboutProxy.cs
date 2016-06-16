@@ -6,7 +6,7 @@ namespace AllJoynDotNet
 
     public partial class AboutProxy     
 	{
-        public AboutProxy(BusAttachment bus, string name, Session session) : base(alljoyn_aboutproxy_create(bus.Handle, name, session.Handle))
+        public AboutProxy(BusAttachment bus, string name, UInt32 sessionId) : base(alljoyn_aboutproxy_create(bus.Handle, name, sessionId))
         {
         }
 
@@ -16,18 +16,21 @@ namespace AllJoynDotNet
             base.Dispose(disposing);
         }
 
-        public AboutObjectDescription GetObjectDescription()
+        public AboutObjectDescription ObjectDescription
         {
-            MsgArg arg = new MsgArg();
-            var status = alljoyn_aboutproxy_getobjectdescription(Handle, arg.Handle);
-            if (status != QStatus.ER_OK) throw new AllJoynException(status);
-            return new AboutObjectDescription(arg);
+            get
+            {
+                MsgArg arg = new MsgArg();
+                var status = alljoyn_aboutproxy_getobjectdescription(Handle, arg.Handle);
+                if (status != QStatus.ER_OK) throw new AllJoynException(status);
+                return new AboutObjectDescription(arg);
+            }
         }
 
-        public AboutData GetAboutData()
+        public AboutData GetAboutData(string language)
         {
             MsgArg arg = new MsgArg();
-            var status = alljoyn_aboutproxy_getaboutdata(Handle, "en", arg.Handle);
+            var status = alljoyn_aboutproxy_getaboutdata(Handle, language, arg.Handle);
             if (status != QStatus.ER_OK) throw new AllJoynException(status);
             return new AboutData(arg, "en");
         }
