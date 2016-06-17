@@ -166,9 +166,10 @@ namespace AllJoynDotNet
 		/// <returns>true if the interface is found at the given path</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern bool alljoyn_aboutobjectdescription_hasinterfaceatpath(IntPtr description, [MarshalAs(UnmanagedType.LPStr)]string path, [MarshalAs(UnmanagedType.LPStr)]string interfaceName);
-		// extern AJ_API bool AJ_CALL alljoyn_aboutobjectdescription_hasinterfaceatpath(alljoyn_aboutobjectdescription description,const char* path,const char* interfaceName);
+        
+        // extern AJ_API bool AJ_CALL alljoyn_aboutobjectdescription_hasinterfaceatpath(alljoyn_aboutobjectdescription description,const char* path,const char* interfaceName);
 
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern QStatus alljoyn_aboutobjectdescription_getmsgarg(IntPtr description, IntPtr msgArg);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutobjectdescription_getmsgarg(alljoyn_aboutobjectdescription description,alljoyn_msgarg msgArg);
 

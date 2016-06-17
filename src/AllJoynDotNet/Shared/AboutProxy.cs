@@ -34,5 +34,14 @@ namespace AllJoynDotNet
             if (status != QStatus.ER_OK) throw new AllJoynException(status);
             return new AboutData(arg, "en");
         }
+        public ushort Version
+        {
+            get
+            {
+                ushort version = 0;
+                AllJoynException.CheckStatus(alljoyn_aboutproxy_getversion(Handle, out version));
+                return version;
+            }
+        }
     }
 }

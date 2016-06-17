@@ -14,5 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)GetLibraryInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISample.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Samples.cs" />
   </ItemGroup>
 </Project>

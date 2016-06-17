@@ -72,6 +72,14 @@ namespace AllJoynDotNet
 
         }
 
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never )]
+        public ulong SessionId
+        {
+            get
+            {
+                return (ulong)Handle;
+            }
+        }
         private static IntPtr CreateHandle(TrafficType traffic, bool isMultiPoint, Proximity proximity, Transport transports)
         {
             var handle = alljoyn_sessionopts_create((byte)traffic, isMultiPoint.ToQccBool(), (byte)proximity, (ushort)transports);

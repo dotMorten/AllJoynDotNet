@@ -13,28 +13,29 @@ using System.Runtime.InteropServices;
 
 namespace AllJoynDotNet
 {
-//
+    //
     public partial class AboutData : AllJoynWrapper
     {
         internal AboutData(IntPtr handle) : base(handle) { }
-		/// <summary>
-		/// Allocate a new empty alljoyn_aboutdata object. The default language is not set.
-		/// Set the language using either one of the following functions:
-		/// - alljoyn_about_setdefaultlanguage
-		/// - alljoyn_about_createfrommsgarg
-		/// - alljoyn_about_createfromxml
-		/// </summary>
-		/// <remarks>
-		/// <para>The default language should be specified before any tag that requires
-		/// localization. These tags are the following:
-		/// - DeviceName
-		/// - AppName
-		/// - Manufacturer
-		/// - Description
-		/// </para>
-		/// </remarks>
-		/// <returns>The allocated alljoyn_aboutdata.</returns>
-		[DllImport(Constants.DLL_IMPORT_TARGET)]
+        
+        /// <summary>
+        /// Allocate a new empty alljoyn_aboutdata object. The default language is not set.
+        /// Set the language using either one of the following functions:
+        /// - alljoyn_about_setdefaultlanguage
+        /// - alljoyn_about_createfrommsgarg
+        /// - alljoyn_about_createfromxml
+        /// </summary>
+        /// <remarks>
+        /// <para>The default language should be specified before any tag that requires
+        /// localization. These tags are the following:
+        /// - DeviceName
+        /// - AppName
+        /// - Manufacturer
+        /// - Description
+        /// </para>
+        /// </remarks>
+        /// <returns>The allocated alljoyn_aboutdata.</returns>
+        [DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern IntPtr alljoyn_aboutdata_create_empty();
 		// extern AJ_API alljoyn_aboutdata AJ_CALL alljoyn_aboutdata_create_empty();
 
@@ -176,7 +177,7 @@ namespace AllJoynDotNet
 		/// <param name="num">the size of the appId array</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getappid(IntPtr data, byte[] appId, UIntPtr num);
+		internal static extern QStatus alljoyn_aboutdata_getappid(IntPtr data, out IntPtr appId, out UIntPtr num);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getappid(alljoyn_aboutdata data,uint8_t** appId,size_t* num);
 
 		/// <summary>
@@ -271,7 +272,7 @@ namespace AllJoynDotNet
 		/// <param name="deviceId">UTF-8 string with a value generated using platform specific means</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getdeviceid(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] deviceId);
+		internal static extern QStatus alljoyn_aboutdata_getdeviceid(IntPtr data, out IntPtr deviceId);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdeviceid(alljoyn_aboutdata data,char** deviceId);
 
 		/// <summary>
@@ -377,7 +378,7 @@ namespace AllJoynDotNet
 		/// <param name="modelNumber">the application model number</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getmodelnumber(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] modelNumber);
+		internal static extern QStatus alljoyn_aboutdata_getmodelnumber(IntPtr data, out IntPtr modelNumber);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getmodelnumber(alljoyn_aboutdata data,char** modelNumber);
 
 		/// <summary>
@@ -482,7 +483,7 @@ namespace AllJoynDotNet
 		/// <param name="dateOfManufacture">the date of manufacture using YYYY-MM-DD format</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getdateofmanufacture(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] dateOfManufacture);
+		internal static extern QStatus alljoyn_aboutdata_getdateofmanufacture(IntPtr data, out IntPtr dateOfManufacture);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getdateofmanufacture(alljoyn_aboutdata data,char** dateOfManufacture);
 
 		/// <summary>
@@ -514,7 +515,7 @@ namespace AllJoynDotNet
 		/// <param name="softwareVersion">the software version for the OEM software</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getsoftwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] softwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_getsoftwareversion(IntPtr data, out IntPtr softwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getsoftwareversion(alljoyn_aboutdata data,char** softwareVersion);
 
 		/// <summary>
@@ -565,7 +566,7 @@ namespace AllJoynDotNet
 		/// <param name="hardwareVersion">the device hardware version</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_gethardwareversion(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] hardwareVersion);
+		internal static extern QStatus alljoyn_aboutdata_gethardwareversion(IntPtr data, out IntPtr hardwareVersion);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_gethardwareversion(alljoyn_aboutdata data,char** hardwareVersion);
 
 		/// <summary>
@@ -597,7 +598,7 @@ namespace AllJoynDotNet
 		/// <param name="supportUrl">the support URL</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutdata_getsupporturl(IntPtr data, [MarshalAs(UnmanagedType.LPArray), Out]IntPtr[] supportUrl);
+		internal static extern QStatus alljoyn_aboutdata_getsupporturl(IntPtr data, out IntPtr supportUrl);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutdata_getsupporturl(alljoyn_aboutdata data,char** supportUrl);
 
 		/// <summary>

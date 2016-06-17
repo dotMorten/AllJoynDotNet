@@ -10,9 +10,15 @@ namespace AllJoynDotNet
         internal AllJoynWrapper(IntPtr handle) {
             _handle = handle;
             isHandleSet = IntPtr.Zero != handle;
+
+#if DEBUG
+            //Force some GC to ensure we don't crash in the disposers
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+#endif
         }
 
-        //Should ONLY be called from a constructor:
+        //Should ONLY be called from a constructor that relies on creating+pinning callback listeners:
         internal void SetHandle(IntPtr handle)
         {
             if (isHandleSet)
@@ -40,7 +46,8 @@ namespace AllJoynDotNet
 
         protected virtual void Dispose(bool disposing)
 		{ 
-			IsDisposed = true; 
+			IsDisposed = true;
+            _handle = IntPtr.Zero;
 		} 
         protected bool IsDisposed { get; private set; }
     }

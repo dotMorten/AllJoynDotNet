@@ -43,14 +43,18 @@ namespace AllJoynDotNet
 		/// </summary>
 		/// 
 		[StructLayout(LayoutKind.Sequential)]
-		internal partial class alljoyn_interfacedescription_member
+		internal partial struct alljoyn_interfacedescription_member
 		{
 			public IntPtr iface;
 			public alljoyn_messagetype memberType;
-			[MarshalAs(UnmanagedType.LPStr)] public string name;
-			[MarshalAs(UnmanagedType.LPStr)] public string signature;
-			[MarshalAs(UnmanagedType.LPStr)] public string returnSignature;
-			[MarshalAs(UnmanagedType.LPStr)] public string argNames;
+            public IntPtr name;
+			public IntPtr signature;
+			public IntPtr returnSignature;
+			public IntPtr argNames;
+			//[MarshalAs(UnmanagedType.LPStr)] public string name;
+			//[MarshalAs(UnmanagedType.LPStr)] public string signature;
+			//[MarshalAs(UnmanagedType.LPStr)] public string returnSignature;
+			//[MarshalAs(UnmanagedType.LPStr)] public string argNames;
 			public IntPtr internal_member;
 			//
 			//alljoyn_interfacedescription iface;         /**< Interface that this member belongs to */
@@ -272,7 +276,7 @@ namespace AllJoynDotNet
 		/// <param name="member">The description of the member</param><!-- out -->
 		/// <returns>QCC_FALSE if member does not exist, QCC_TRUE otherwise.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern Int32 alljoyn_interfacedescription_getmember(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, alljoyn_interfacedescription_member member);
+		internal static extern Int32 alljoyn_interfacedescription_getmember(IntPtr iface, [MarshalAs(UnmanagedType.LPStr)]string name, ref alljoyn_interfacedescription_member member);
 		// extern AJ_API QCC_BOOL AJ_CALL alljoyn_interfacedescription_getmember(const alljoyn_interfacedescription iface, const char* name,alljoyn_interfacedescription_member* member);
 
 		/// <summary>

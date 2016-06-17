@@ -30,6 +30,13 @@ namespace AllJoynDotNet
             return AllJoynNative.GetStringArrayHelper((a, b, c) => { return alljoyn_aboutobjectdescription_getinterfaces(a, path, b, c); }, Handle);
         }
 
+        public string[] GetInterfacePaths(string interfaceName)
+        {
+            return AllJoynNative.GetStringArrayHelper(
+                (a, b, c) => {
+                return alljoyn_aboutobjectdescription_getinterfacepaths(a, interfaceName, b, c);
+            }, Handle);
+        }
         public void Clear()
         {
             alljoyn_aboutobjectdescription_clear(Handle);

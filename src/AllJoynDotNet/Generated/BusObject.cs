@@ -264,7 +264,7 @@ namespace AllJoynDotNet
 		/// <returns>- #ER_OK if all the methods were added
 		/// - #ER_BUS_NO_SUCH_INTERFACE is method can not be added because interface does not exist.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busobject_addmethodhandlers(IntPtr bus, alljoyn_busobject_methodentry entries, UIntPtr numEntries);
+		internal static extern QStatus alljoyn_busobject_addmethodhandlers(IntPtr bus, IntPtr entries, UIntPtr numEntries);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addmethodhandlers(alljoyn_busobject bus,const alljoyn_busobject_methodentry* entries,size_t numEntries);
 
 		/// <summary>
@@ -422,7 +422,7 @@ namespace AllJoynDotNet
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern QStatus alljoyn_busobject_addinterface_announced(IntPtr bus, IntPtr iface);
-		// extern AJ_API QStatus AJ_CALL alljoyn_busobject_addinterface_announced(alljoyn_busobject bus,const alljoyn_interfacedescription iface);
+        // extern AJ_API QStatus AJ_CALL alljoyn_busobject_addinterface_announced(alljoyn_busobject bus,const alljoyn_interfacedescription iface);
 
 
     }

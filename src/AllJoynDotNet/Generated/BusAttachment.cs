@@ -567,7 +567,7 @@ namespace AllJoynDotNet
 		/// - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
 		/// - Other error status codes indicating a failure.</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_busattachment_bindsessionport(IntPtr bus, [In, Out]UInt16 sessionPort, IntPtr opts, IntPtr listener);
+		internal static extern QStatus alljoyn_busattachment_bindsessionport(IntPtr bus, [In, Out]ref UInt16 sessionPort, IntPtr opts, IntPtr listener);
 		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_bindsessionport(alljoyn_busattachment bus, alljoyn_sessionport* sessionPort,const alljoyn_sessionopts opts, alljoyn_sessionportlistener listener);
 
 		/// <summary>
@@ -1367,7 +1367,7 @@ namespace AllJoynDotNet
 		/// - An error status otherwise</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
 		internal static extern QStatus alljoyn_busattachment_cancelwhoimplements_interface(IntPtr bus, [MarshalAs(UnmanagedType.LPStr)]string implementsInterface);
-		// extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelwhoimplements_interface(alljoyn_busattachment bus,const char* implementsInterface);
+        // extern AJ_API QStatus AJ_CALL alljoyn_busattachment_cancelwhoimplements_interface(alljoyn_busattachment bus,const char* implementsInterface);
 
 
     }

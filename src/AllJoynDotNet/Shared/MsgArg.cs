@@ -15,30 +15,130 @@ namespace AllJoynDotNet
 {
     public partial class MsgArg : AllJoynWrapper
     {
+        IntPtr _bytePtr;
         public MsgArg() : base(alljoyn_msgarg_create())
         {
 
         }
+        public MsgArg(string value) : this()
+        {
+            Set(value);
+        }
 
         protected override void Dispose(bool disposing)
         {
-            alljoyn_msgarg_destroy(Handle);
+            if (!IsDisposed)
+            {
+                if (_bytePtr != IntPtr.Zero)
+                {
+                    Marshal.FreeCoTaskMem(_bytePtr);
+                    _bytePtr = IntPtr.Zero;
+                }
+                //alljoyn_msgarg_destroy(Handle);
+            }
             base.Dispose(disposing);
+        }
+        
+        private void Set(object value)
+        {
+            UIntPtr numArgs = (UIntPtr)1;
+            string signature = "";
+            _value = value;
+            _valueInitialized = true;
+
+            if (_bytePtr != IntPtr.Zero)
+            {
+                Marshal.FreeCoTaskMem(_bytePtr);
+                _bytePtr = IntPtr.Zero;
+            }
+
+            /*
+            ALLJOYN_ARRAY            = 'a',    ///< AllJoyn array container type
+            ALLJOYN_DICT_ENTRY       = 'e',    ///< AllJoyn dictionary or map container type - an array of key-value pairs
+            ALLJOYN_SIGNATURE        = 'g',    ///< AllJoyn signature basic type
+            ALLJOYN_HANDLE           = 'h',    ///< AllJoyn socket handle basic type
+            ALLJOYN_STRUCT           = 'r',    ///< AllJoyn struct container type
+            */
+
+            if (value.GetType() == typeof(string))
+            {
+                signature = "s";
+                _bytePtr = Marshal.StringToCoTaskMemAnsi((string)value);
+                alljoyn_msgarg_set(Handle, signature, __arglist(_bytePtr));
+            }
+            else if (value.GetType() == typeof(bool))
+            {
+                signature = "b";
+                int newValue = ((bool)value ? 1 : 0);
+                alljoyn_msgarg_set(Handle, signature, __arglist(newValue));
+            }
+            else if (value.GetType() == typeof(double) || value.GetType() == typeof(float))
+            {
+                signature = "d";
+                alljoyn_msgarg_set(Handle, signature, __arglist((double)value));
+            }
+            else if (value.GetType() == typeof(int))
+            {
+                signature = "i";
+                alljoyn_msgarg_set(Handle, signature, __arglist((int)value));
+            }
+            else if (value.GetType() == typeof(uint))
+            {
+                signature = "u";
+                alljoyn_msgarg_set(Handle, signature, __arglist((uint)value));
+            }
+            else if (value.GetType() == typeof(short))
+            {
+                signature = "n";
+                alljoyn_msgarg_set(Handle, signature, __arglist((short)value));
+            }
+            else if (value.GetType() == typeof(ushort))
+            {
+                signature = "q";
+                alljoyn_msgarg_set(Handle, signature, __arglist((ushort)value));
+            }
+            else if (value.GetType() == typeof(long))
+            {
+                signature = "x";
+                alljoyn_msgarg_set(Handle, signature, __arglist((long)value));
+            }
+            else if (value.GetType() == typeof(ulong))
+            {
+                signature = "t";
+                alljoyn_msgarg_set(Handle, signature, __arglist((ulong)value));
+            }
+            else if (value.GetType() == typeof(byte))
+            {
+                signature = "y";
+                alljoyn_msgarg_set(Handle, signature, __arglist((byte)value));
+            }
+            else
+                throw new NotSupportedException();
         }
 
         public void Clear()
         {
             alljoyn_msgarg_clear(Handle);
         }
+
+        private object _value;
+        private bool _valueInitialized;
+        private object _thisLock = new object();
         public object Value
         {
             get
             {
-                return TypeConversionHelpers.GetValueFromVariant(this, this.Signature);
+                return System.Threading.LazyInitializer.EnsureInitialized(ref _value, ref _valueInitialized, ref _thisLock, () =>
+                {
+                    return TypeConversionHelpers.GetValueFromVariant(this, this.Signature);
+                });
+            }
+            set
+            {
+                Set(value);
             }
         }
 
-        
         public string Signature
         {
             get

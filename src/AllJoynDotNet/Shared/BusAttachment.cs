@@ -118,8 +118,7 @@ namespace AllJoynDotNet
         public void Join()
         {
             var status = alljoyn_busattachment_join(Handle);
-            if (status != 0)
-                throw new AllJoynException(status); //, "Failed to join bus attachment.");
+            AllJoynException.CheckStatus(status);
         }
 
         public UInt32 JoinSession(string sessionHost, UInt16 sessionPort, SessionListener sessionListener, Session options)
@@ -127,16 +126,19 @@ namespace AllJoynDotNet
             //TODO: Missing parameters
             UInt32 sessionId;
             var status = alljoyn_busattachment_joinsession(Handle, sessionHost, sessionPort, sessionListener?.Handle ?? IntPtr.Zero, out sessionId, options.Handle);
-            if (status != 0)
-                throw new AllJoynException(status);
+            AllJoynException.CheckStatus(status);
             return sessionId;
         }
 
+        public void BindSessionPort(ushort sessionPort, Session sessionOpts, SessionPortListener sessionPortListener)
+        {
+            var status = alljoyn_busattachment_bindsessionport(Handle, ref sessionPort, sessionOpts.Handle, sessionPortListener?.Handle ?? IntPtr.Zero);
+            AllJoynException.CheckStatus(status);
+        }
         public void Connect(string connectSpec = null)
         {
-            var result = alljoyn_busattachment_connect(Handle, connectSpec);
-            if (result != 0)
-                throw new AllJoynException(result); //, "Failed to connect bus attachment.");
+            var status = alljoyn_busattachment_connect(Handle, connectSpec);
+            AllJoynException.CheckStatus(status);
             Debug.WriteLine($"BusAttachment connect succeeded. Bus name = {_busName}");
         }
 

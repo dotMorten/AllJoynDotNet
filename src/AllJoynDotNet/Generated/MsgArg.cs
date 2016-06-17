@@ -124,7 +124,7 @@ namespace AllJoynDotNet
         /// <param name="...">One or more values to initialize the alljoyn_msgarg.</param>
         /// <returns>the created alljoyn_msgarg</returns>
         [DllImport(Constants.DLL_IMPORT_TARGET)]
-        internal static extern IntPtr alljoyn_msgarg_create_and_set([MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        internal static extern IntPtr alljoyn_msgarg_create_and_set([MarshalAs(UnmanagedType.LPStr)]string signature, __arglist);
         // extern AJ_API alljoyn_msgarg AJ_CALL alljoyn_msgarg_create_and_set(const char* signature, ...);
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace AllJoynDotNet
         /// <returns>- #ER_OK if the alljoyn_msgarg was successfully set
         /// - An error status otherwise</returns>
         [DllImport(Constants.DLL_IMPORT_TARGET)]
-        internal static extern QStatus alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature/*TODO: '...' type*/);
+        internal static extern QStatus alljoyn_msgarg_set(IntPtr arg, [MarshalAs(UnmanagedType.LPStr)]string signature, __arglist);
         // extern AJ_API QStatus AJ_CALL alljoyn_msgarg_set(alljoyn_msgarg arg, const char* signature, ...);
 
         /// <summary>

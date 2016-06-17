@@ -68,7 +68,7 @@ namespace AllJoynDotNet
 		/// <param name="version">of the service.</param><!-- out -->
 		/// <returns>ER_OK on success</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern QStatus alljoyn_aboutproxy_getversion(IntPtr proxy, UInt16 version);
+		internal static extern QStatus alljoyn_aboutproxy_getversion(IntPtr proxy, out UInt16 version);
 		// extern AJ_API QStatus AJ_CALL alljoyn_aboutproxy_getversion(alljoyn_aboutproxy proxy,uint16_t* version);
 
 

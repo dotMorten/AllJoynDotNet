@@ -12,35 +12,35 @@ namespace AllJoynDotNet
         {
             switch (signature[0])
             {
-                case 'y':
+                case AllJoynTypeIds.Byte:
                     return GetVariantArg<byte>(argument, "y");
-                case 'b':
+                case AllJoynTypeIds.Boolean:
                     return GetVariantArg<bool>(argument, "b");
-                case 'n':
+                case AllJoynTypeIds.Int16:
                     return GetVariantArg<Int16>(argument, "n");
-                case 'q':
+                case AllJoynTypeIds.UInt16:
                     return GetUInt16Arg(argument, "q");
-                case 'i':
+                case AllJoynTypeIds.Int32:
                     return GetVariantArg<Int32>(argument, "i");
-                case 'u':
+                case AllJoynTypeIds.UInt32:
                     return GetVariantArg<UInt32>(argument, "u");
-                case 'x':
+                case AllJoynTypeIds.Int64:
                     return GetVariantArg<Int64>(argument, "x");
-                case 't':
+                case AllJoynTypeIds.UInt64:
                     return GetVariantArg<UInt64>(argument, "t");
-                case 'd':
+                case AllJoynTypeIds.Double:
                     return GetVariantArg<double>(argument, "d");
-                case 's':
-                case 'o':
+                case AllJoynTypeIds.String:
+                case AllJoynTypeIds.DbusObjectPath:
                     return GetVariantArg_String(argument, "s");
-                case '(':
+                case AllJoynTypeIds.StructBegin:
                     return GetVariantStructureArg(argument);
-                case 'a':
+                case AllJoynTypeIds.Array:
                     if (signature.Length < 2)
                     {
                         throw new ArgumentException("ER_BUS_BAD_SIGNATURE");
                     }
-                    if (signature[1] == '{')
+                    if (signature[1] == AllJoynTypeIds.DictionaryBegin)
                     {
                         if (signature.Length < 3)
                         {
@@ -88,7 +88,7 @@ namespace AllJoynDotNet
         }
         public static object GetAllJoynMessageArgArray(MsgArg argument, string signature)
         {
-            if (signature[0] != 'a')
+            if (signature[0] != AllJoynTypeIds.Array)
             {
                 throw new ArgumentException("not an array");
             }
@@ -96,23 +96,30 @@ namespace AllJoynDotNet
             {
                 switch (signature[1])
                 {
-                    case 'y':
-                        return GetPrimitiveArrayMessageArg<byte>(argument, signature, Marshal.Copy);
-                    case 'n':
+                    case AllJoynTypeIds.Int16:
                         return GetPrimitiveArrayMessageArg<short>(argument, signature, Marshal.Copy);
-                    case 'd':
-                        return GetPrimitiveArrayMessageArg<double>(argument, signature, Marshal.Copy);
-                    case 'i':
+                    case AllJoynTypeIds.Int32:
                         return GetPrimitiveArrayMessageArg<Int32>(argument, signature, Marshal.Copy);
-                    case 'x':
+                    case AllJoynTypeIds.Int64:
                         return GetPrimitiveArrayMessageArg<Int64>(argument, signature, Marshal.Copy);
-                    //char
-                    //float
+                    case AllJoynTypeIds.Double:
+                        return GetPrimitiveArrayMessageArg<double>(argument, signature, Marshal.Copy);
+                    case AllJoynTypeIds.Byte:
+                        return GetPrimitiveArrayMessageArg<byte>(argument, signature, Marshal.Copy);
+                        //return GetByteArrayMessageArg(argument, signature);
+                    case AllJoynTypeIds.UInt16:
+                        return GetPrimitiveArrayMessageArg<ushort>(argument, signature, MarshalHelpers.Copy);
+                    case AllJoynTypeIds.UInt32:
+                        return GetPrimitiveArrayMessageArg<uint>(argument, signature, MarshalHelpers.Copy);
+                    case AllJoynTypeIds.UInt64:
+                        return GetPrimitiveArrayMessageArg<ulong>(argument, signature, MarshalHelpers.Copy);
+                    case AllJoynTypeIds.Boolean:
                     default:
                         throw new Exception("TODO");
                 }
             }
-            if(signature == "as")
+
+            if(signature == AllJoynTypeIds.StringArray)
                 return GetStringArrayMessageArg(argument, signature);
             throw new NotSupportedException($"ArrayType '{signature}' not implemented");
         }
@@ -120,9 +127,8 @@ namespace AllJoynDotNet
         private static string[] GetStringArrayMessageArg(MsgArg argument, string signature)
         {
             UIntPtr las;
-            //var as_arg = MsgArg.alljoyn_msgarg_create();
             IntPtr as_arg;
-            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, "as", __arglist(out las, out as_arg));
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, AllJoynTypeIds.StringArray, __arglist(out las, out as_arg));
             AllJoynException.CheckStatus(status);
             string[] result = new string[(int)las];
             IntPtr val;
@@ -130,13 +136,33 @@ namespace AllJoynDotNet
             {
                 status = MsgArg.alljoyn_msgarg_get(
                     MsgArg.alljoyn_msgarg_array_element(
-                        as_arg, (UIntPtr)i), "s", __arglist(out val));
+                        as_arg, (UIntPtr)i), AllJoynTypeIds.String.ToString(), __arglist(out val));
                 AllJoynException.CheckStatus(status);
                 result[i] = Marshal.PtrToStringAnsi(val);
             }
             MsgArg.alljoyn_msgarg_destroy(as_arg);
+           // MsgArg.alljoyn_msgarg_stabilize(argument.Handle);
             return result;
         }
+        /*private static byte[] GetByteArrayMessageArg(MsgArg argument, string signature)
+        {
+            UIntPtr las;
+            IntPtr as_arg;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, AllJoynTypeIds.ByteArray, __arglist(out las, out as_arg));
+            AllJoynException.CheckStatus(status);
+            byte[] result = new byte[(int)las];
+            IntPtr val;
+            for (int i = 0; i < (int)las; i++)
+            {
+                var a = MsgArg.alljoyn_msgarg_array_element(as_arg, (UIntPtr)i);
+                status = MsgArg.alljoyn_msgarg_get(a, AllJoynTypeIds.Byte.ToString(), __arglist(out val));
+                AllJoynException.CheckStatus(status);
+                result[i] = Marshal.ReadByte(val);
+            }
+            MsgArg.alljoyn_msgarg_destroy(as_arg);
+            // MsgArg.alljoyn_msgarg_stabilize(argument.Handle);
+            return result;
+        }*/
 
         private static T[] GetPrimitiveArrayMessageArg<T>(MsgArg argument, string signature, Action<IntPtr, T[], int, int> copyAction)
         {
@@ -146,12 +172,16 @@ namespace AllJoynDotNet
             AllJoynException.CheckStatus(status);
             T[] elements = new T[(int)size];
             copyAction(valuePtr, elements, 0, (int)size);
+            //Marshal.FreeCoTaskMem(valuePtr);
             return elements;
         }
 
         static bool IsArrayOfPrimitives(string signature)
         {
-            return (signature.Length == 2) && (signature[1] != 's') && (signature[1] != 'v');
+            return (signature.Length == 2) &&
+                (signature[1] != AllJoynTypeIds.String) &&
+                (signature[1] != AllJoynTypeIds.Variant) &&
+                (signature[1] != AllJoynTypeIds.DbusObjectPath);
         }
     }
 }

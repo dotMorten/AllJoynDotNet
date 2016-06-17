@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace AllJoynDotNet
@@ -36,7 +37,49 @@ namespace AllJoynDotNet
                 return System.Runtime.InteropServices.Marshal.PtrToStringAnsi(p);
             }
         }
+        public InterfaceDescriptionMember GetMember(string name)
+        {
+            alljoyn_interfacedescription_member ptr = new alljoyn_interfacedescription_member();
+            alljoyn_interfacedescription_getmember(Handle, name, ref ptr);
+            return new InterfaceDescriptionMember(ptr);
+        }
+        public class InterfaceDescriptionMember
+        {
+            internal alljoyn_interfacedescription_member Handle { get; }
+            internal InterfaceDescriptionMember(alljoyn_interfacedescription_member handle)
+            {
 
+                Handle = handle;
+            }
+            public string Name
+            {
+                get
+                {
+                    return Marshal.PtrToStringAnsi(Handle.name);
+                }
+            }
+            public string Signature
+            {
+                get
+                {
+                    return Marshal.PtrToStringAnsi(Handle.signature);
+                }
+            }
+            public string ReturnSignature
+            {
+                get
+                {
+                    return Marshal.PtrToStringAnsi(Handle.returnSignature);
+                }
+            }
+            public string ArgNames
+            {
+                get
+                {
+                    return Marshal.PtrToStringAnsi(Handle.argNames);
+                }
+            }
+        }
         public bool IsSecure
         {
             get

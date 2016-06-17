@@ -287,7 +287,7 @@ namespace AllJoynDotNet
 		/// <returns>- If error detected return error name stored in the AllJoyn header field
 		/// - NULL if error not detected</returns>
 		[DllImport(Constants.DLL_IMPORT_TARGET)]
-		internal static extern IntPtr alljoyn_message_geterrorname(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)]string errorMessage, [In, Out]UIntPtr errorMessage_size);
+		internal static extern IntPtr alljoyn_message_geterrorname(IntPtr msg, [MarshalAs(UnmanagedType.LPStr)] out string errorMessage, [In, Out]UIntPtr errorMessage_size);
 		// extern AJ_API const char* AJ_CALL alljoyn_message_geterrorname(alljoyn_message msg, char* errorMessage, size_t* errorMessage_size);
 
 		/// <summary>

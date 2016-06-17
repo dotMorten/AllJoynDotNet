@@ -22,7 +22,7 @@ namespace AllJoynDotNet
 		/// <param name="message">The received method call message.</param>
 		/// 
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		internal delegate void alljoyn_messagereceiver_methodhandler_ptr(IntPtr bus, alljoyn_interfacedescription_member member, IntPtr message);
+		internal delegate void alljoyn_messagereceiver_methodhandler_ptr(IntPtr bus, IntPtr member, IntPtr message);
 		// typedef void (AJ_CALL * alljoyn_messagereceiver_methodhandler_ptr)(alljoyn_busobject bus,
 		// const alljoyn_interfacedescription_member* member,
 		// alljoyn_message message);
