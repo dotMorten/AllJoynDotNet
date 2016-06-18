@@ -50,11 +50,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Libs\15.09\Windows\Winx64\alljoyn_c.dll">
+    <Content Include="..\..\Libs\AllJoyn_C\Win7\x64\alljoyn_c.dll">
       <Link>x64\alljoyn_c.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\Libs\15.09\Windows\Winx86\alljoyn_c.dll">
+    <Content Include="..\..\Libs\AllJoyn_C\Win7\x86\alljoyn_c.dll">
       <Link>x86\alljoyn_c.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

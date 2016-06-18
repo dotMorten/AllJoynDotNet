@@ -48,10 +48,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedNativeLibrary Include="..\..\Libs\15.09\Android\armeabi-v7a\liballjoyn_c.so">
+    <EmbeddedNativeLibrary Include="..\..\Libs\AllJoyn_C\Android\armeabi-v7a-debug\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Debug' ">
       <Link>libs\armeabi-v7a\liballjoyn_c.so</Link>
     </EmbeddedNativeLibrary>
-    <EmbeddedNativeLibrary Include="..\..\Libs\15.09\Android\x86\liballjoyn_c.so">
+    <EmbeddedNativeLibrary Include="..\..\Libs\AllJoyn_C\Android\x86-debug\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Debug' ">
+      <Link>libs\x86\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="..\..\Libs\AllJoyn_C\Android\armeabi-v7a\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Release' ">
+      <Link>libs\armeabi-v7a\liballjoyn_c.so</Link>
+    </EmbeddedNativeLibrary>
+    <EmbeddedNativeLibrary Include="..\..\Libs\AllJoyn_C\Android\x86\liballjoyn_c.so" Condition=" '$(Configuration)' == 'Release' ">
       <Link>libs\x86\liballjoyn_c.so</Link>
     </EmbeddedNativeLibrary>
     <None Include="Resources\AboutResources.txt" />
