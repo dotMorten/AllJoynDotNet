@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+
+  <PropertyGroup>
+    <AllJoynDeploymentRoot>$(MSBuildThisFileDirectory)..\..\lib\net452\</AllJoynDeploymentRoot>
+  </PropertyGroup>
+  
+  <Target Name="AfterBuild">
+    <ItemGroup>
+        <AllJoynSource Include="$(AllJoynDeploymentRoot)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AllJoynSource)" DestinationFolder="$(TargetDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+  
+</Project>
