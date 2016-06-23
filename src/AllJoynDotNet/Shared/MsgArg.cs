@@ -15,6 +15,11 @@ namespace AllJoynDotNet
 {
     public partial class MsgArg : AllJoynWrapper
     {
+        static MsgArg()
+        {
+            Init.Initialize();
+        }
+
         IntPtr _bytePtr;
         public MsgArg() : base(alljoyn_msgarg_create())
         {
@@ -43,8 +48,13 @@ namespace AllJoynDotNet
         {
             UIntPtr numArgs = (UIntPtr)1;
             string signature = "";
+#if DEBUG //we don't cache the value in debug to provoke potential bugs. TODO: Remove later
+            _value = null;
+            _valueInitialized = false;
+#else
             _value = value;
             _valueInitialized = true;
+#endif
 
             if (_bytePtr != IntPtr.Zero)
             {
@@ -111,6 +121,22 @@ namespace AllJoynDotNet
             {
                 signature = "y";
                 alljoyn_msgarg_set(Handle, signature, __arglist((byte)value));
+            }
+            else if(value is Array)
+            {
+                SetArrayValue((Array)value);
+            }
+            else
+                throw new NotSupportedException();
+        }
+
+        private void SetArrayValue(Array elements)
+        {
+            var eType = elements.GetType().GetElementType();
+            if (eType == typeof(byte))
+            {
+                var arr = (byte[])elements;
+                alljoyn_msgarg_set_uint8_array(Handle, (UIntPtr)arr.Length, arr);
             }
             else
                 throw new NotSupportedException();

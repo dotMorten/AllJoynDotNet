@@ -13,7 +13,11 @@ namespace AllJoynDotNet
             switch (signature[0])
             {
                 case AllJoynTypeIds.Byte:
-                    return GetVariantArg<byte>(argument, "y");
+                    {
+                        IntPtr valOut;
+                        var status = MsgArg.alljoyn_msgarg_get(argument.Handle, "y", __arglist(out valOut));
+                        return (byte)valOut;
+                    }
                 case AllJoynTypeIds.Boolean:
                     return GetVariantArg<bool>(argument, "b");
                 case AllJoynTypeIds.Int16:
@@ -73,7 +77,7 @@ namespace AllJoynDotNet
         private static T GetVariantArg<T>(MsgArg argument, string signature)
         {
             T value = default(T);
-            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(ref value));
             AllJoynException.CheckStatus(status);
             return value;
         }

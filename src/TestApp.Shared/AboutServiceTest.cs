@@ -17,7 +17,9 @@ namespace TestApp.Shared
             cancelSource = new System.Threading.CancellationTokenSource();
             var _1 = StartService().ContinueWith(t => StopService());
             var _2 = StartClient().ContinueWith(t => StopClient());
+#if !XAMARIN && !NETFX_CORE
             Task.WhenAll(_1, _2).Wait();
+#endif
             //StartService();
             //StartClient();
         }
@@ -29,7 +31,7 @@ namespace TestApp.Shared
             //StopService();
         }
 
-        #region Service
+#region Service
         private static ushort ASSIGNED_SESSION_PORT = 900;
         private const string INTERFACE_NAME = "com.example.about.feature.interface.sample";
         private BusAttachment serviceBus;
@@ -139,9 +141,9 @@ namespace TestApp.Shared
             busObject.MethodReplyArgs(message, message.GetArgument(0), 1); //reply back with the same message;
         }
 
-        #endregion
+#endregion
 
-        #region Client
+#region Client
         private BusAttachment clientBus;
         private async Task StartClient()
         { 
@@ -283,6 +285,6 @@ namespace TestApp.Shared
                 return (string)v;
             return $"User defined Value\tValue: '{v?.ToString()}'\tSignature: '{arg.Signature}'";
         }
-        #endregion
+#endregion
     }
 }

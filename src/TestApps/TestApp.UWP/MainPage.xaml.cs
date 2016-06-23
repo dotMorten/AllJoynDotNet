@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TestApp.Shared;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -30,7 +31,11 @@ namespace TestApp.UWP
         {
             this.InitializeComponent();
             Log.OnMessage += Log_OnMessage;
-            new GetLibraryInfo().Start();
+        }
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            //new GetLibraryInfo().Start();
             //currentSample = new CreateInterfaceTest();
             currentSample = new AboutServiceTest();
             currentSample.Start();
@@ -38,10 +43,15 @@ namespace TestApp.UWP
 
         private void Log_OnMessage(object sender, string e)
         {
-            var _ = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
+            if (Dispatcher.HasThreadAccess)
                 logger.Text += e;
-            });
+            else
+            {
+                 var _ = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                 {
+                     logger.Text += e;
+                 });
+            }
         }
     }
 }
