@@ -19,21 +19,21 @@ namespace AllJoynDotNet
                         return (byte)valOut;
                     }
                 case AllJoynTypeIds.Boolean:
-                    return GetVariantArg<bool>(argument, "b");
+                    return GetBoolArg(argument, "b");
                 case AllJoynTypeIds.Int16:
-                    return GetVariantArg<Int16>(argument, "n");
+                    return GetInt16Arg(argument, "n");
                 case AllJoynTypeIds.UInt16:
                     return GetUInt16Arg(argument, "q");
                 case AllJoynTypeIds.Int32:
-                    return GetVariantArg<Int32>(argument, "i");
+                    return GetInt32Arg(argument, "i");
                 case AllJoynTypeIds.UInt32:
-                    return GetVariantArg<UInt32>(argument, "u");
+                    return GetUInt32Arg(argument, "u");
                 case AllJoynTypeIds.Int64:
-                    return GetVariantArg<Int64>(argument, "x");
+                    return GetInt64Arg(argument, "x");
                 case AllJoynTypeIds.UInt64:
-                    return GetVariantArg<UInt64>(argument, "t");
+                    return GetUInt64Arg(argument, "t");
                 case AllJoynTypeIds.Double:
-                    return GetVariantArg<double>(argument, "d");
+                    return GetDoubleArg(argument, "d");
                 case AllJoynTypeIds.String:
                 case AllJoynTypeIds.DbusObjectPath:
                     return GetVariantArg_String(argument, "s");
@@ -66,6 +66,14 @@ namespace AllJoynDotNet
             throw new NotImplementedException("TODO");
         }
 
+        private static Int16 GetInt16Arg(MsgArg argument, string signature)
+        {
+            Int16 value;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+
         private static UInt16 GetUInt16Arg(MsgArg argument, string signature)
         {
             UInt16 value;
@@ -74,9 +82,55 @@ namespace AllJoynDotNet
             return value;
         }
 
+        private static Int32 GetInt32Arg(MsgArg argument, string signature)
+        {
+            Int32 value;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+
+        private static UInt32 GetUInt32Arg(MsgArg argument, string signature)
+        {
+            UInt32 value;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+        private static Int64 GetInt64Arg(MsgArg argument, string signature)
+        {
+            Int64 value;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+
+        private static UInt64 GetUInt64Arg(MsgArg argument, string signature)
+        {
+            UInt32 value;
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(out value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+
         private static T GetVariantArg<T>(MsgArg argument, string signature)
         {
             T value = default(T);
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(ref value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+        private static bool GetBoolArg(MsgArg argument, string signature)
+        {
+            bool value = default(bool);
+            var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(ref value));
+            AllJoynException.CheckStatus(status);
+            return value;
+        }
+
+        private static double GetDoubleArg(MsgArg argument, string signature)
+        {
+            double value = default(double);
             var status = MsgArg.alljoyn_msgarg_get(argument.Handle, signature, __arglist(ref value));
             AllJoynException.CheckStatus(status);
             return value;
@@ -118,6 +172,10 @@ namespace AllJoynDotNet
                     case AllJoynTypeIds.UInt64:
                         return GetPrimitiveArrayMessageArg<ulong>(argument, signature, MarshalHelpers.Copy);
                     case AllJoynTypeIds.Boolean:
+                        {
+                            var result = GetPrimitiveArrayMessageArg<int>(argument, signature, Marshal.Copy);
+                            return result.Select(t => t == 1).ToArray();
+                        }
                     default:
                         throw new Exception("TODO");
                 }
