@@ -366,10 +366,11 @@ namespace AllJoynDotNet
             string name  = Windows.ApplicationModel.Package.Current.Id.FamilyName;
 #else
             //TODO: Xamarin
-
             var assy = Assembly.GetEntryAssembly();
+#if !NETSTANDARD
             if (assy == null)
                 assy = Assembly.GetCallingAssembly();
+#endif
 
             string name = assy.GetName().Name;
 #endif

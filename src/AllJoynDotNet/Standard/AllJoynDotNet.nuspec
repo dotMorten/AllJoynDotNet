@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>AllJoynDotNet</id>
+    <version>$version$</version>
+    <title>.NET Standard Wrapper for AllJoyn</title>
+    <authors>Morten Nielsen</authors>
+    <owners>Morten Nielsen</owners>
+		<licenseUrl>https://github.com/dotMorten/AllJoynDotNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/dotMorten/AllJoynDotNet</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>AllJoyn.</description>
+    <summary>AllJoyn</summary>
+    <copyright>Copyright © 2016 Morten Nielsen. All rights reserved.</copyright>
+    <tags>AllJoyn IoT</tags>
+  </metadata>
+</package>
