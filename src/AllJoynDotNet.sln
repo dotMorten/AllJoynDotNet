@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllJoynDotNet.NET45", "AllJoynDotNet\NET45\AllJoynDotNet.NET45.csproj", "{301EEA53-637A-4625-8199-FA2AAC2E9906}"
 EndProject
@@ -35,20 +35,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NET45", "Tests\NE
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestApp.Shared", "TestApp.Shared\TestApp.Shared.shproj", "{0AFB822A-F55F-4088-BF84-D58F23C8DB30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllJoynDotNet.iOS", "AllJoynDotNet\iOS\AllJoynDotNet.iOS.csproj", "{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TestApp.Shared\TestApp.Shared.projitems*{792443c9-6c9f-4434-ad5c-88193c118fc8}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
-		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
-		TestApp.Shared\TestApp.Shared.projitems*{e629be54-196f-4eeb-878c-5cb2c5f5c645}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
-		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
-		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{f362bd9c-88a5-46fb-8b06-d07b484222c0}*SharedItemsImports = 13
 		TestApp.Shared\TestApp.Shared.projitems*{0afb822a-f55f-4088-bf84-d58f23c8db30}*SharedItemsImports = 13
-		TestApp.Shared\TestApp.Shared.projitems*{fe5d7c82-a340-49d9-ba6f-001ee03c1793}*SharedItemsImports = 4
-		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
 		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{0fce6e6b-4e10-4c7a-81c4-22bdc4cb17bd}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{301eea53-637a-4625-8199-fa2aac2e9906}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{5fcc1095-ae51-470e-96de-530b3b549e57}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{75dd2887-d200-4a3f-aeaa-04caf991c3b7}*SharedItemsImports = 4
+		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{75dd2887-d200-4a3f-aeaa-04caf991c3b7}*SharedItemsImports = 4
+		TestApp.Shared\TestApp.Shared.projitems*{792443c9-6c9f-4434-ad5c-88193c118fc8}*SharedItemsImports = 4
 		AllJoynDotNet\Shared\AllJoynDotNet.Shared.projitems*{d44b775e-6a8d-41d7-96d7-c6eeaffe8efe}*SharedItemsImports = 13
+		TestApp.Shared\TestApp.Shared.projitems*{e629be54-196f-4eeb-878c-5cb2c5f5c645}*SharedItemsImports = 4
+		AllJoynDotNet\Generated\AllJoynDotNet.GeneratedInterop.projitems*{f362bd9c-88a5-46fb-8b06-d07b484222c0}*SharedItemsImports = 13
+		TestApp.Shared\TestApp.Shared.projitems*{fe5d7c82-a340-49d9-ba6f-001ee03c1793}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -203,6 +207,22 @@ Global
 		{E8BE30ED-815B-4498-99B6-819F33CEC5D8}.Release|x64.Build.0 = Release|Any CPU
 		{E8BE30ED-815B-4498-99B6-819F33CEC5D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8BE30ED-815B-4498-99B6-819F33CEC5D8}.Release|x86.Build.0 = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|ARM.Build.0 = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|x64.Build.0 = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Debug|x86.Build.0 = Debug|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|ARM.ActiveCfg = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|ARM.Build.0 = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|x64.ActiveCfg = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|x64.Build.0 = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -219,5 +239,6 @@ Global
 		{E629BE54-196F-4EEB-878C-5CB2C5F5C645} = {C257BD17-9B68-4CA2-858D-A616983E340D}
 		{E8BE30ED-815B-4498-99B6-819F33CEC5D8} = {4D4CC3E6-5BD8-4BB2-91F5-154D9F82AABB}
 		{0AFB822A-F55F-4088-BF84-D58F23C8DB30} = {C257BD17-9B68-4CA2-858D-A616983E340D}
+		{75DD2887-D200-4A3F-AEAA-04CAF991C3B7} = {F0EE724B-C28F-4C09-86A6-B87021052DFD}
 	EndGlobalSection
 EndGlobal
