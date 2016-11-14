@@ -11,11 +11,13 @@ namespace AllJoynDotNet
             Init.Initialize();
         }
 
-        IntPtr _bytePtr;
+        private IntPtr _bytePtr;
+
         public MsgArg() : base(alljoyn_msgarg_create())
         {
 
         }
+
         public MsgArg(string value) : this()
         {
             Set(value);
@@ -34,7 +36,7 @@ namespace AllJoynDotNet
             }
             base.Dispose(disposing);
         }
-        
+
         private void Set(object value)
         {
             UIntPtr numArgs = (UIntPtr)1;
@@ -73,7 +75,7 @@ namespace AllJoynDotNet
                 int newValue = ((bool)value ? 1 : 0);
                 alljoyn_msgarg_set(Handle, signature, __arglist(newValue));
             }
-            else if (value.GetType() == typeof(double) || value.GetType() == typeof(float))
+            else if (value.GetType() == typeof(double))
             {
                 signature = "d";
                 alljoyn_msgarg_set(Handle, signature, __arglist((double)value));
@@ -113,12 +115,23 @@ namespace AllJoynDotNet
                 signature = "y";
                 alljoyn_msgarg_set(Handle, signature, __arglist((byte)value));
             }
-            else if(value is Array)
+            else if (value is Array)
             {
                 SetArrayValue((Array)value);
             }
+            else if (value is System.Collections.IDictionary)
+            {
+                throw new NotImplementedException("TODO");
+            }
             else
-                throw new NotSupportedException();
+            {
+                if(value is float)
+                    throw new NotSupportedException($"Float not supported. Please use 'double'");
+                else if (value is System.Collections.IList)
+                    throw new NotSupportedException($"Lists not supported. Please use arrays");
+                else
+                    throw new NotSupportedException($"Unsupported value type {value.GetType().FullName}");
+            }
         }
 
         private void SetArrayValue(Array elements)

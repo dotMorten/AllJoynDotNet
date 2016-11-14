@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AboutProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AllJoynException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AllJoynTypeIds.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.Shared.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BusAttachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ErrorCodeLookup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)InterfaceDescription.cs" />
