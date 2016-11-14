@@ -45,19 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Libs\AllJoyn_C\iOS\arm-iphonesimulator\liballjoyn.a">
-      <Link>libs\arm-sim\liballjoyn.a</Link>
+    <EmbeddedResource Include="..\..\Libs\AllJoyn_C\iOS\liballjoyn.a">
+      <Link>libs\liballjoyn.a</Link>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="..\..\Libs\AllJoyn_C\iOS\arm64-iphoneos\liballjoyn.a">
-      <Link>libs\arm64-iphone\liballjoyn.a</Link>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Libs\AllJoyn_C\iOS\armv7-iphoneos\liballjoyn.a">
-      <Link>libs\arm-iphone\liballjoyn.a</Link>
-    </None>
   </ItemGroup>
   <Import Project="..\Shared\AllJoynDotNet.Shared.projitems" Label="Shared" />
   <Import Project="..\Generated\AllJoynDotNet.GeneratedInterop.projitems" Label="Shared" />

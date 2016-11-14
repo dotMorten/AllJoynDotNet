@@ -12,6 +12,8 @@ namespace AllJoynDotNet
         internal const string DLL_IMPORT_TARGET =
 #if __ANDROID__
             "liballjoyn_c.so";
+#elif __IOS__
+            "liballjoyn.a";
 #elif NETFX_CORE
             "MSAJApi.dll";
 #else
